@@ -1,11 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import { StatusBar as StatusBarRN, StyleSheet, Text, View } from "react-native";
+import { BottomMenu } from "./src/components/BottomMenu";
+import { Screens } from "./src/components/Screens";
+import { TopBar } from "./src/components/TopBar";
 
 export default function App() {
+  const [screen, setScreen] = useState<ScreenType>("news");
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
+      <TopBar />
+      <Screens currentScreen={screen} />
+      <BottomMenu onChange={setScreen} currentScreen={screen} />
     </View>
   );
 }
@@ -13,8 +20,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    backgroundColor: "#fff",
+    paddingTop: StatusBarRN.currentHeight,
   },
 });
+
+export type ScreenType = "map" | "encyclopedia" | "search" | "news" | "profile";
