@@ -12,7 +12,10 @@ export const Encyclopedia: React.FC<Props> = (props) => {
   //console.log (Mushrooms)//Mushrooms.mushrooms)
   return (
     <ScrollView>
-      <MushroomScreen obj = {mushrooms[0]}/>
+      {
+        mushrooms.map ( (obj: Mushroom) => ( <MushroomView obj = {obj}/> )  )
+      }
+      <MushroomScreen obj = {mushrooms[0]}/>    
    </ScrollView>
   )
 };
