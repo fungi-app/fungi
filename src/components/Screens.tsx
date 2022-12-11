@@ -14,7 +14,7 @@ type Props = {
 
 const screens: { [key in ScreenType]: JSX.Element } = {
   map: <Text>Я map</Text>,
-  encyclopedia: <Encyclopedia/>,
+  encyclopedia: <Encyclopedia />,
   search: <Text>Я search</Text>,
   news: <NewsScreen data={news} />,
   profile: <Text>Я profile</Text>,

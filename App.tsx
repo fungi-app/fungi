@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StatusBar as StatusBarRN, StyleSheet, Text, View } from "react-native";
-import { BottomMenu } from "./src/components/BottomMenu";
+import { StatusBar as StatusBarRN, StyleSheet, Text, View } from "react-native"; import { BottomMenu } from "./src/components/BottomMenu";
 import { Screens } from "./src/components/Screens";
 import { TopBar } from "./src/components/TopBar";
 
@@ -26,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export type ScreenType = "map" | "encyclopedia" | "search" | "news" | "profile";
+export type ScreenType = "map" | "encyclopedia" | "search" | "news" | "profile" //| "Mushroom";

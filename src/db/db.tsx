@@ -1,20 +1,29 @@
 //import Mushrooms from './mushrooms';
 
 //export const allmush = Mushrooms.mushrooms;
+//
 
 const IMGPATH = "./images/"
 const FILEPATH = "./mushrooms/"
 
-//const FAMILIES: string[] = fs.readFileSync( "./families" ,'utf8').trim().split("\n");
-//const ZONES: string[] = fs.readFileSync( "./zones" ,'utf8').trim().split("\n");
+const FAMILIES = require ( "./families.json" ).families
+const ZONES = require ("./zones.json" ).zones
+
+function getFamilie ( index: number ){
+  return FAMILIES[index]
+}
+
+function getZoneName ( index: number ){
+  return ZONES[index]
+}
 
 //console.log( ZONES )
 
 export class Mushroom {
+  
   public readonly appendDate: Date;
   public readonly name: string;
-  //public readonly id: number | string;
-  public readonly zone: number[];
+  public readonly zones: string;
   public readonly gmapsLink: string;
   public readonly redBook: boolean | string;
   public readonly eatable: boolean | string;
@@ -22,36 +31,36 @@ export class Mushroom {
   public readonly familie: number[];
   public readonly index: number
 
-  constructor ( obj: { time: string; name: string, zones: string, gmapsLink: string, redBook: string, eatable: string, description: string, familie:string, }, index: number ){ // id: string
+  constructor ( obj: { time: string; name: string, zones: string, gmapsLink: string, redBook: string, eatable: string, description: string, familie:string, }, i: number ){ // id: string
 
     this.appendDate= new Date ( Date.parse( obj.time ));
     this.name= obj.name;
-    //this.id= obj.id; 
 
-    this.zone = obj.zones.slice(0,-1).split(";").map ( item => +item);
+    this.zones = obj.zones.slice(0,-1).split(";").map ( item => getZoneName ( +item )).join(", ");
 
     this.gmapsLink= obj.gmapsLink;
 
-    if ( obj.redBook == "1" ) this.redBook = true;
-    else if ( obj.redBook == "0" ) this.redBook = false;
+    console.log (obj.redBook)
+
+    if ( obj.redBook == "1" ) this.redBook = "Да";
+    else if ( obj.redBook == "0" ) this.redBook = "Нет";
     else this.redBook = obj.redBook;
 
-    if ( obj.eatable == "1" ) this.eatable = true;
-    else if ( obj.eatable == "0" ) this.eatable = false;
+    if ( obj.eatable == "1" ) this.eatable = "Да";
+    else if ( obj.eatable == "0" ) this.eatable = "Нет";
     else this.eatable = "50/50";
 
     this.description = obj.description;
 
-    this.familie = obj.familie.slice(0,-1).split(";").map ( item => +item);
-    this.index = index
+    this.familie = obj.familie.slice(0,-1).split(";").map ( item => getFamilie ( +item)).join("");
+    this.index = i
 
   }
 
   show () {
     console.log ( "\n=== " + this.name + " ===\n" );
     console.log ( "Append date: " + this.appendDate.toString() );
-    //console.log ( this.id );
-    console.log ( this.zone );
+    console.log ( this.zones );
     console.log ( this.gmapsLink );
     console.log ( this.redBook );
     console.log ( this.eatable );
