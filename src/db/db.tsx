@@ -40,8 +40,6 @@ export class Mushroom {
 
     this.gmapsLink= obj.gmapsLink;
 
-    console.log (obj.redBook)
-
     if ( obj.redBook == "1" ) this.redBook = "Да";
     else if ( obj.redBook == "0" ) this.redBook = "Нет";
     else this.redBook = obj.redBook;
