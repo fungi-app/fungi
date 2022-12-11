@@ -6,6 +6,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { news, NewsScreen } from "../components/NewsScreen";
+import { Encyclopedia } from "../components/Encyclopedia";
 
 type Props = {
   currentScreen: ScreenType;
@@ -13,7 +14,7 @@ type Props = {
 
 const screens: { [key in ScreenType]: JSX.Element } = {
   map: <Text>Я map</Text>,
-  encyclopedia: <Text>Я encyclopedia</Text>,
+  encyclopedia: <Encyclopedia/>,
   search: <Text>Я search</Text>,
   news: <NewsScreen data={news} />,
   profile: <Text>Я profile</Text>,

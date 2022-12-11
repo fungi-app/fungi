@@ -1,0 +1,138 @@
+const MushList = {
+	"list" : [
+	{
+		"time" : "2022/11/11 4:29:27 PM GMT+3",
+		"name" : "Вид: Amanita excelsa (Мухомор толстый (мухомор коренастый)",
+		"image" : require ( "./images/1aeBg8vfYxETZ6My77yW1tKdQIYdp4vnX.jpg"),
+		"zones" : "4;5;",
+		"gmapsLink" : "https://goo.gl/maps/5Ku1jWMwuT3Rsk3n9",
+		"redBook" : "0",
+		"eatable" : "2",
+		"description" : "Гриб в высоту примерно 8 см, в ширину 5 см имеет не большую шапочку. ",
+		"familie" : "1;"
+
+	},
+	{
+		"time" : "2022/11/21 11:35:38 PM GMT+3",
+		"name" : "Лисичка обыкновенная",
+		"image" : require ( "./images/1nY0Im71bS9CMW27wOMl-FNIo6hlK0vn6.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://goo.gl/maps/aZTMpxXpiAy7Yb4WA",
+		"redBook" : "0",
+		"eatable" : "1",
+		"description" : "",
+		"familie" : "25;"
+
+	},
+	{
+		"time" : "2022/12/09 9:55:46 PM GMT+3",
+		"name" : "Белый гриб",
+		"image" : require ( "./images/1HjVk-FhC8cAhy5FB6AbdItRQ1YGndsbs.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://urochishe.ru/gde-rastut-belyie-gribyi/?ysclid=lbgvbgneqb800610208",
+		"redBook" : "1",
+		"eatable" : "1",
+		"description" : "Белый гриб (также сокращённо: белый), или боровик (лат. Bolétus edúlis), — гриб из рода Боровик. Название отражает свойство мякоти не изменять цвет на срезе. Встречается повсеместно, широко распространён; отличается разнообразием форм и окрасок.",
+		"familie" : "9;"
+
+	},
+	{
+		"time" : "2022/12/10 5:18:52 PM GMT+3",
+		"name" : "Груздь настоящий",
+		"image" : require ( "./images/14vgsNgjhLaoPCjP8pnvJf-ZTJ7a3BErX.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://upload.wikimedia.org/wikipedia/commons/7/74/Lactarius_resimus1.jpg",
+		"redBook" : "0",
+		"eatable" : "1",
+		"description" : "Груздь настоящий съедобный гриб рода Млечник семейсвта Сыроежковые.",
+		"familie" : "54;"
+
+	},
+	{
+		"time" : "2022/12/10 7:08:01 PM GMT+3",
+		"name" : "Boletus badius (Польский гриб)",
+		"image" : require ( "./images/1QfWQsB_lfPtESL-Jphp5Gh6PXevyJvJg.jpg"),
+		"zones" : "1;2;4;",
+		"gmapsLink" : "https://goo.gl/maps/dEu7RYDzZ5cDFu1o9",
+		"redBook" : "0",
+		"eatable" : "1",
+		"description" : "Гриб в высоту размером от 3 до 12 см, толщина до 4 см, шляпка от 3 до 12 см.",
+		"familie" : "9;"
+
+	},
+	{
+		"time" : "2022/12/10 7:19:04 PM GMT+3",
+		"name" : "Agaricus arvensis (Шампиньон полевой)",
+		"image" : require ( "./images/1WT2hziAa-vhd50DgbiyAfK2GinpSYpre.jpg"),
+		"zones" : "4;5;6;",
+		"gmapsLink" : "https://goo.gl/maps/vUiZfLoocwtVzdS46",
+		"redBook" : "0",
+		"eatable" : "1",
+		"description" : "Гриб в высоту до 10 см, шляпка в от 5 до 15 см.",
+		"familie" : "0;"
+
+	},
+	{
+		"time" : "2022/12/10 7:36:39 PM GMT+3",
+		"name" : "Craterellus cornucopioides (Лисичка чёрная)",
+		"image" : require ( "./images/1FqDUZgRMEwSY3H_qxRdXz5BunhZuL0P0.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://goo.gl/maps/kQNFzuuX2ZUC6SDB8",
+		"redBook" : "0",
+		"eatable" : "1",
+		"description" : "Ножка тонкая(до 1 см), до 10 см, шляпка до 5 см, обычно располагается кучно.",
+		"familie" : "25;"
+
+	},
+	{
+		"time" : "2022/12/10 7:49:23 PM GMT+3",
+		"name" : "Leucocybe candicans (Говорушка белёсая)",
+		"image" : require ( "./images/11QNyM_yHiVl8Eo0cw634FGE9VdkMti-k.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://goo.gl/maps/i5TgskW52xnjd7uJA",
+		"redBook" : "0",
+		"eatable" : "0",
+		"description" : "Размер ножки 4 см, поверхность волокнистая, шляпка 4 см. Период роста - начало-середина осени.",
+		"familie" : "66;"
+
+	},
+	{
+		"time" : "2022/12/10 7:57:41 PM GMT+3",
+		"name" : "Inocybe lacera (Волоконница разорванная)",
+		"image" : require ( "./images/157Jm3kCBky5kDQk1311WDjAjlVDv_ugm.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://goo.gl/maps/zsqGBqiGKhiNAHpt8",
+		"redBook" : "0",
+		"eatable" : "0",
+		"description" : "Ножка имеет длину до 5 см и диаметр 0,3-0,6 см, на поверхности проглядываются красновато-бурые чешуйки, небольшая шляпка 3-5 см.",
+		"familie" : "23;"
+
+	},
+	{
+		"time" : "2022/12/10 8:07:27 PM GMT+3",
+		"name" : "Hypholoma polytrichi (Ложноопёнок моховой)",
+		"image" : require ( "./images/1lK_4F00CAHGkzsPVLDC0ymTY8sYr2iqi.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://goo.gl/maps/jPbNNq6uPbmEer5t8",
+		"redBook" : "0",
+		"eatable" : "0",
+		"description" : "Ножка тонкая(2-4 мм) и длинная (6-12 см), коричневато-жёлтая, шляпка до 3,5 см, при высокой влажности поверхность становится слизистой.",
+		"familie" : "61;"
+
+	},
+	{
+		"time" : "2022/12/10 10:14:11 PM GMT+3",
+		"name" : "Грифола курчавая",
+		"image" : require ( "./images/1LyDhSpxQ4WMJ7G-WLyhOr-6DrYYb3wbV.jpg"),
+		"zones" : "4;",
+		"gmapsLink" : "https://ru.wikipedia.org/wiki/%D0%93%D1%80%D0%B8%D1%84%D0%BE%D0%BB%D0%B0_%D0%BA%D1%83%D1%80%D1%87%D0%B0%D0%B2%D0%B0%D1%8F",
+		"redBook" : "1",
+		"eatable" : "1",
+		"description" : "Гри́фола курча́вая (лат. Grifola frondosa), гриб-баран, мейтаке, маитаке, танцующий гриб[источник не указан 1788 дней] — съедобный гриб, вид рода Грифола (Grifola) семейства Фомитопсисовые (Fomitopsidaceae).",
+		"familie" : "71;"
+
+	}
+	]
+};
+
+export default MushList;
