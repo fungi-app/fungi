@@ -1,8 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Octicons, Feather } from "@expo/vector-icons";
 import { colors } from "../colors";
+import { ScreenType } from "../../App";
 
-export const TopBar: React.FC = () => {
+type Props = {
+  currentScreen: ScreenType;
+};
+
+export const TopBar: React.FC<Props> = (props) => {
   return (
     <View style={styles.wrapper}>
       <Octicons.Button
@@ -13,7 +18,7 @@ export const TopBar: React.FC = () => {
         iconStyle={styles.icon}
       />
       <View style={styles.textBar}>
-        <Text style={styles.text}>Я меню, я сверху</Text>
+        <Text style={styles.text}>{props.currentScreen}</Text>
       </View>
       <Feather.Button
         name="menu"
