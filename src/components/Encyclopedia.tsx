@@ -1,4 +1,4 @@
-import { SafeAreaView, TouchableOpacity, Button, View, StyleSheet, ScrollView, Image, Text } from "react-native";
+import { TouchableOpacity, Button, View, StyleSheet, ScrollView, Image, Text } from "react-native";
 import styled from "styled-components/native";
 import { Mushroom, getAllMushrooms } from "../db/db";
 import MushList from '../db/mushrooms';

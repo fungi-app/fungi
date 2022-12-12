@@ -7,15 +7,17 @@ import Animated, {
 } from "react-native-reanimated";
 import { news, NewsScreen } from "../components/NewsScreen";
 import { Encyclopedia } from "../components/Encyclopedia";
+import { Maps } from "../components/Maps";
+import { Search } from "../components/Search";
 
 type Props = {
   currentScreen: ScreenType;
 };
 
 const screens: { [key in ScreenType]: JSX.Element } = {
-  Карта: <Text>Я map</Text>,
+  Карта: <Maps/>,
   Энциклопедия: <Encyclopedia />,
-  Поиск: <Text>Я search</Text>,
+  Поиск: <Search/>,
   Новости: <NewsScreen data={news} />,
   Профиль: <Text>Я profile</Text>,
 };
