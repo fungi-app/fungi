@@ -15,33 +15,20 @@ export const Encyclopedia: React.FC<Props> = (props) => {
   let mushrooms = getAllMushrooms ( MushList.list );
   const [screen, setScreen] = useState<ScreenType>("mushroom");
 
-  //onChange={setScreen}
-  //props.onChange(Item.screen)
-
-  if ( isNaN( currentMushroomIndex )) content = <ScrollView contentContainerStyle={{ flexGrow: 1 }} style = {mushroomStyles.screen}>{mushrooms.map ( (obj: Mushroom) => ( <MushroomView obj = {obj} onChange = {setScreen}/> ))}</ScrollView>
+  if ( isNaN( currentMushroomIndex )) content = <View style = {mushroomStyles.screen}>{mushrooms.map ( (obj: Mushroom) => ( <MushroomView style = {mushroomStyles.mw} obj = {obj} onChange = {setScreen}/> ))}</View>
   else content = <MushroomScreen obj = {mushrooms[currentMushroomIndex]} onChange = {setScreen}/>
 
   return (
-    <View>
+    <ScrollView>
       {content}
-    </View>
+    </ScrollView>
   )
 };
 
-
-//<Ionicons onPress = {() => currentMushroomIndex = NaN} name="ios-close-circle-outline" size={60} style = {mushroomScreenStyles.closeButton} color="black" color={colors.secondary} />
-
 const MushroomScreen: React.FC<Props> = ({obj, onChange }) => { 
+  // <ScrollView contentContainerStyle={{ flexGrow: 1 }} style = {mushroomStyles.screen}>
   return (
-
     <View style = {mushroomScreenStyles.screen}>
-      <TouchableOpacity onPress = {() => {
-        currentMushroomIndex = NaN 
-        onChange("encyclopediaView")
-        }}>
-
-      <Text>Назад</Text>
-      </TouchableOpacity>
       <Text style = {mushroomScreenStyles.title}>{obj.name}</Text>
       <View style= {mushroomScreenStyles.imageContainer}>
         <Image style = {mushroomScreenStyles.image} source={ MushList.list[obj.index].image}/>
@@ -70,9 +57,16 @@ const MushroomScreen: React.FC<Props> = ({obj, onChange }) => {
         <CategoryName text = "Описание:"/>
         <CategoryText text = {obj.description}/>
       </View>
+      <TouchableOpacity style = {mushroomScreenStyles.closeButton} onPress = {() => {
+          currentMushroomIndex = NaN 
+          onChange("encyclopediaView")
+          }}>
+        <Text style = {mushroomScreenStyles.closeText}>Назад</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+// 
 
 const CategoryName: React.FC<Props> = ({text}) => {
   return ( <Text style = {mushroomScreenStyles.categoryName}>{text}</Text>)
@@ -84,7 +78,7 @@ const CategoryText: React.FC<Props> = ({text}) => {
 
 const MushroomView: React.FC<Props> = ({obj, onChange}) => { 
   return ( 
-    <TouchableOpacity style = {mushroomStyles.postButton} onPress = {() => {
+    <TouchableOpacity wrap style = {mushroomStyles.postButton} onPress = {() => {
       currentMushroomIndex = obj.index;
       onChange ( "encyclopedia" );
     }}>
@@ -101,6 +95,11 @@ const MushroomView: React.FC<Props> = ({obj, onChange}) => {
 
  
 const mushroomScreenStyles = StyleSheet.create ({
+  screen: {
+    height:"100%",
+    marginBottom: 150,
+    padding: 10,
+  },
   title: {
     fontWeight: "bold",
     fontSize: 25,
@@ -115,7 +114,7 @@ const mushroomScreenStyles = StyleSheet.create ({
     fontSize: 18,
   },
   imageContainer: {
-    height: "30%", 
+    height: 200, 
     width: "100%", 
     borderRadius: 30,
     marginBottom: 20,
@@ -126,29 +125,38 @@ const mushroomScreenStyles = StyleSheet.create ({
     borderRadius: 30,
   },
   closeButton: {
-    display: "flex",
-    position: "absolute",
-    width:60,
-    height: 60,
-    borderRadius: 0,
-    margin: 20,
+    width: "100%",
+    height: 40,
+    borderRadius: 30,
+    backgroundColor: colors.secondary,
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  closeText: {
+    color: "#fff",
+    textAlign: "center",
+    fontWidth: "bold",
+    fontSize: 15,
   }
 });
 
 const mushroomStyles = StyleSheet.create({ 
   screen: {
     padding: 15,
+    flex: 1,
+    height: "100%",
+    paddingBottom: 150,
+    flexDirection: "row",
     flexWrap: "wrap",
   },
   postButton: {
-    width: 175,
-    padding: 20,
-    paddingLeft: 0,
+    width: "50%",
+    padding: 10,
     paddingBottom: 0,
 
   },
   postContainer: {
-    backgroundColor: "#2f582e",
+    backgroundColor: colors.accent,
     width: "100%",
     height: 200,
     borderRadius: 40,
@@ -156,20 +164,22 @@ const mushroomStyles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   titleContainer: { 
-    backgroundColor: "#725e37", 
-    height:"30%",
+    backgroundColor: colors.secondary, 
+    height:"35%",
     borderBottomEndRadius: 40,
     borderBottomStartRadius: 40,
+    justifyContent: "center",
   },
   text: {
-    margin: 8,
+    margin: 11,
     color: "white",
-    textAlign: "center",
-    fontSize: 18
+    textAlign: "center", 
+    fontWeight: "bold",
+    fontSize: 18,
   },
   image: {
     width: "100%",
-    height: "70%",
+    height: "65%",
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40, 
     //height: 10,

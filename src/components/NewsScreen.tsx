@@ -76,7 +76,8 @@ export const NewsScreen: React.FC<Props> = (props) => {
 };
 
 const styles = StyleSheet.create({
-  flat: {},
+  flat: {
+  },
   card: {
     width: "100%",
     height: 150,

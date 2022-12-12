@@ -24,36 +24,11 @@ export const Screens: React.FC<Props> = (props) => {
   const { width } = useWindowDimensions();
   const Screen: React.FC<React.PropsWithChildren> = ({ children }) => (
     <View style={[styles.screen, { width }]}>{children}</View>
-  );
-  // const sliderStyle = useAnimatedStyle(
-  //   () => ({
-  //     width: width * Object.keys(screens).length,
-  //     left: withTiming(
-  //       -1 * Object.keys(screens).indexOf(props.currentScreen) * width,
-  //       { duration: 200 }
-  //     ),
-  //     position: "absolute",
-  //     display: "flex",
-  //     flexDirection: "row",
-  //   }),
-  //   [props.currentScreen]
-  // );
+  ); 
+
   return (
     <View style={styles.wrapper}>
-      <View
-        style={[
-          styles.slider,
-          {
-            width: width * Object.keys(screens).length,
-            left:
-              -1 * Object.keys(screens).indexOf(props.currentScreen) * width,
-          },
-        ]}
-      >
-        {Object.keys(screens).map((k) => (
-          <Screen key={k}>{screens[k as ScreenType]}</Screen>
-        ))}
-      </View>
+        {<Screen key={props.currentScreen}>{screens[props.currentScreen as ScreenType]}</Screen>}
     </View>
   );
 };
