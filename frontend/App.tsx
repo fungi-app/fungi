@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StatusBar as StatusBarRN, StyleSheet, Text, View } from "react-native";
 import { BottomMenu } from "./src/components/BottomMenu";
-import { Screens } from "./src/components/Screens";
+import { Screens } from "./src/Screens";
 import { TopBar } from "./src/components/TopBar";
 
 export default function App() {
