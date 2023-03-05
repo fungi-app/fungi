@@ -15,11 +15,11 @@ type Props = {
 };
 
 const screens: { [key in ScreenType]: JSX.Element } = {
-  Карта: <Maps />,
-  Энциклопедия: <Encyclopedia />,
-  Поиск: <Search />,
-  Новости: <NewsScreen data={news} />,
-  Профиль: <Text>Я profile</Text>,
+  map: <Maps />,
+  encyclopedia: <Encyclopedia />,
+  search: <Search />,
+  news: <NewsScreen data={news} />,
+  profile: <Text>Я profile</Text>,
 };
 
 export const Screens: React.FC<Props> = (props) => {
