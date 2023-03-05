@@ -9,7 +9,26 @@ import {
 } from "react-native";
 import MushList from "../db/mushrooms";
 import { colors } from "../colors";
-import { currentMushroomIndex } from "../screens/Encyclopedia";
+
+type Props = {
+  obj: {
+    appendDate: Date;
+    name: string;
+    zones: string;
+    gmapsLink: string;
+    redBook: boolean | string;
+    eatable: boolean | string;
+    description: string;
+    familie: number[];
+    index: number;
+  };
+  onChange: React.Dispatch<
+    React.SetStateAction<{
+      screen: string;
+      mushroomId: number;
+    }>
+  >;
+};
 
 export const MushroomScreen: React.FC<Props> = ({ obj, onChange }) => {
   // <ScrollView contentContainerStyle={{ flexGrow: 1 }} style = {mushroomStyles.screen}>
@@ -49,8 +68,7 @@ export const MushroomScreen: React.FC<Props> = ({ obj, onChange }) => {
       <TouchableOpacity
         style={mushroomScreenStyles.closeButton}
         onPress={() => {
-          currentMushroomIndex = NaN;
-          onChange("encyclopediaView");
+          onChange({ screen: "encyclopediaView", mushroomId: NaN });
         }}
       >
         <Text style={mushroomScreenStyles.closeText}>Назад</Text>
