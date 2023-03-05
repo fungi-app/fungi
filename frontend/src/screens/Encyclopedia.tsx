@@ -1,16 +1,13 @@
 import {
   TouchableOpacity,
-  Button,
   View,
   StyleSheet,
   ScrollView,
   Image,
   Text,
 } from "react-native";
-import styled from "styled-components/native";
 import { Mushroom, getAllMushrooms } from "../db/db";
 import MushList from "../db/mushrooms";
-import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../colors";
 import { useState } from "react";
 
@@ -20,7 +17,7 @@ export let currentMushroomIndex = NaN;
 
 export const Encyclopedia: React.FC<Props> = (props) => {
   let mushrooms = getAllMushrooms(MushList.list);
-  const [screen, setScreen] = useState<ScreenType>("mushroom");
+  const [screen, setScreen] = useState("mushroom");
 
   if (isNaN(currentMushroomIndex))
     content = (
@@ -45,62 +42,6 @@ export const Encyclopedia: React.FC<Props> = (props) => {
   return <ScrollView>{content}</ScrollView>;
 };
 
-const MushroomScreen: React.FC<Props> = ({ obj, onChange }) => {
-  // <ScrollView contentContainerStyle={{ flexGrow: 1 }} style = {mushroomStyles.screen}>
-  return (
-    <View style={mushroomScreenStyles.screen}>
-      <Text style={mushroomScreenStyles.title}>{obj.name}</Text>
-      <View style={mushroomScreenStyles.imageContainer}>
-        <Image
-          style={mushroomScreenStyles.image}
-          source={MushList.list[obj.index].image}
-        />
-      </View>
-      <View>
-        <CategoryName text="Где можно найти:" />
-        <CategoryText text={obj.zones} />
-      </View>
-      <View>
-        <CategoryName text="Семейство:" />
-        <CategoryText text={obj.familie} />
-      </View>
-      <View>
-        <CategoryName text="Красная книга:" />
-        <CategoryText text={obj.redBook} />
-      </View>
-      <View>
-        <CategoryName text="Съедобность:" />
-        <CategoryText text={obj.eatable} />
-      </View>
-      <View>
-        <CategoryName text="Карты:" />
-        <CategoryText text={obj.gmapsLink} />
-      </View>
-      <View>
-        <CategoryName text="Описание:" />
-        <CategoryText text={obj.description} />
-      </View>
-      <TouchableOpacity
-        style={mushroomScreenStyles.closeButton}
-        onPress={() => {
-          currentMushroomIndex = NaN;
-          onChange("encyclopediaView");
-        }}
-      >
-        <Text style={mushroomScreenStyles.closeText}>Назад</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-//
-
-const CategoryName: React.FC<Props> = ({ text }) => {
-  return <Text style={mushroomScreenStyles.categoryName}>{text}</Text>;
-};
-const CategoryText: React.FC<Props> = ({ text }) => {
-  return <Text style={mushroomScreenStyles.categoryText}>{text}</Text>;
-};
-
 const MushroomView: React.FC<Props> = ({ obj, onChange }) => {
   return (
     <TouchableOpacity
@@ -123,52 +64,6 @@ const MushroomView: React.FC<Props> = ({ obj, onChange }) => {
     </TouchableOpacity>
   );
 };
-
-const mushroomScreenStyles = StyleSheet.create({
-  screen: {
-    height: "100%",
-    marginBottom: 150,
-    padding: 10,
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 25,
-    margin: 15,
-    textAlign: "center",
-  },
-  categoryName: {
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-  categoryText: {
-    fontSize: 18,
-  },
-  imageContainer: {
-    height: 200,
-    width: "100%",
-    borderRadius: 30,
-    marginBottom: 20,
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 30,
-  },
-  closeButton: {
-    width: "100%",
-    height: 40,
-    borderRadius: 30,
-    backgroundColor: colors.secondary,
-    justifyContent: "center",
-    marginTop: 20,
-  },
-  closeText: {
-    color: "#fff",
-    textAlign: "center",
-    fontWidth: "bold",
-    fontSize: 15,
-  },
-});
 
 const mushroomStyles = StyleSheet.create({
   screen: {
