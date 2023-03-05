@@ -6,7 +6,7 @@ import { Screens } from "./src/Screens";
 import { TopBar } from "./src/components/TopBar";
 
 export default function App() {
-  const [screen, setScreen] = useState<ScreenType>("Новости");
+  const [screen, setScreen] = useState<ScreenType>("news");
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -26,9 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export type ScreenType =
-  | "Карта"
-  | "Энциклопедия"
-  | "Поиск"
-  | "Новости"
-  | "Профиль";
+export type ScreenType = "map" | "encyclopedia" | "search" | "news" | "profile";

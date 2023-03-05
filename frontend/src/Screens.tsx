@@ -14,12 +14,17 @@ type Props = {
   currentScreen: ScreenType;
 };
 
-const screens: { [key in ScreenType]: JSX.Element } = {
-  Карта: <Maps />,
-  Энциклопедия: <Encyclopedia />,
-  Поиск: <Search />,
-  Новости: <NewsScreen data={news} />,
-  Профиль: <Text>Я profile</Text>,
+export const screens: {
+  [key in ScreenType]: {
+    element: JSX.Element;
+    displayName: string;
+  };
+} = {
+  map: { element: <Maps />, displayName: "Карта" },
+  encyclopedia: { element: <Encyclopedia />, displayName: "Энциклопедия" },
+  search: { element: <Search />, displayName: "Поиск" },
+  news: { element: <NewsScreen data={news} />, displayName: "Новости" },
+  profile: { element: <Text>Я profile</Text>, displayName: "Профиль" },
 };
 
 export const Screens: React.FC<Props> = (props) => {
@@ -32,7 +37,7 @@ export const Screens: React.FC<Props> = (props) => {
     <View style={styles.wrapper}>
       {
         <Screen key={props.currentScreen}>
-          {screens[props.currentScreen as ScreenType]}
+          {screens[props.currentScreen].element}
         </Screen>
       }
     </View>
