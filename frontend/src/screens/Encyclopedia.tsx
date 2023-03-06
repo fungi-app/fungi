@@ -12,7 +12,7 @@ export const Encyclopedia: React.FC = () => {
   const [screen, setScreen] = useState({ screen: "mushroom", mushroomId: NaN });
   return (
     <ScrollView>
-      {screen.screen === "encyclopediaView" ? (
+      {isNaN(screen.mushroomId) ? (
         <View style={styles.screen}>
           {mushrooms.map((obj: Mushroom) => (
             <MushroomView obj={obj} onChange={setScreen} />
