@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
-    "start:watch": "nodemon ./dist/app.js",
-    "start": "nodemon ./dist/app.js",
+    "start:watch": "nodemon",
+    "start": "node ./dist/app.js",
     "dev": "concurrently 'npm:build:watch' 'npm:start:watch'"
   },
   "repository": {
