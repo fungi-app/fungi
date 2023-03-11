@@ -1,7 +1,7 @@
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { appRouter } from "@/trpc/router";
-import { prismaClient } from "@/db";
+import { appRouter } from "./router";
+import { prisma } from "@fungi/db";
 
 // created for each request
 const createContext = ({
@@ -10,8 +10,8 @@ const createContext = ({
 }: trpcExpress.CreateExpressContextOptions) => ({
   req,
   res,
-  db: prismaClient,
-}); // no context
+  db: prisma,
+});
 
 export type Context = inferAsyncReturnType<typeof createContext>;
 

@@ -1,8 +1,8 @@
 import express from "express";
-import { mw } from "@/trpc/middleware";
+import { tRPCExpressMiddleware } from "@fungi/api";
 
 const app = express();
 
-app.use("/trpc", mw);
+app.use("/trpc", tRPCExpressMiddleware);
 
 app.listen(3000, () => console.log("Listening"));

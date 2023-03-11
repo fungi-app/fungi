@@ -1,5 +1,5 @@
 {
-  "name": "fungi",
+  "name": "@fungi/app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -9,6 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.26.1",
+    "@trpc/client": "^10.14.1",
+    "@trpc/react-query": "^10.14.1",
+    "@trpc/server": "^10.14.1",
     "expo": "~47.0.8",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
@@ -19,6 +23,7 @@
     "react-native-web": "~0.18.9"
   },
   "devDependencies": {
+    "@fungi/api": "file:../backend/api",
     "@babel/core": "^7.12.9",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.70.6",
