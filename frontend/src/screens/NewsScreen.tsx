@@ -54,7 +54,7 @@ export const NewsScreen: React.FC<Props> = (props) => {
     screen: "publication" | "news";
     publicationId: number;
   }>({
-    screen: "publication",
+    screen: "news",
     publicationId: NaN,
   });
   return (
@@ -80,7 +80,7 @@ export const NewsScreen: React.FC<Props> = (props) => {
     // </View>
 
     <View>
-      {isNaN(screen.publicationId) ? (
+      {screen.screen === "news" ? (
         <FlatList
           data={props.data}
           renderItem={({ item }) => (
