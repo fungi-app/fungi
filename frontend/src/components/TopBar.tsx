@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Octicons, Feather } from "@expo/vector-icons";
 import { colors } from "../colors";
-import { ScreenType } from "../../App";
+import { ScreenType } from "../App";
 import { screens } from "../Screens";
 
 type Props = {

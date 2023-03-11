@@ -1,5 +1,5 @@
 import { View, StyleSheet, useWindowDimensions, Text } from "react-native";
-import { ScreenType } from "../App";
+import { ScreenType } from "./App";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
