@@ -7,37 +7,40 @@ import {
   FlatList,
 } from "react-native";
 import { colors } from "../colors";
+import { PublicationCard } from "../components/PublicationCard";
+import { useState } from "react";
+import { PublicationScreen } from "./PublicationScreen";
 
-type News = {
+export type News = {
   name: string;
-  link: string;
+  id: number;
   image: any;
 };
 
 export const news: News[] = [
   {
     name: "Новость",
-    link: "Сыллка",
+    id: 1,
     image: require("../../assets/lisichka.jpeg"),
   },
   {
     name: "Новость",
-    link: "Сыллка",
+    id: 2,
     image: require("../../assets/lisichka.jpeg"),
   },
   {
     name: "Новость",
-    link: "Сыллка",
+    id: 1,
     image: require("../../assets/lisichka.jpeg"),
   },
   {
     name: "Новость",
-    link: "Сыллка",
+    id: 1,
     image: require("../../assets/lisichka.jpeg"),
   },
   {
     name: "Новость",
-    link: "Сыллка",
+    id: 1,
     image: require("../../assets/lisichka.jpeg"),
   },
 ];
@@ -47,6 +50,13 @@ type Props = {
 };
 
 export const NewsScreen: React.FC<Props> = (props) => {
+  const [screen, setScreen] = useState<{
+    screen: "publication" | "news";
+    publicationId: number;
+  }>({
+    screen: "publication",
+    publicationId: NaN,
+  });
   return (
     // <ScrollView>
     //   <View style={styles.wrapper}>
@@ -59,45 +69,40 @@ export const NewsScreen: React.FC<Props> = (props) => {
     //     ))}
     //   </View>
     // </ScrollView>
-    <View style={styles.wrapper}>
-      <FlatList
-        style={styles.flat}
-        data={props.data}
-        renderItem={({ item }) => (
-          <ImageBackground style={styles.card} source={item.image}>
-            <View style={styles.blockfortext}>
-              <Text style={styles.text}>{item.name}</Text>
-            </View>
-          </ImageBackground>
-        )}
-      />
+
+    // <View style={styles.wrapper}>
+    //   <FlatList
+    //     data={props.data}
+    //     renderItem={({ item }) => (
+    //       <PublicationCard item={item}></PublicationCard>
+    //     )}
+    //   />
+    // </View>
+
+    <View>
+      {isNaN(screen.publicationId) ? (
+        <FlatList
+          data={props.data}
+          renderItem={({ item }) => (
+            <PublicationCard
+              item={item}
+              onPress={() =>
+                setScreen({ screen: "publication", publicationId: item.id })
+              }
+            />
+          )}
+        />
+      ) : (
+        <PublicationScreen
+          item={props.data[screen.publicationId]}
+          onBack={() => setScreen({ screen: "news", publicationId: NaN })}
+        />
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  flat: {
-  },
-  card: {
-    width: "100%",
-    height: 150,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 30,
-    marginVertical: 10,
-    overflow: "hidden",
-  },
-  blockfortext: {
-    backgroundColor: colors.bg,
-    alignItems: "center",
-    width: "50%",
-    padding: 6,
-    borderRadius: 20,
-  },
-  text: {
-    color: colors.secondary,
-  },
   wrapper: {
     paddingHorizontal: "2.5%",
   },
