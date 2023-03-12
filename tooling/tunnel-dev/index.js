@@ -5,7 +5,6 @@ const ngrok = require("ngrok");
 async function main() {
   let [_a, _b, out, port, region] = process.argv;
   const addr = port ? parseInt(port) : 3000;
-  console.log("HI", out, port, region);
 
   try {
     await fs.access(out);
