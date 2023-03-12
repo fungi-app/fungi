@@ -9,6 +9,7 @@ import { news, NewsScreen } from "./screens/NewsScreen";
 import { Encyclopedia } from "./screens/Encyclopedia";
 import { Maps } from "./screens/Maps";
 import { Search } from "./screens/Search";
+import { Profile } from "./screens/Profile";
 
 type Props = {
   currentScreen: ScreenType;
@@ -24,7 +25,7 @@ export const screens: {
   encyclopedia: { element: <Encyclopedia />, displayName: "Энциклопедия" },
   search: { element: <Search />, displayName: "Поиск" },
   news: { element: <NewsScreen data={news} />, displayName: "Новости" },
-  profile: { element: <Text>Я profile</Text>, displayName: "Профиль" },
+  profile: { element: <Profile />, displayName: "Профиль" },
 };
 
 export const Screens: React.FC<Props> = (props) => {

@@ -6,11 +6,15 @@ import {
 import type { AppRouter } from "@fungi/api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { tunnel } from "./tunnel";
 
+const productionServer = "https://NO_PRODUCTION_SERVER_YET";
+
+const server = tunnel ?? productionServer;
 const trpcOptions = {
   links: [
     httpBatchLink({
-      url: "http://localhost:3000/trpc",
+      url: `${server}/trpc`,
       // // optional
       // headers() {
       //   return {
