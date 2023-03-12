@@ -7,7 +7,7 @@
     "build": "ncc build app.ts -o dist && cp dist/client/libquery_engine-*.node dist/",
     "watch": "npm run build && ncc build app.ts -w -o dist",
     "start": "nodemon",
-    "tunnel": "tunnel-dev ../../frontend/.fungitunnel.json 3000 eu",
+    "tunnel": "npm run -w ../../tooling/tunnel-dev start ../../frontend/.fungitunnel.json 3000 eu",
     "dev": "concurrently 'npm:watch' 'npm:start' 'npm:tunnel'",
     "clean": "rm -rf .turbo node_modules dist",
     "type-check": "tsc --noEmit"
