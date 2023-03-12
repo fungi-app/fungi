@@ -1,0 +1,21 @@
+{
+  "name": "fungi",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "tooling/*",
+    "backend/*",
+    "frontend"
+  ],
+  "scripts": {
+    "build:server": "npm run -w ./backend/server build",
+    "prisma": "npm run -w ./backend/db prisma",
+    "init-db": "npm run prisma migrate dev",
+    "dev:app": "npm run -w ./frontend start",
+    "dev:server": "npm run -w ./backend/server dev",
+    "dev": "concurrently 'npm:dev:*'"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

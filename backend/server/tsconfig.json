@@ -1,0 +1,11 @@
+{
+    "extends": "../../tsconfig.json",
+    "include": [
+        "app.ts"
+        // "node_modules"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist",
+        "esModuleInterop": true,
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@fungi/tunnel-dev",
+  "main": "index.js",
+  "bin": "@fungi/tunnel-dev",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ngrok": "^4.3.3"
+  }
+}

@@ -6,7 +6,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { colors } from "../colors";
-import { ScreenType } from "../../App";
+import { ScreenType } from "../App";
 import type { IconButtonProps } from "@expo/vector-icons/build/createIconSet";
 
 type IconProps = IconButtonProps<"">;

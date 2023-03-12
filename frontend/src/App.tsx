@@ -1,19 +1,22 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StatusBar as StatusBarRN, StyleSheet, Text, View } from "react-native";
-import { BottomMenu } from "./src/components/BottomMenu";
-import { Screens } from "./src/Screens";
-import { TopBar } from "./src/components/TopBar";
+import { BottomMenu } from "./components/BottomMenu";
+import { Screens } from "./Screens";
+import { TopBar } from "./components/TopBar";
+import { TRPCProvider } from "./lib/trpc";
 
 export default function App() {
   const [screen, setScreen] = useState<ScreenType>("news");
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <TopBar currentScreen={screen} />
-      <Screens currentScreen={screen} />
-      <BottomMenu onChange={setScreen} currentScreen={screen} />
-    </View>
+    <TRPCProvider>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <TopBar currentScreen={screen} />
+        <Screens currentScreen={screen} />
+        <BottomMenu onChange={setScreen} currentScreen={screen} />
+      </View>
+    </TRPCProvider>
   );
 }
 
