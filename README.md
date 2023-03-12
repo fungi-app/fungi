@@ -7,6 +7,7 @@
 - `./backend/api` (`@fungi/api`) - tRPC процедуры
 - `./backend/db` (`@fungi/db`) - Инициализация БД
 - `./backend/server` (`@fungi/server`) - Бэкенд сервер
+- `./tooling/tunnel-dev` (`@fungi/tunnel-dev`) - Проброс бэкенд сервера для доступа из приложения
 - `./frontend` (`@fungi/app`) - RN + Expo приложение
 
 ## Начало работы
