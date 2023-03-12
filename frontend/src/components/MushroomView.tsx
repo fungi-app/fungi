@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.accent,
     width: "100%",
     height: 200,
-    borderRadius: 40,
+    borderRadius: 20,
     justifyContent: "flex-end",
   },
   titleContainer: {
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.accent,
     height: "35%",
-    borderBottomEndRadius: 40,
-    borderBottomStartRadius: 40,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
     justifyContent: "center",
   },
   text: {
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "65%",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     //height: 10,
   },
 });

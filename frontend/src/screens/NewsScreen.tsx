@@ -79,7 +79,7 @@ export const NewsScreen: React.FC<Props> = (props) => {
     //   />
     // </View>
 
-    <View>
+    <View style={styles.wrapper}>
       {screen.screen === "news" ? (
         <FlatList
           data={props.data}
@@ -104,6 +104,6 @@ export const NewsScreen: React.FC<Props> = (props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: "2.5%",
+    paddingBottom: 150,
   },
 });
