@@ -7,7 +7,7 @@
     "icon": "./assets/icons/ios-1024x.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
