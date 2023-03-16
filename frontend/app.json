@@ -20,6 +20,7 @@
       "icon": "./assets/icons/ios-1024x.png"
     },
     "android": {
+      "icon": "./assets/icons/android-legacy-1024x.png",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/android-fg-1024x.png",
         "backgroundImage": "./assets/icons/android-bg-1024x.png"
