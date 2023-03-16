@@ -59,6 +59,12 @@ export const BottomMenu: React.FC<Props> = (props) => {
   );
 };
 
+export const BottomMenuPad: React.FC = () => (
+  <View
+    style={{ width: "100%", height: styles.menu.height + styles.menu.bottom }}
+  />
+);
+
 const styles = StyleSheet.create({
   menu: {
     display: "flex",
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     alignItems: "center",
+    height: 60,
   },
   icon: {
     marginRight: 0,

@@ -81,7 +81,6 @@ export const MushroomScreen: React.FC<Props> = ({ obj, onChange }) => {
 const mushroomScreenStyles = StyleSheet.create({
   screen: {
     height: "100%",
-    marginBottom: 150,
     padding: 10,
   },
   title: {

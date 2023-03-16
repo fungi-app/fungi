@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { type News } from "../screens/NewsScreen";
 import { colors } from "../colors";
+import { TopBarPad } from "../components/TopBar";
+import { BottomMenuPad } from "../components/BottomMenu";
 
 type Props = {
   item: News;
@@ -10,10 +12,12 @@ type Props = {
 export const PublicationScreen: React.FC<Props> = ({ item, onBack }) => {
   return (
     <View>
+      <TopBarPad />
       <Text>Я публикация {item.id}</Text>
       <TouchableOpacity onPress={onBack} style={styles.closeButton}>
         <Text style={styles.closeText}>Назад</Text>
       </TouchableOpacity>
+      <BottomMenuPad />
     </View>
   );
 };

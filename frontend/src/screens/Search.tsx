@@ -8,6 +8,8 @@ import {
   Image,
   Text,
 } from "react-native";
+import { BottomMenuPad } from "../components/BottomMenu";
+import { TopBarPad } from "../components/TopBar";
 import { Mushroom, getAllMushrooms } from "../db/db";
 import MushList from "../db/mushrooms";
 
@@ -16,12 +18,14 @@ export const Search: React.FC<Props> = (props) => {
 
   return (
     <View style={styles.screen}>
+      <TopBarPad />
       <ScrollView>
         <View>
           <Text>just item</Text>
         </View>
       </ScrollView>
       <TextInput style={styles.textInput} placeholder="Я хочу найти..." />
+      <BottomMenuPad />
     </View>
   );
 };
