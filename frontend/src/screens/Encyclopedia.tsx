@@ -4,6 +4,8 @@ import MushList from "../db/mushrooms";
 import { useState } from "react";
 import { MushroomScreen } from "./MushroomScreen";
 import { MushroomView } from "../components/MushroomView";
+import { TopBarPad } from "../components/TopBar";
+import { BottomMenuPad } from "../components/BottomMenu";
 
 //import { Mushrooms } from "../db/mushrooms"
 
@@ -12,6 +14,7 @@ export const Encyclopedia: React.FC = () => {
   const [screen, setScreen] = useState({ screen: "mushroom", mushroomId: NaN });
   return (
     <ScrollView>
+      <TopBarPad />
       {isNaN(screen.mushroomId) ? (
         <View style={styles.screen}>
           {mushrooms.map((obj: Mushroom) => (
@@ -24,6 +27,7 @@ export const Encyclopedia: React.FC = () => {
           onChange={setScreen}
         />
       )}
+      <BottomMenuPad />
     </ScrollView>
   );
 };
@@ -55,7 +59,6 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     height: "100%",
-    paddingBottom: 150,
     flexDirection: "row",
     flexWrap: "wrap",
   },

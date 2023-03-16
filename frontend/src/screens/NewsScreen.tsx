@@ -10,6 +10,8 @@ import { colors } from "../colors";
 import { PublicationCard } from "../components/PublicationCard";
 import { useState } from "react";
 import { PublicationScreen } from "./PublicationScreen";
+import { TopBarPad } from "../components/TopBar";
+import { BottomMenuPad } from "../components/BottomMenu";
 
 export type News = {
   name: string;
@@ -83,6 +85,8 @@ export const NewsScreen: React.FC<Props> = (props) => {
       {screen.screen === "news" ? (
         <FlatList
           data={props.data}
+          ListHeaderComponent={TopBarPad}
+          ListFooterComponent={BottomMenuPad}
           renderItem={({ item }) => (
             <PublicationCard
               item={item}
@@ -103,7 +107,5 @@ export const NewsScreen: React.FC<Props> = (props) => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingBottom: 150,
-  },
+  wrapper: {},
 });
