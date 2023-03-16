@@ -100,18 +100,18 @@ const mushroomScreenStyles = StyleSheet.create({
   imageContainer: {
     height: 200,
     width: "100%",
-    borderRadius: 30,
+    borderRadius: 20,
     marginBottom: 20,
   },
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 30,
+    borderRadius: 20,
   },
   closeButton: {
     width: "100%",
     height: 40,
-    borderRadius: 30,
+    borderRadius: 20,
     backgroundColor: colors.secondary,
     justifyContent: "center",
     marginTop: 20,

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   textBar: {
     flex: 1,
     flexGrow: 1,
-    backgroundColor: "#E3E3E3",
+    backgroundColor: colors.primary,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
