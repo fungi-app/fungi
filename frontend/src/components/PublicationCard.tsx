@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 30,
+    borderRadius: 20,
     marginVertical: 10,
     overflow: "hidden",
   },
