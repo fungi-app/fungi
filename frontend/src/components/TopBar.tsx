@@ -3,6 +3,7 @@ import { Octicons, Feather } from "@expo/vector-icons";
 import { colors } from "../colors";
 import { ScreenType } from "../App";
 import { screens } from "../Screens";
+import { StatusBarPad } from "./StatusBarPad";
 
 type Props = {
   currentScreen: ScreenType;
@@ -10,27 +11,30 @@ type Props = {
 
 export const TopBar: React.FC<Props> = (props) => {
   return (
-    <View style={styles.wrapper}>
-      <Octicons.Button
-        name="bell"
-        size={24}
-        color={colors.secondary}
-        backgroundColor="transparent"
-        iconStyle={styles.icon}
-      />
-      <View style={styles.textBar}>
-        <Text style={styles.text}>
-          {screens[props.currentScreen].displayName}
-        </Text>
+    <>
+      <StatusBarPad />
+      <View style={styles.wrapper}>
+        <Octicons.Button
+          name="bell"
+          size={24}
+          color={colors.secondary}
+          backgroundColor="transparent"
+          iconStyle={styles.icon}
+        />
+        <View style={styles.textBar}>
+          <Text style={styles.text}>
+            {screens[props.currentScreen].displayName}
+          </Text>
+        </View>
+        <Feather.Button
+          name="menu"
+          size={24}
+          color={colors.secondary}
+          backgroundColor="transparent"
+          iconStyle={styles.icon}
+        />
       </View>
-      <Feather.Button
-        name="menu"
-        size={24}
-        color={colors.secondary}
-        backgroundColor="transparent"
-        iconStyle={styles.icon}
-      />
-    </View>
+    </>
   );
 };
 

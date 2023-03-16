@@ -1,6 +1,7 @@
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StatusBar as StatusBarRN, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { BottomMenu } from "./components/BottomMenu";
 import { Screens } from "./Screens";
 import { TopBar } from "./components/TopBar";
@@ -9,14 +10,16 @@ import { TRPCProvider } from "./lib/trpc";
 export default function App() {
   const [screen, setScreen] = useState<ScreenType>("news");
   return (
-    <TRPCProvider>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <TopBar currentScreen={screen} />
-        <Screens currentScreen={screen} />
-        <BottomMenu onChange={setScreen} currentScreen={screen} />
-      </View>
-    </TRPCProvider>
+    <SafeAreaProvider>
+      <TRPCProvider>
+        <StatusBar style="dark" />
+        <View style={styles.container}>
+          <TopBar currentScreen={screen} />
+          <Screens currentScreen={screen} />
+          <BottomMenu onChange={setScreen} currentScreen={screen} />
+        </View>
+      </TRPCProvider>
+    </SafeAreaProvider>
   );
 }
 
@@ -25,7 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#fff",
-    paddingTop: StatusBarRN.currentHeight,
   },
 });
 
