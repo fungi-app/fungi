@@ -4,6 +4,7 @@ import { colors } from "../colors";
 import { ScreenType } from "../App";
 import { screens } from "../Screens";
 import { StatusBarPad } from "./StatusBarPad";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
   currentScreen: ScreenType;
@@ -12,6 +13,12 @@ type Props = {
 export const TopBar: React.FC<Props> = (props) => {
   return (
     <View style={styles.float}>
+      <LinearGradient
+        colors={[colors.bg, `${colors.bg}00`]}
+        start={[0, 0]}
+        end={[0, 1]}
+        style={styles.gradient}
+      />
       <StatusBarPad />
       <View style={styles.wrapper}>
         <Octicons.Button
@@ -76,5 +83,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.secondary,
+  },
+  gradient: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });
