@@ -14,21 +14,14 @@ type Props = {
     familie: number[];
     index: number;
   };
-  onChange: React.Dispatch<
-    React.SetStateAction<{
-      screen: string;
-      mushroomId: number;
-    }>
-  >;
+  onChange: (id: number) => void;
 };
 
 export const MushroomView: React.FC<Props> = ({ obj, onChange }) => {
   return (
     <TouchableOpacity
       style={styles.postButton}
-      onPress={() => {
-        onChange({ screen: "encyclopedia", mushroomId: obj.index });
-      }}
+      onPress={() => onChange(obj.index)}
     >
       <View style={styles.postContainer}>
         <Image style={styles.image} source={MushList.list[obj.index].image} />

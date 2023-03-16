@@ -5,12 +5,11 @@ import { ScreenType } from "../App";
 import { screens } from "../Screens";
 import { StatusBarPad } from "./StatusBarPad";
 import { LinearGradient } from "expo-linear-gradient";
+import { useStateStore } from "../lib/store";
 
-type Props = {
-  currentScreen: ScreenType;
-};
+export const TopBar: React.FC = (props) => {
+  const currentScreen = useStateStore((s) => s.currentScreen);
 
-export const TopBar: React.FC<Props> = (props) => {
   return (
     <View style={styles.float}>
       <LinearGradient
@@ -22,9 +21,7 @@ export const TopBar: React.FC<Props> = (props) => {
       <StatusBarPad />
       <View style={styles.wrapper}>
         <View style={styles.textBar}>
-          <Text style={styles.text}>
-            {screens[props.currentScreen].displayName}
-          </Text>
+          <Text style={styles.text}>{screens[currentScreen].displayName}</Text>
         </View>
       </View>
     </View>
