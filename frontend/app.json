@@ -4,7 +4,7 @@
     "slug": "fungi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/fungyicon.png",
+    "icon": "./assets/icons/ios-1024x.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -14,16 +14,15 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": "./assets/icons/ios-1024x.png"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/fungyicon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/icons/android-fg-1024x.png",
+        "backgroundImage": "./assets/icons/android-bg-1024x.png"
       }
     },
     "web": {
