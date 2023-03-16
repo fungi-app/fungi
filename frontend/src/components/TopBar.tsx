@@ -21,25 +21,11 @@ export const TopBar: React.FC<Props> = (props) => {
       />
       <StatusBarPad />
       <View style={styles.wrapper}>
-        <Octicons.Button
-          name="bell"
-          size={24}
-          color={colors.secondary}
-          backgroundColor="transparent"
-          iconStyle={styles.icon}
-        />
         <View style={styles.textBar}>
           <Text style={styles.text}>
             {screens[props.currentScreen].displayName}
           </Text>
         </View>
-        <Feather.Button
-          name="menu"
-          size={24}
-          color={colors.secondary}
-          backgroundColor="transparent"
-          iconStyle={styles.icon}
-        />
       </View>
     </View>
   );
@@ -65,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "98%",
+    width: "100%",
     height: 40,
   },
   icon: {
@@ -78,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 5,
+    marginHorizontal: 20,
     height: "100%",
   },
   text: {
