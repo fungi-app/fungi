@@ -6,25 +6,33 @@ import { MushroomScreen } from "./MushroomScreen";
 import { MushroomView } from "../components/MushroomView";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
+import { useStateStore } from "../lib/store";
 
 //import { Mushrooms } from "../db/mushrooms"
 
 export const Encyclopedia: React.FC = () => {
   let mushrooms = getAllMushrooms(MushList.list);
-  const [screen, setScreen] = useState({ screen: "mushroom", mushroomId: NaN });
+
+  const selectedMushroom = useStateStore((s) => s.selectedMushroom);
+  const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
+
   return (
     <ScrollView>
       <TopBarPad />
-      {isNaN(screen.mushroomId) ? (
+      {!selectedMushroom && (
         <View style={styles.screen}>
-          {mushrooms.map((obj: Mushroom) => (
-            <MushroomView obj={obj} onChange={setScreen} />
+          {mushrooms.map((obj) => (
+            <MushroomView
+              obj={obj}
+              onChange={(id) => setSelectedMushroom(id)}
+            />
           ))}
         </View>
-      ) : (
+      )}
+      {!!selectedMushroom && (
         <MushroomScreen
-          obj={mushrooms[screen.mushroomId]}
-          onChange={setScreen}
+          obj={mushrooms[selectedMushroom]}
+          onClose={() => setSelectedMushroom(null)}
         />
       )}
       <BottomMenuPad />

@@ -8,6 +8,7 @@ import {
 import { colors } from "../colors";
 import { ScreenType } from "../App";
 import type { IconButtonProps } from "@expo/vector-icons/build/createIconSet";
+import { useStateStore } from "../lib/store";
 
 type IconProps = IconButtonProps<"">;
 
@@ -36,18 +37,21 @@ const buttons: { screen: ScreenType; icon: (p: IconProps) => JSX.Element }[] = [
   },
 ];
 
-export const BottomMenu: React.FC<Props> = (props) => {
+export const BottomMenu: React.FC = () => {
+  const currentScreen = useStateStore((s) => s.currentScreen);
+  const setCurrentScreen = useStateStore((s) => s.setCurrentScreen);
+
   return (
     <View style={styles.menu}>
       {buttons.map((Item) => (
         <Item.icon
           name=""
-          onPress={() => props.onChange(Item.screen)}
+          onPress={() => setCurrentScreen(Item.screen)}
           key={Item.screen}
           size={36}
           color={colors.secondary}
           backgroundColor={
-            Item.screen === props.currentScreen ? colors.accent : "transparent"
+            Item.screen === currentScreen ? colors.accent : "transparent"
           }
           iconStyle={styles.icon}
           style={styles.button}
@@ -87,8 +91,3 @@ const styles = StyleSheet.create({
     borderRadius: 200,
   },
 });
-
-type Props = {
-  onChange: (screen: ScreenType) => void;
-  currentScreen: ScreenType;
-};

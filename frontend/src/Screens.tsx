@@ -5,15 +5,12 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { news, NewsScreen } from "./screens/NewsScreen";
+import { NewsScreen } from "./screens/NewsScreen";
 import { Encyclopedia } from "./screens/Encyclopedia";
 import { Maps } from "./screens/Maps";
 import { Search } from "./screens/Search";
 import { Profile } from "./screens/Profile";
-
-type Props = {
-  currentScreen: ScreenType;
-};
+import { useStateStore } from "./lib/store";
 
 export const screens: {
   [key in ScreenType]: {
@@ -24,23 +21,21 @@ export const screens: {
   map: { element: <Maps />, displayName: "Карта" },
   encyclopedia: { element: <Encyclopedia />, displayName: "Энциклопедия" },
   search: { element: <Search />, displayName: "Поиск" },
-  news: { element: <NewsScreen data={news} />, displayName: "Новости" },
+  news: { element: <NewsScreen />, displayName: "Новости" },
   profile: { element: <Profile />, displayName: "Профиль" },
 };
 
-export const Screens: React.FC<Props> = (props) => {
+const Screen: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { width } = useWindowDimensions();
-  const Screen: React.FC<React.PropsWithChildren> = ({ children }) => (
-    <View style={[styles.screen, { width }]}>{children}</View>
-  );
+  return <View style={[styles.screen, { width }]}>{children}</View>;
+};
+
+export const Screens: React.FC = (props) => {
+  const currentScreen = useStateStore((s) => s.currentScreen);
 
   return (
     <View style={styles.wrapper}>
-      {
-        <Screen key={props.currentScreen}>
-          {screens[props.currentScreen].element}
-        </Screen>
-      }
+      <Screen>{screens[currentScreen].element}</Screen>
     </View>
   );
 };

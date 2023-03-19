@@ -22,15 +22,10 @@ type Props = {
     familie: number[];
     index: number;
   };
-  onChange: React.Dispatch<
-    React.SetStateAction<{
-      screen: string;
-      mushroomId: number;
-    }>
-  >;
+  onClose: () => void;
 };
 
-export const MushroomScreen: React.FC<Props> = ({ obj, onChange }) => {
+export const MushroomScreen: React.FC<Props> = ({ obj, onClose }) => {
   // <ScrollView contentContainerStyle={{ flexGrow: 1 }} style = {mushroomStyles.screen}>
   return (
     <View style={mushroomScreenStyles.screen}>
@@ -67,9 +62,7 @@ export const MushroomScreen: React.FC<Props> = ({ obj, onChange }) => {
       </View>
       <TouchableOpacity
         style={mushroomScreenStyles.closeButton}
-        onPress={() => {
-          onChange({ screen: "encyclopediaView", mushroomId: NaN });
-        }}
+        onPress={onClose}
       >
         <Text style={mushroomScreenStyles.closeText}>Назад</Text>
       </TouchableOpacity>
