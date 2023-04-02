@@ -5,7 +5,8 @@
   "workspaces": [
     "tooling/*",
     "backend/*",
-    "frontend"
+    "frontend",
+    "website"
   ],
   "scripts": {
     "build:server": "npm run -w ./backend/server build",
