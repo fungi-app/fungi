@@ -1,0 +1,40 @@
+---
+export type Props = { class?: string };
+---
+
+<div class={"left-menu " + Astro.props.class ?? ""}>
+  <ul>
+    <li class="left-menu__name-category">Разделы</li>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/publications">Публикции</a></li>
+    <li><a href="/encyclopedia">Энциклопедия</a></li>
+  </ul>
+</div>
+<style>
+  .left-menu {
+    width: 200px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  a {
+    color: #3366cc;
+    font-size: large;
+  }
+  a:visited {
+    color: #3366cc;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+  }
+  .left-menu__name-category {
+    border-bottom: 1px solid #eaecf0;
+    color: #54598a;
+    font-size: large;
+  }
+</style>
