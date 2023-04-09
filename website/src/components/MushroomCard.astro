@@ -15,16 +15,16 @@ export type Props = {
     <h2>{Astro.props.name}</h2>
     <h3>{Astro.props.latinName}</h3>
   </div>
-  <div class="MushroomCards__description">{Astro.props.description}</div>
+  <p class="MushroomCards__description">{Astro.props.description}</p>
   <div class="MushroomCards__notes">
     <div>{Astro.props.readbook ? "В красной книге" : ""}</div>
     <div>
       {
-        (Astro.props.eatable = "EATABLE")
+        Astro.props.eatable == "EATABLE"
           ? "Съедобные"
-          : (Astro.props.eatable = "NOT_EATABLE")
+          : Astro.props.eatable == "NOT_EATABLE"
           ? "Несъедобные"
-          : (Astro.props.eatable = "PARTIALLY_EATABLE")
+          : Astro.props.eatable == "PARTIALLY_EATABLE"
           ? "Условно-съедобные"
           : ""
       }
@@ -53,6 +53,9 @@ export type Props = {
   h2 {
     margin: 0;
   }
+  p {
+    margin: 0;
+  }
 
   .MushroomCards__headers {
     flex-shrink: 0;
@@ -63,10 +66,11 @@ export type Props = {
     flex-shrink: 1;
     overflow-y: auto;
     max-height: 150px;
+    width: 100%;
   }
 
   .MushroomCards__notes {
     flex-shrink: 0;
-    width: 130px;
+    width: 150px;
   }
 </style>
