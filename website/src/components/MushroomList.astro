@@ -1,0 +1,19 @@
+---
+import MushroomCard from "./MushroomCard.astro";
+import mushrooms from "../mushrooms.json";
+---
+
+<div>
+  {
+    mushrooms.map((mushroom) => (
+      <MushroomCard
+        name={mushroom.name}
+        latinName={mushroom.latinName}
+        image={mushroom.image}
+        readbook={mushroom.readbook}
+        eatable={mushroom.eatable}
+        description={mushroom.description}
+      />
+    ))
+  }
+</div>
