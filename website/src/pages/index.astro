@@ -4,7 +4,7 @@ import LeftMenu from "../components/LeftMenu.astro";
 import Layout from "../layouts/Layout.astro";
 import articles from "../articles.json";
 import ArticleCard from "../components/ArticleCard.astro";
-function arrayRandElement(massive) {
+function arrayRandElement(massive: typeof articles) {
   let rand = Math.floor(Math.random() * massive.length);
   return massive[rand];
 }
@@ -16,7 +16,7 @@ function sortFunction(a, b) {
   return dateA > dateB ? -1 : 1;
 }
 
-function lastArticles(massive) {
+function lastArticles(massive: typeof articles) {
   let sorted = massive.sort(sortFunction);
   return sorted.slice(0, 5);
 }
@@ -55,12 +55,12 @@ function lastArticles(massive) {
       </div>
       <h2>Новые статьи</h2>
       {
-        lastArticles(articles).map((article) => (
+        lastArticles(articles).map((articlee) => (
           <ArticleCard
-            id={article.id}
-            name={article.name}
-            date={new Date(article.date)}
-            author={article.author}
+            id={articlee.id}
+            name={articlee.name}
+            date={new Date(articlee.date)}
+            author={articlee.author}
           />
         ))
       }
