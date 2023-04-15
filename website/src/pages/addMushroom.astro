@@ -1,0 +1,113 @@
+---
+import Header from "../components/Header.astro";
+import LeftMenu from "../components/LeftMenu.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Главная">
+  <Header />
+  <main>
+    <LeftMenu />
+    <div class="content">
+      <h1>Добавление гриба в базу данных</h1>
+      <form>
+        <label
+          >Наименование гриба:<input
+            required
+            placeholder="Наименование гриба"
+          /></label
+        >
+        <label>
+          Семейство:<input required placeholder="Семейство гриба" /></label
+        >
+        <label
+          >Латинское наименование:<input
+            required
+            placeholder="Латинское наименование гриба"
+          /></label
+        >
+        <label
+          >Наличие в красной книге
+          <select size="2" required>
+            <option value="1">Состоит в красной книге</option>
+            <option value="2" selected>Не состоит в красной книге</option>
+          </select>
+        </label>
+        <label>
+          Категория съедобности:
+          <select size="3" required>
+            <option value="1">Съедобные</option>
+            <option value="2">Условно-съедобные</option>
+            <option value="3">Несъедобные</option>
+          </select>
+        </label>
+        <label
+          >Описание:
+          <textarea placeholder="Описание"></textarea>
+        </label>
+        <label>
+          Источник:
+          <input required placeholder="Сыллку на источник" />
+        </label>
+        <input class="submit" type="submit" value="Отправить" />
+      </form>
+    </div>
+  </main>
+  <style>
+    main {
+      display: flex;
+      gap: 50px;
+    }
+    .content {
+      width: 100%;
+      flex-shrink: 1;
+    }
+    h1,
+    h2 {
+      border-bottom: 1px solid #a2a9b1;
+      margin: 0;
+      font-family: "Linux Libertine", "Georgia", "Times", serif;
+    }
+    input,
+    textarea,
+    option {
+      padding: 5px 0 5px 5px;
+    }
+    input:focus,
+    select:focus,
+    textarea:hover {
+      outline-color: rgb(64, 101, 197);
+    }
+    input:hover,
+    select:hover,
+    textarea:hover {
+      border-color: black;
+    }
+    form {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 250px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      max-width: 250px;
+    }
+    .submit {
+      width: 100%;
+      padding: 8px;
+      margin: 0 auto;
+      background-color: rgb(64, 101, 197);
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+
+    .submit:hover {
+      background-color: rgb(117, 144, 213);
+    }
+  </style>
+</Layout>
