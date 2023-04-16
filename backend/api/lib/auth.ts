@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { prisma } from "@fungi/db";
 
-type DeviceMeta = {
+export type DeviceMeta = {
   type: "website" | "mobile_app";
   ip: string;
 };
@@ -54,5 +54,36 @@ export abstract class Auth {
     });
     if (!session) return null;
     return session;
+  }
+  static async registerUser(
+    name: string,
+    username: string,
+    email: string,
+    password: string,
+    device: DeviceMeta
+  ) {
+    const salt = Auth.generateSalt();
+    const hash = Auth.hashPassword(password, salt);
+
+    await prisma.user.create({
+      data: {
+        name,
+        username,
+        email,
+        passwordHash: hash,
+        passwordSalt: salt,
+        role: "USER",
+      },
+    });
+    const session = await Auth.authenticateUser(email, password, device);
+    if (!session) return null;
+    return session;
+  }
+
+  static async invalidateSessionByToken(token: string) {
+    await prisma.session.delete({ where: { token } });
+  }
+  static async invalidateSessionById(id: string) {
+    await prisma.session.delete({ where: { id } });
   }
 }
