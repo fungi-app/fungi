@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+enum EatableGrade {
+  NOT_EATABLE
+  PARTIALLY_EATABLE
+  EATABLE
+}
+
+model Mushroom {
+  id Int @id @default(autoincrement())
+
+  name        String
+  latinName   String
+  redBooked   Boolean
+  eatable     EatableGrade
+  description String
+
+  addedAt DateTime @default(now())
+
+  family   Family @relation(fields: [familyId], references: [id])
+  familyId Int
+}
+
+model Family {
+  id        Int    @id @default(autoincrement())
+  name      String
+  latinName String
+
+  mushrooms Mushroom[]
+}
+
+enum UserRole {
+  USER
+  EDITOR
+  MODERATOR
+  ADMIN
+}
+
+model User {
+  cuid String @id @default(cuid())
+
+  name         String
+  username     String   @unique
+  email        String   @unique
+  role         UserRole
+  registeredAt DateTime @default(now())
+  lastOnline   DateTime @default(now())
+
+  passwordHash String
+  passwordSalt String
+  sessions     Session[]
+}
+
+enum SessionType {
+  APP
+  WEBSITE
+}
+
+model Session {
+  id         String      @id @default(cuid())
+  from       SessionType
+  firstIp    String
+  firstLogin DateTime    @default(now())
+  token      String      @unique
+
+  user     User   @relation(fields: [userCuid], references: [cuid])
+  userCuid String
+}

@@ -53,15 +53,10 @@ profile-*
 *code-workspace
 
 # clinic
-# profile*
+profile*
 *clinic*
 *flamegraph*
 
 # build
 dist
 build
-
-# monorepo
-.turbo
-
-.env

@@ -1,0 +1,38 @@
+---
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="./images/MicroFungiLogo.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <slot />
+    </div>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      .app-container {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+      a {
+        text-decoration: none;
+        color: #3366cc;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </body>
+</html>

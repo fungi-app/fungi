@@ -1,28 +1,23 @@
 {
   "name": "fungi",
-  "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "tooling/*",
+    "backend/*",
+    "frontend",
+    "website"
+  ],
   "scripts": {
-    "start": "expo start --offline",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
-  },
-  "dependencies": {
-    "expo": "~47.0.8",
-    "expo-status-bar": "~1.4.2",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-native": "0.70.5",
-    "react-native-reanimated": "~2.12.0",
-    "react-native-svg": "13.4.0",
-    "react-native-web": "~0.18.9"
+    "build:server": "npm run -w ./backend/server build",
+    "prisma": "npm run -w ./backend/db prisma",
+    "init-db": "npm run prisma migrate dev",
+    "dev:app": "npm run -w ./frontend start",
+    "dev:server": "npm run -w ./backend/server dev",
+    "dev:website": "npm run -w ./website dev",
+    "dev": "concurrently 'npm:dev:*'"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@types/react": "~18.0.14",
-    "@types/react-native": "~0.70.6",
-    "typescript": "^4.6.3"
-  },
-  "private": true
+    "concurrently": "^7.6.0"
+  }
 }

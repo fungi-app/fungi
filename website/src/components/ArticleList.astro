@@ -1,0 +1,17 @@
+---
+import articles from "../articles.json";
+import ArticleCard from "./ArticleCard.astro";
+---
+
+<div>
+  {
+    articles.map((article) => (
+      <ArticleCard
+        id={article.id}
+        name={article.name}
+        date={new Date(article.date)}
+        author={article.author}
+      />
+    ))
+  }
+</div>
