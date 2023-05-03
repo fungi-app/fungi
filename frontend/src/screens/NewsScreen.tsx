@@ -12,6 +12,7 @@ import { useState } from "react";
 import { PublicationScreen } from "./PublicationScreen";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
+import { useStateStore } from "../lib/store";
 
 export type News = {
   name: string;
@@ -47,18 +48,9 @@ export const news: News[] = [
   },
 ];
 
-type Props = {
-  data: News[];
-};
-
-export const NewsScreen: React.FC<Props> = (props) => {
-  const [screen, setScreen] = useState<{
-    screen: "publication" | "news";
-    publicationId: number;
-  }>({
-    screen: "news",
-    publicationId: NaN,
-  });
+export const NewsScreen: React.FC = (props) => {
+  const selectedNewsStory = useStateStore((s) => s.selectedNewsStory);
+  const setSelectedNewsStory = useStateStore((s) => s.setSelectedNewsStory);
   return (
     // <ScrollView>
     //   <View style={styles.wrapper}>
@@ -82,24 +74,23 @@ export const NewsScreen: React.FC<Props> = (props) => {
     // </View>
 
     <View style={styles.wrapper}>
-      {screen.screen === "news" ? (
+      {!selectedNewsStory ? (
         <FlatList
-          data={props.data}
+          data={news}
           ListHeaderComponent={TopBarPad}
           ListFooterComponent={BottomMenuPad}
           renderItem={({ item }) => (
             <PublicationCard
+              key={item.id}
               item={item}
-              onPress={() =>
-                setScreen({ screen: "publication", publicationId: item.id })
-              }
+              onPress={() => setSelectedNewsStory(item.id)}
             />
           )}
         />
       ) : (
         <PublicationScreen
-          item={props.data[screen.publicationId]}
-          onBack={() => setScreen({ screen: "news", publicationId: NaN })}
+          item={news[selectedNewsStory]}
+          onBack={() => setSelectedNewsStory(null)}
         />
       )}
     </View>

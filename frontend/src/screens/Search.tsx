@@ -13,7 +13,7 @@ import { TopBarPad } from "../components/TopBar";
 import { Mushroom, getAllMushrooms } from "../db/db";
 import MushList from "../db/mushrooms";
 
-export const Search: React.FC<Props> = (props) => {
+export const Search: React.FC = (props) => {
   let mushrooms = getAllMushrooms(MushList.list);
 
   return (
