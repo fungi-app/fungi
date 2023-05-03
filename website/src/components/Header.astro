@@ -1,0 +1,47 @@
+---
+import Logo from "../components/Logo.astro";
+import Search from "./Search.astro";
+---
+
+<header class="header">
+  <div class="header__search-wrapper">
+    <Logo />
+    <Search />
+  </div>
+  <div class="header__links-wrapper">
+    <a class="header__link" href="/">Создать аккаунт</a>
+    <a class="header__link" href="/login">Войти</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: space-between;
+  }
+
+  .header__search-wrapper {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    gap: 105px;
+    align-items: center;
+    flex-shrink: 3;
+  }
+  .header__links-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .header__link {
+    text-decoration: none;
+  }
+  .header__link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import MushroomCard from "./MushroomCard.astro";
+import mushrooms from "../mushrooms.json";
+---
+
+<!-- <div>
+  {
+    mushrooms.map((mushroom) => (
+      <MushroomCard
+        name={mushroom.name}
+        latinName={mushroom.latinName}
+        image={mushroom.image}
+        readbook={mushroom.readbook}
+        eatable={mushroom.eatable}
+        description={mushroom.description}
+      />
+    ))
+  }
+</div> -->
+<div>
+  {
+    await Promise.all(
+      mushrooms.map(async (mushroom) => (
+        <MushroomCard
+          key={mushroom.id}
+          name={mushroom.name}
+          latinName={mushroom.latinName}
+          image={mushroom.image}
+          readbook={mushroom.readbook}
+          eatable={mushroom.eatable}
+          description={mushroom.description}
+        />
+      ))
+    )
+  }
+</div>
