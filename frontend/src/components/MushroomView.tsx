@@ -1,19 +1,10 @@
 import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native";
 import { colors } from "../colors";
 import MushList from "../db/mushrooms";
+import { Mushroom } from "@fungi/db";
 
 type Props = {
-  obj: {
-    appendDate: Date;
-    name: string;
-    zones: string;
-    gmapsLink: string;
-    redBook: boolean | string;
-    eatable: boolean | string;
-    description: string;
-    familie: number[];
-    index: number;
-  };
+  obj: Mushroom;
   onChange: (id: number) => void;
 };
 
@@ -21,10 +12,13 @@ export const MushroomView: React.FC<Props> = ({ obj, onChange }) => {
   return (
     <TouchableOpacity
       style={styles.postButton}
-      onPress={() => onChange(obj.index)}
+      onPress={() => onChange(obj.id)}
     >
       <View style={styles.postContainer}>
-        <Image style={styles.image} source={MushList.list[obj.index].image} />
+        <Image
+          style={styles.image}
+          source={require("../../assets/noimg.jpg")}
+        />
         <View style={styles.titleContainer}>
           <Text style={styles.text}>{obj.name}</Text>
         </View>

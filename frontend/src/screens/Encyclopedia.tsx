@@ -1,37 +1,41 @@
-import { View, StyleSheet, ScrollView } from "react-native";
-import { Mushroom, getAllMushrooms } from "../db/db";
-import MushList from "../db/mushrooms";
-import { useState } from "react";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { MushroomScreen } from "./MushroomScreen";
 import { MushroomView } from "../components/MushroomView";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
 import { useStateStore } from "../lib/store";
+import { trpc } from "../lib/trpc";
 
 //import { Mushrooms } from "../db/mushrooms"
 
 export const Encyclopedia: React.FC = () => {
-  let mushrooms = getAllMushrooms(MushList.list);
-
   const selectedMushroom = useStateStore((s) => s.selectedMushroom);
   const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
+
+  const mushrooms = trpc.mushrooms.getPaginated.useQuery({
+    page: 0,
+    perPage: 100,
+  });
 
   return (
     <ScrollView>
       <TopBarPad />
       {!selectedMushroom && (
         <View style={styles.screen}>
-          {mushrooms.map((obj) => (
-            <MushroomView
-              obj={obj}
-              onChange={(id) => setSelectedMushroom(id)}
-            />
-          ))}
+          {!mushrooms.data && <Text>Нет подключения</Text>}
+          {!!mushrooms.data &&
+            mushrooms.data.map((obj) => (
+              <MushroomView
+                key={obj.id}
+                obj={obj}
+                onChange={(id) => setSelectedMushroom(id)}
+              />
+            ))}
         </View>
       )}
       {!!selectedMushroom && (
         <MushroomScreen
-          obj={mushrooms[selectedMushroom]}
+          id={selectedMushroom}
           onClose={() => setSelectedMushroom(null)}
         />
       )}
