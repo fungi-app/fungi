@@ -6,8 +6,28 @@ import { BottomMenu } from "./components/BottomMenu";
 import { Screens } from "./Screens";
 import { TopBar } from "./components/TopBar";
 import { TRPCProvider } from "./lib/trpc";
+import {
+  useFonts,
+  Raleway_400Regular,
+  Raleway_500Medium,
+  Raleway_600SemiBold,
+  Raleway_700Bold,
+  Raleway_800ExtraBold,
+} from "@expo-google-fonts/raleway";
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Raleway_400Regular,
+    Raleway_500Medium,
+    Raleway_600SemiBold,
+    Raleway_700Bold,
+    Raleway_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <SafeAreaProvider>
       <TRPCProvider>
@@ -27,6 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#fff",
+    fontFamily: "Raleway_500Medium",
   },
 });
 
