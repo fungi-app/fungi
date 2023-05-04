@@ -22,7 +22,8 @@ const buttons: { screen: ScreenType; icon: (p: IconProps) => JSX.Element }[] = [
     icon: (p: IconProps) => <MaterialIcons.Button {...p} name="list-alt" />,
   },
   {
-    screen: "settings",
+    screen: "profile",
+/*     тут screen settings типа */
     icon: (p: IconProps) => (
       <Ionicons.Button {...p} name="settings-outline" />
     ),
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 1000,
     width: "95%",
-    paddingHorizontal: 10,
+    paddingHorizontal: 60,
     paddingVertical: 4,
     alignItems: "center",
     height: 60,
