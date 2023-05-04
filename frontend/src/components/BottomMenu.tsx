@@ -14,25 +14,17 @@ type IconProps = IconButtonProps<"">;
 
 const buttons: { screen: ScreenType; icon: (p: IconProps) => JSX.Element }[] = [
   {
-    screen: "map",
-    icon: (p: IconProps) => <MaterialIcons.Button {...p} name="map" />,
-  },
-  {
     screen: "encyclopedia",
-    icon: (p: IconProps) => <Octicons.Button {...p} size={32} name="book" />,
-  },
-  {
-    screen: "search",
-    icon: (p: IconProps) => <Ionicons.Button {...p} name="md-search" />,
+    icon: (p: IconProps) => <MaterialIcons.Button {...p} name="article" />,
   },
   {
     screen: "news",
     icon: (p: IconProps) => <MaterialIcons.Button {...p} name="list-alt" />,
   },
   {
-    screen: "profile",
+    screen: "settings",
     icon: (p: IconProps) => (
-      <MaterialCommunityIcons.Button {...p} name="account-circle-outline" />
+      <Ionicons.Button {...p} name="settings-outline" />
     ),
   },
 ];
