@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import {
   MaterialIcons,
   Ionicons,
@@ -9,23 +9,27 @@ import { colors } from "../colors";
 import { ScreenType } from "../App";
 import type { IconButtonProps } from "@expo/vector-icons/build/createIconSet";
 import { useStateStore } from "../lib/store";
+import EncyclopediaIcon from "./icons/Encyclopedia";
+import NewsIcon from "./icons/News";
+import SettingsIcon from "./icons/Settings";
 
 type IconProps = IconButtonProps<"">;
 
-const buttons: { screen: ScreenType; icon: (p: IconProps) => JSX.Element }[] = [
+const buttons: {
+  screen: ScreenType;
+  icon: (p: { color: string }) => JSX.Element;
+}[] = [
   {
     screen: "encyclopedia",
-    icon: (p: IconProps) => <MaterialIcons.Button {...p} name="article" />,
+    icon: (c) => <EncyclopediaIcon width={36} height={36} fill={c.color} />,
   },
   {
     screen: "news",
-    icon: (p: IconProps) => <MaterialIcons.Button {...p} name="list-alt" />,
+    icon: (c) => <NewsIcon width={36} height={36} fill={c.color} />,
   },
   {
     screen: "settings",
-    icon: (p: IconProps) => (
-      <Ionicons.Button {...p} name="settings-outline" />
-    ),
+    icon: (c) => <SettingsIcon width={36} height={36} fill={c.color} />,
   },
 ];
 
@@ -36,20 +40,9 @@ export const BottomMenu: React.FC = () => {
   return (
     <View style={styles.menu}>
       {buttons.map((Item) => (
-        <Item.icon
-          name=""
-          onPress={() => setCurrentScreen(Item.screen)}
-          key={Item.screen}
-          size={36}
-          color={colors.secondary}
-          backgroundColor={
-            Item.screen === currentScreen ? colors.accent : "transparent"
-          }
-          iconStyle={styles.icon}
-          style={styles.button}
-          borderRadius={100}
-          underlayColor={colors.secondary + "33"}
-        />
+        <TouchableOpacity onPress={() => setCurrentScreen(Item.screen)}>
+          <Item.icon color={Item.screen === currentScreen ? "#f00" : "#000"} />
+        </TouchableOpacity>
       ))}
     </View>
   );
@@ -75,11 +68,15 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     alignItems: "center",
     height: 60,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
   },
   icon: {
     marginRight: 0,
   },
   button: {
-    borderRadius: 200,
+    // borderRadius: 200,
   },
 });
