@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export type ScreenType = "map" | "encyclopedia" | "search" | "news" | "profile";
+export type ScreenType = "encyclopedia" | "news" | "settings";

@@ -4,7 +4,7 @@ import { TopBarPad } from "../components/TopBar";
 import { trpc } from "../lib/trpc";
 import { tunnel } from "../lib/tunnel";
 
-export const Profile: React.FC = () => {
+export const Settings: React.FC = () => {
   const hello = trpc.example.hello.useQuery({ name: "Ivan" });
 
   return (
