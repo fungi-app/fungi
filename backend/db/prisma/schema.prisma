@@ -76,3 +76,10 @@ model Session {
   user     User   @relation(fields: [userCuid], references: [cuid])
   userCuid String
 }
+
+model Image {
+  id         String   @id @default(cuid())
+  ext        String
+  bucket     String
+  uploadedAt DateTime @default(now())
+}
