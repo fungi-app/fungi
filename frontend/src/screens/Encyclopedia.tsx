@@ -22,7 +22,11 @@ export const Encyclopedia: React.FC = () => {
       <TopBarPad />
       {!selectedMushroom && (
         <View style={styles.screen}>
-          {!mushrooms.data && <Text>Нет подключения</Text>}
+          {!mushrooms.data && (
+            <Text style={{ fontFamily: "Raleway_500Medium" }}>
+              Нет подключения
+            </Text>
+          )}
           {!!mushrooms.data &&
             mushrooms.data.map((obj) => (
               <MushroomView
