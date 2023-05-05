@@ -14,6 +14,7 @@ import {
   Raleway_700Bold,
   Raleway_800ExtraBold,
 } from "@expo-google-fonts/raleway";
+import { useSelectedScheme } from "./lib/theme";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -24,6 +25,8 @@ export default function App() {
     Raleway_800ExtraBold,
   });
 
+  const selectedScheme = useSelectedScheme();
+
   if (!fontsLoaded) {
     return null;
   }
@@ -31,7 +34,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <TRPCProvider>
-        <StatusBar style="dark" />
+        <StatusBar style={selectedScheme === "dark" ? "light" : "dark"} />
         <View style={styles.container}>
           <TopBar />
           <Screens />
