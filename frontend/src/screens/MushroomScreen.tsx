@@ -11,6 +11,8 @@ import MushList from "../db/mushrooms";
 import { colors } from "../colors";
 import { Mushroom } from "@fungi/db";
 import { trpc } from "../lib/trpc";
+import CloseIcon from "../components/icons/Close";
+import { EatableGradeIcon } from "../components/icons/Eatable";
 
 type Props = {
   id: number;
@@ -42,15 +44,14 @@ export const MushroomScreen: React.FC<Props> = ({ id, onClose }) => {
             </Text>
           </View>
           <View>
-            <Text style={mushroomScreenStyles.categoryName}>
-              Красная книга:
-            </Text>
             <Text style={mushroomScreenStyles.categoryText}>
-              {mushroom.data.redBooked ? "Да" : "Нет"}
+              {mushroom.data.redBooked
+                ? "В красной книге"
+                : "Нет в красной книге"}
             </Text>
           </View>
           <View>
-            <Text style={mushroomScreenStyles.categoryName}>Съедобность:</Text>
+            <EatableGradeIcon grade={mushroom.data.eatable} />
             <Text style={mushroomScreenStyles.categoryText}>
               {
                 {
@@ -62,7 +63,7 @@ export const MushroomScreen: React.FC<Props> = ({ id, onClose }) => {
             </Text>
           </View>
           <View>
-            <Text style={mushroomScreenStyles.categoryName}>Описание:</Text>
+            <Text style={mushroomScreenStyles.categoryName}>Описание</Text>
             <Text style={mushroomScreenStyles.categoryText}>
               {mushroom.data.description}
             </Text>
