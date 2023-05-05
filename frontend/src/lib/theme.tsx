@@ -6,13 +6,24 @@ type StyleConstructor<T extends NamedStyles<T> | NamedStyles<any>> = (
   colors: Theme
 ) => T;
 
-export const useThemedStyle = <T extends NamedStyles<T> | NamedStyles<any>>(
-  construct: StyleConstructor<T>
-) => {
+export const useSelectedScheme = () => {
   const selectedTheme = useStateStore((s) => s.selectedTheme);
   const colorScheme = useColorScheme() ?? "light";
 
   let scheme = selectedTheme === "system" ? colorScheme : selectedTheme;
+  return scheme;
+};
 
-  return construct(schemes[scheme]);
+export const useTheme = () => {
+  const scheme = useSelectedScheme();
+
+  return schemes[scheme];
+};
+
+export const useThemedStyle = <T extends NamedStyles<T> | NamedStyles<any>>(
+  construct: StyleConstructor<T>
+) => {
+  const theme = useTheme();
+
+  return construct(theme);
 };

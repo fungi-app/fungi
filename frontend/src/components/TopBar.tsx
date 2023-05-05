@@ -1,27 +1,23 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Octicons, Feather } from "@expo/vector-icons";
 import { colors } from "../colors";
 import { ScreenType } from "../App";
 import { screens } from "../Screens";
 import { StatusBarPad } from "./StatusBarPad";
-import { LinearGradient } from "expo-linear-gradient";
 import { useStateStore } from "../lib/store";
+import { useTheme } from "../lib/theme";
 
 export const TopBar: React.FC = (props) => {
+  const theme = useTheme();
   const currentScreen = useStateStore((s) => s.currentScreen);
 
   return (
     <View style={styles.float}>
-      <LinearGradient
-        colors={[colors.bg, `${colors.bg}00`]}
-        start={[0, 0]}
-        end={[0, 1]}
-        style={styles.gradient}
-      />
-      <StatusBarPad />
+      <StatusBarPad style={{ backgroundColor: theme.secondaryBg }} />
       <View style={styles.wrapper}>
-        <View style={styles.textBar}>
-          <Text style={styles.text}>{screens[currentScreen].displayName}</Text>
+        <View style={[styles.textBar, { backgroundColor: theme.secondaryBg }]}>
+          <Text style={[styles.text, { color: theme.text }]}>
+            {screens[currentScreen].displayName}
+          </Text>
         </View>
       </View>
     </View>
@@ -57,15 +53,13 @@ const styles = StyleSheet.create({
   textBar: {
     flex: 1,
     flexGrow: 1,
-    backgroundColor: colors.primary,
-    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 20,
     height: "100%",
   },
   text: {
-    color: colors.secondary,
+    fontFamily: "Raleway_700Bold",
+    fontSize: 18,
   },
   gradient: {
     position: "absolute",
