@@ -12,6 +12,7 @@ import { useStateStore } from "../lib/store";
 import EncyclopediaIcon from "./icons/Encyclopedia";
 import NewsIcon from "./icons/News";
 import SettingsIcon from "./icons/Settings";
+import { useTheme } from "../lib/theme";
 
 type IconProps = IconButtonProps<"">;
 
@@ -34,14 +35,19 @@ const buttons: {
 ];
 
 export const BottomMenu: React.FC = () => {
+  const theme = useTheme();
   const currentScreen = useStateStore((s) => s.currentScreen);
   const setCurrentScreen = useStateStore((s) => s.setCurrentScreen);
 
   return (
-    <View style={styles.menu}>
+    <View style={[styles.menu, { backgroundColor: theme.secondaryBg }]}>
       {buttons.map((Item) => (
         <TouchableOpacity onPress={() => setCurrentScreen(Item.screen)}>
-          <Item.icon color={Item.screen === currentScreen ? "#f00" : "#000"} />
+          <Item.icon
+            color={
+              Item.screen === currentScreen ? theme.primary : theme.secondary
+            }
+          />
         </TouchableOpacity>
       ))}
     </View>
@@ -61,7 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     position: "absolute",
     bottom: 20,
-    backgroundColor: colors.primary,
     borderRadius: 1000,
     width: "95%",
     paddingHorizontal: 60,

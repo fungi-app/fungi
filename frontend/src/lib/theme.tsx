@@ -12,13 +12,13 @@ export const useTheme = () => {
 
   let scheme = selectedTheme === "system" ? colorScheme : selectedTheme;
 
-  return schemes[scheme]
-}
+  return schemes[scheme];
+};
 
 export const useThemedStyle = <T extends NamedStyles<T> | NamedStyles<any>>(
   construct: StyleConstructor<T>
 ) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return construct(theme);
 };
