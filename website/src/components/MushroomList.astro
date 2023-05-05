@@ -1,6 +1,8 @@
 ---
 import MushroomCard from "./MushroomCard.astro";
-import mushrooms from "../mushrooms.json";
+import { trpc } from "../lib/trpc";
+const mushrooms = await trpc.mushrooms.getPaginated.query({page:0, perPage:1000});
+console.log(mushrooms);
 ---
 
 <!-- <div>
@@ -22,11 +24,11 @@ import mushrooms from "../mushrooms.json";
     await Promise.all(
       mushrooms.map(async (mushroom) => (
         <MushroomCard
-          key={mushroom.id}
+         id={mushroom.id}
+          image={""}
           name={mushroom.name}
           latinName={mushroom.latinName}
-          image={mushroom.image}
-          readbook={mushroom.readbook}
+          readbook={mushroom.redBooked}
           eatable={mushroom.eatable}
           description={mushroom.description}
         />
