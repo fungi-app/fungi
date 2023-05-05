@@ -1,7 +1,7 @@
 import { publicProcedure, editorProcedure, t } from "../trpc/server";
 import { z } from "zod";
 
-export const mushroomsRouter = t.router({
+export const familiesRouter = t.router({
   getPaginated: publicProcedure
     .input(
       z.object({
@@ -10,7 +10,7 @@ export const mushroomsRouter = t.router({
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.mushroom.findMany({
+      return await ctx.db.family.findMany({
         skip: input.page * input.perPage,
         take: input.perPage,
       });
@@ -23,9 +23,8 @@ export const mushroomsRouter = t.router({
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.mushroom.findUnique({
+      return await ctx.db.family.findUnique({
         where: { id: input.id },
-        include: { family: true },
       });
     }),
 
@@ -34,13 +33,9 @@ export const mushroomsRouter = t.router({
       z.object({
         name: z.string(),
         latinName: z.string(),
-        redBooked: z.boolean(),
-        eatable: z.enum(["NOT_EATABLE", "PARTIALLY_EATABLE", "EATABLE"]),
-        description: z.string(),
-        familyId: z.number().min(0),
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.mushroom.create({ data: input });
+      return await ctx.db.family.create({ data: input });
     }),
 });

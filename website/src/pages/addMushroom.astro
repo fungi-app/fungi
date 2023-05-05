@@ -2,6 +2,9 @@
 import Header from "../components/Header.astro";
 import LeftMenu from "../components/LeftMenu.astro";
 import Layout from "../layouts/Layout.astro";
+import { trpc } from "../lib/trpc";
+
+const families = await trpc.families.getPaginated.query({page:0, perPage:1000});
 ---
 
 <Layout title="Главная">
@@ -10,47 +13,76 @@ import Layout from "../layouts/Layout.astro";
     <LeftMenu />
     <div class="content">
       <h1>Добавление гриба в базу данных</h1>
-      <form>
-        <label
-          >Наименование гриба:<input
+      <form id="addMushroom">
+        <label>
+          Наименование гриба:
+          <input
             required
             placeholder="Наименование гриба"
-          /></label
-        >
+            name="name"
+          />
+          </label>
         <label>
-          Семейство:<input required placeholder="Семейство гриба" /></label
-        >
-        <label
-          >Латинское наименование:<input
+          Семейство:
+          <select name="family">
+            {families.map(f => (
+              <option value={f.id}>{f.name} - {f.latinName}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Латинское наименование:
+          <input
             required
             placeholder="Латинское наименование гриба"
-          /></label
-        >
-        <label
-          >Наличие в красной книге
-          <select size="2" required>
-            <option value="1">Состоит в красной книге</option>
-            <option value="2" selected>Не состоит в красной книге</option>
+            name="latinName"
+          />
+        </label>
+        <label>
+          Наличие в красной книге
+          <select size="2" name="redBooked" required>
+            <option value="true">Состоит в красной книге</option>
+            <option value="false" selected>Не состоит в красной книге</option>
           </select>
         </label>
         <label>
           Категория съедобности:
-          <select size="3" required>
-            <option value="1">Съедобные</option>
-            <option value="2">Условно-съедобные</option>
-            <option value="3">Несъедобные</option>
+          <select size="3" name="eatableGrade" required>
+            <option value="EATABLE">Съедобные</option>
+            <option value="PARTIALLY_EATABLE">Условно-съедобные</option>
+            <option value="NOT_EATABLE">Несъедобные</option>
           </select>
         </label>
-        <label
-          >Описание:
-          <textarea placeholder="Описание"></textarea>
-        </label>
         <label>
-          Источник:
-          <input required placeholder="Сыллку на источник" />
+          Описание:
+          <textarea placeholder="Описание" name="description"></textarea>
         </label>
+        <!-- <label>
+          Источник:
+          <input required placeholder="Сcыллку на источник" />
+        </label> -->
         <input class="submit" type="submit" value="Отправить" />
       </form>
+      <script>
+        import { trpc } from "../lib/trpc";
+        import type { EatableGrade } from "@fungi/db";
+        const form = document.querySelector("#addMushroom");
+        const getFromFormByName = (name: string) => (form.querySelector(`[name='${name}']`) as HTMLInputElement)
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          let name = getFromFormByName("name").value
+          let latinName = getFromFormByName("latinName").value
+          let redBooked = Boolean(getFromFormByName("redBooked").value)
+          let familyId = getFromFormByName("family").valueAsNumber
+          let eatableGrade = getFromFormByName("eatableGrade").value as EatableGrade
+          
+          const newMushroom = await trpc.mushrooms.add.query({
+            name, latinName, redBooked, familyId, eatable: eatableGrade
+          })
+        });
+      </script>
     </div>
   </main>
   <style>

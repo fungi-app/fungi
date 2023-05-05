@@ -2,7 +2,6 @@
 import MushroomCard from "./MushroomCard.astro";
 import { trpc } from "../lib/trpc";
 const mushrooms = await trpc.mushrooms.getPaginated.query({page:0, perPage:1000});
-console.log(mushrooms);
 ---
 
 <!-- <div>
@@ -28,7 +27,7 @@ console.log(mushrooms);
           image={""}
           name={mushroom.name}
           latinName={mushroom.latinName}
-          readbook={mushroom.redBooked}
+          redbook={mushroom.redBooked}
           eatable={mushroom.eatable}
           description={mushroom.description}
         />

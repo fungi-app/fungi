@@ -5,7 +5,7 @@ export type Props = {
   latinName: string;
   image: string;
   eatable: "NOT_EATABLE" | "PARTIALLY_EATABLE" | "EATABLE";
-  readbook: boolean;
+  redbook: boolean;
   description: string;
 };
 ---
@@ -18,7 +18,7 @@ export type Props = {
   </div>
   <p class="MushroomCards__description">{Astro.props.description}</p>
   <div class="MushroomCards__notes">
-    <div>{Astro.props.readbook ? "В красной книге" : ""}</div>
+    <div>{Astro.props.redbook ? "В красной книге" : ""}</div>
     <div>
       {
         Astro.props.eatable == "EATABLE"
