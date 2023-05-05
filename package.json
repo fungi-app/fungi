@@ -9,7 +9,7 @@
     "website"
   ],
   "scripts": {
-    "build:server": "npm run -w ./backend/server build",
+    "build:server": "npm run prisma generate && npm run -w ./backend/server build",
     "build:website": "npm run -w ./website build",
     "prisma": "npm run -w ./backend/db prisma",
     "init-db": "npm run prisma migrate dev",
