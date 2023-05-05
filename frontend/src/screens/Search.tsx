@@ -12,6 +12,7 @@ import { BottomMenuPad } from "../components/BottomMenu";
 import { TopBarPad } from "../components/TopBar";
 import { Mushroom, getAllMushrooms } from "../db/db";
 import MushList from "../db/mushrooms";
+import { useThemedStyle } from "../lib/theme";
 
 export const Search: React.FC = (props) => {
   let mushrooms = getAllMushrooms(MushList.list);
