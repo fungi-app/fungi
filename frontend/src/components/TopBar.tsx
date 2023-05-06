@@ -46,6 +46,7 @@ export const TopBar: React.FC = (props) => {
                 isSearchFocused
                   ? { width: "80%", marginLeft: 10 }
                   : { width: "94%" },
+                { color: theme.text },
               ]}
               placeholder={isSearchFocused ? "" : "Поиск"}
               autoFocus={false}
