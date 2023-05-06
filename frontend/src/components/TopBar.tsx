@@ -1,27 +1,24 @@
-import {View, Text, StyleSheet, TextInput, TouchableOpacity} from "react-native";
-import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { ScreenType } from "../App";
 import { screens } from "../Screens";
 import { StatusBarPad } from "./StatusBarPad";
 import { useStateStore } from "../lib/store";
 import { useTheme } from "../lib/theme";
-import SearchIcon from "./icons/Search"
+import SearchIcon from "./icons/Search";
 // import Animated from "react-native-reanimated";
 // import color = module
-
 
 export const TopBar: React.FC = (props) => {
   const theme = useTheme();
   const currentScreen = useStateStore((s) => s.currentScreen);
-  const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   return (
     <View style={styles.float}>
@@ -32,29 +29,36 @@ export const TopBar: React.FC = (props) => {
             {screens[currentScreen].displayName}
           </Text>
 
-          <View style={[styles.searchContainer, { backgroundColor: theme.metaBg }]}>
-
-            {!isFocused && (
-                <SearchIcon width={18} height={18} fill={theme.fadedText} />
+          <View
+            style={[styles.searchContainer, { backgroundColor: theme.metaBg }]}
+          >
+            {!isSearchFocused && (
+              <SearchIcon width={18} height={18} fill={theme.fadedText} />
             )}
             <TextInput
-                style={isFocused ? { width: "80%", marginLeft: 10 } : {width: "94%"}}
-                placeholder={ isFocused ? '' : "Поиск" }
-                autoFocus={false}
-                returnKeyType="search"
-                placeholderTextColor={ theme.fadedText }
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+              style={[
+                styles.textInput,
+                isSearchFocused
+                  ? { width: "80%", marginLeft: 10 }
+                  : { width: "94%" },
+              ]}
+              placeholder={isSearchFocused ? "" : "Поиск"}
+              autoFocus={false}
+              returnKeyType="search"
+              placeholderTextColor={theme.fadedText}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
             />
-            {isFocused && (
-                <TouchableOpacity>
-                  <Text style={{ color: theme.text, fontFamily: "Raleway_700Bold"}}>
-                    {"Найти"}
-                  </Text>
-                </TouchableOpacity>
+            {isSearchFocused && (
+              <TouchableOpacity>
+                <Text
+                  style={{ color: theme.text, fontFamily: "Raleway_700Bold" }}
+                >
+                  {"Найти"}
+                </Text>
+              </TouchableOpacity>
             )}
           </View>
-
         </View>
       </View>
     </View>
@@ -100,13 +104,16 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 6,
     marginHorizontal: 4,
     borderRadius: 20,
     paddingHorizontal: 6,
     width: "95%",
+  },
+  textInput: {
+    fontFamily: "Raleway_500Medium",
   },
 });
