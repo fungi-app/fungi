@@ -1,57 +1,29 @@
-import {
-  ImageBackground,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { colors } from "../colors";
-import { type News } from "../screens/NewsScreen";
+import { Text, StyleSheet } from "react-native";
+import { Mushroom } from "@fungi/db";
+import { Card } from "./Card";
+import { useStateStore } from "../lib/store";
+import { useTheme } from "../lib/theme";
 
-type Props = {
-  item: News;
-  onPress: () => void;
-};
+// type Props = { obj: Mushroom };
 
-export const PublicationCard: React.FC<Props> = ({ item, onPress }) => {
+export const PublicationCard: React.FC<Props> = (obj) => {
+  const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
+  const theme = useTheme();
   return (
-    <TouchableOpacity style={styles.postButton} onPress={onPress}>
-      <ImageBackground style={styles.card} source={item.image}>
-        <View style={styles.blockfortext}>
-          <Text style={styles.text}>{item.name}</Text>
-        </View>
-      </ImageBackground>
-    </TouchableOpacity>
+    <Card
+      id={obj.obj.name}
+      onChange={() => setSelectedMushroom(obj.obj.id)}
+      img={obj.obj.img}
+    >
+      <Text style={[styles.text, { color: theme.text }]}>{obj.obj.name}</Text>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  flat: {},
-  card: {
-    width: "100%",
-    height: 150,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-    marginVertical: 10,
-    overflow: "hidden",
-  },
-  blockfortext: {
-    backgroundColor: colors.bg,
-    alignItems: "center",
-    width: "50%",
-    padding: 6,
-    borderRadius: 20,
-  },
   text: {
-    color: colors.secondary,
-  },
-  wrapper: {
-    paddingHorizontal: "2.5%",
-  },
-  postButton: {
-    padding: 10,
-    paddingBottom: 0,
+    fontWeight: "bold",
+    fontSize: 18,
+    fontFamily: "Raleway_700Bold",
   },
 });

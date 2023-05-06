@@ -1,10 +1,10 @@
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { MushroomScreen } from "./MushroomScreen";
-import { MushroomView } from "../components/MushroomView";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
 import { useStateStore } from "../lib/store";
 import { trpc } from "../lib/trpc";
+import { MushroomView } from "../components/MushroomView";
 
 //import { Mushrooms } from "../db/mushrooms"
 
@@ -29,11 +29,7 @@ export const Encyclopedia: React.FC = () => {
           )}
           {!!mushrooms.data &&
             mushrooms.data.map((obj) => (
-              <MushroomView
-                key={obj.id}
-                obj={obj}
-                onChange={(id) => setSelectedMushroom(id)}
-              />
+              <MushroomView key={obj.id} obj={obj} />
             ))}
         </View>
       )}
@@ -75,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     height: "100%",
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap",
   },
 });

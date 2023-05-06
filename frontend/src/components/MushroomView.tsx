@@ -1,72 +1,72 @@
-import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native";
-import { colors } from "../colors";
-import MushList from "../db/mushrooms";
-import { Mushroom } from "@fungi/db";
+import { View, Text, StyleSheet } from "react-native";
+import { Mushroom, Family } from "@fungi/db";
+import { Card } from "./Card";
+import { useStateStore } from "../lib/store";
+import { useTheme } from "../lib/theme";
+import { EatableGradeIcon } from "./icons/Eatable";
+import { IsRedBookedIcon } from "./icons/RedBooked";
 
 type Props = {
-  obj: Mushroom;
-  onChange: (id: number) => void;
+  obj: Mushroom & { family: Family };
 };
 
-export const MushroomView: React.FC<Props> = ({ obj, onChange }) => {
+export const MushroomView: React.FC<Props> = (obj) => {
+  const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
+  const theme = useTheme();
   return (
-    <TouchableOpacity
-      style={styles.postButton}
-      onPress={() => onChange(obj.id)}
+    <Card
+      id={obj.obj.name}
+      onChange={() => setSelectedMushroom(obj.obj.id)}
+      img={obj.obj.img}
     >
-      <View style={styles.postContainer}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/noimg.jpg")}
-        />
-        <View style={styles.titleContainer}>
-          <Text style={styles.text}>{obj.name}</Text>
-        </View>
+      <View>
+        <Text style={[styles.family, { color: theme.secondary }]}>
+          {/* {obj.obj.family.name} */}
+        </Text>
+        <Text style={[styles.name, { color: theme.text }]}>{obj.obj.name}</Text>
+        <Text style={[styles.latineName, { color: theme.secondaryText }]}>
+          {obj.obj.latinName}
+        </Text>
       </View>
-    </TouchableOpacity>
+      <View style={styles.iconsWrapper}>
+        <EatableGradeIcon
+          grade={obj.obj.eatable}
+          width={36}
+          height={36}
+          style={{ marginRight: 5 }}
+          fill={theme.text}
+        />
+        <IsRedBookedIcon
+          isRedBooked={obj.obj.redBooked}
+          width={36}
+          height={36}
+          fill={theme.text}
+        />
+      </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    padding: 15,
-    flex: 1,
-    height: "100%",
-    paddingBottom: 150,
-    flexDirection: "row",
-    flexWrap: "wrap",
+  family: {
+    fontFamily: "Raleway_800ExtraBold",
+    fontSize: 12,
+    marginBottom: 5,
   },
-  postButton: {
-    width: "50%",
-    padding: 10,
-    paddingBottom: 0,
-  },
-  postContainer: {
-    backgroundColor: colors.accent,
-    width: "100%",
-    height: 200,
-    borderRadius: 20,
-    justifyContent: "flex-end",
-  },
-  titleContainer: {
-    backgroundColor: colors.accent,
-    height: "35%",
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
-    justifyContent: "center",
-  },
-  text: {
-    margin: 11,
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
+  name: {
     fontSize: 18,
+    margin: 0,
+    fontFamily: "Raleway_700Bold",
+    marginBottom: 5,
   },
-  image: {
-    width: "100%",
-    height: "65%",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    //height: 10,
+  latineName: {
+    fontFamily: "Raleway_700Bold",
+    marginBottom: 5,
+
+    fontSize: 14,
+  },
+  iconsWrapper: {
+    display: "flex",
+    flexDirection: "row",
   },
 });
