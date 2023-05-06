@@ -28,7 +28,12 @@ export const TopBar: React.FC = (props) => {
           <Text style={[styles.text, { color: theme.text }]}>
             {screens[currentScreen].displayName}
           </Text>
-
+        </View>
+      </View>
+      {!!screens[currentScreen].search && (
+        <View
+          style={[styles.searchWrapper, { backgroundColor: theme.secondaryBg }]}
+        >
           <View
             style={[styles.searchContainer, { backgroundColor: theme.metaBg }]}
           >
@@ -60,17 +65,26 @@ export const TopBar: React.FC = (props) => {
             )}
           </View>
         </View>
-      </View>
+      )}
     </View>
   );
 };
 
-export const TopBarPad: React.FC = () => (
-  <>
-    <StatusBarPad />
-    <View style={{ height: styles.wrapper.height }} />
-  </>
-);
+export const TopBarPad: React.FC = () => {
+  const currentScreen = useStateStore((s) => s.currentScreen);
+  return (
+    <>
+      <StatusBarPad />
+      <View
+        style={{
+          height:
+            styles.wrapper.height +
+            (!screens[currentScreen].search ? 0 : styles.searchWrapper.height),
+        }}
+      />
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   float: {
@@ -86,7 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    height: 62,
+    height: 42,
   },
   icon: {
     marginRight: 0,
@@ -102,16 +116,19 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway_700Bold",
     fontSize: 18,
   },
+  searchWrapper: {
+    height: 42,
+    paddingHorizontal: 15,
+    paddingBottom: 10,
+  },
   searchContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 6,
-    marginHorizontal: 4,
     borderRadius: 20,
     paddingHorizontal: 6,
-    width: "95%",
+    width: "100%",
   },
   textInput: {
     fontFamily: "Raleway_500Medium",

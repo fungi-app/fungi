@@ -16,10 +16,21 @@ export const screens: {
   [key in ScreenType]: {
     element: JSX.Element;
     displayName: string;
+    search?: {
+      onSearch: (query: string) => unknown;
+    };
   };
 } = {
-  encyclopedia: { element: <Encyclopedia />, displayName: "Энциклопедия" },
-  news: { element: <NewsScreen />, displayName: "Новости" },
+  encyclopedia: {
+    element: <Encyclopedia />,
+    displayName: "Энциклопедия",
+    search: { onSearch: (q) => {} },
+  },
+  news: {
+    element: <NewsScreen />,
+    displayName: "Новости",
+    search: { onSearch: (q) => {} },
+  },
   settings: { element: <Settings />, displayName: "Настройки" },
 };
 
