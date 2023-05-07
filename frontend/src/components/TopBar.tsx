@@ -4,8 +4,9 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  useWindowDimensions,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ScreenType } from "../App";
 import { screens } from "../Screens";
 import { StatusBarPad } from "./StatusBarPad";
@@ -19,7 +20,9 @@ export const TopBar: React.FC = (props) => {
   const theme = useTheme();
   const currentScreen = useStateStore((s) => s.currentScreen);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-
+  const searchBar = useRef<TextInput>(null);
+  const [searchText, setSearchText] = useState("");
+  const { width } = useWindowDimensions();
   return (
     <View style={styles.float}>
       <StatusBarPad style={{ backgroundColor: theme.secondaryBg }} />
@@ -43,10 +46,12 @@ export const TopBar: React.FC = (props) => {
             <TextInput
               style={[
                 styles.textInput,
-                isSearchFocused
-                  ? { width: "80%", marginLeft: 10 }
-                  : { width: "94%" },
-                { color: theme.text },
+                {
+                  color: theme.text,
+                  paddingRight: isSearchFocused ? 15 : 0,
+                  paddingLeft: isSearchFocused ? 0 : 5,
+                  maxWidth: width - (60 + (isSearchFocused ? 60 : 0)),
+                },
               ]}
               placeholder={isSearchFocused ? "" : "Поиск"}
               autoFocus={false}
@@ -54,15 +59,35 @@ export const TopBar: React.FC = (props) => {
               placeholderTextColor={theme.fadedText}
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setIsSearchFocused(false)}
+              ref={searchBar}
+              onChangeText={(newText) => setSearchText(newText)}
+              defaultValue={searchText}
             />
             {isSearchFocused && (
-              <TouchableOpacity>
-                <Text
-                  style={{ color: theme.text, fontFamily: "Raleway_700Bold" }}
+              <View
+                style={[
+                  styles.searchButtonWrapper,
+                  { borderLeftColor: theme.secondaryBg },
+                ]}
+              >
+                <TouchableOpacity
+                  disabled={!searchText}
+                  onPress={() => {
+                    let srch = screens[currentScreen].search;
+                    if (!srch) return;
+                    if (!searchText) return;
+                    srch.onSearch(searchText);
+                    searchBar.current?.blur();
+                  }}
+                  style={{ opacity: !searchText ? 0.5 : 1 }}
                 >
-                  {"Найти"}
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={{ color: theme.text, fontFamily: "Raleway_700Bold" }}
+                  >
+                    Найти
+                  </Text>
+                </TouchableOpacity>
+              </View>
             )}
           </View>
         </View>
@@ -128,10 +153,24 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: 20,
-    paddingHorizontal: 6,
+    paddingHorizontal: 15,
     width: "100%",
+    maxWidth: "100%",
+    overflow: "hidden",
   },
   textInput: {
     fontFamily: "Raleway_500Medium",
+    flexGrow: 1,
+    // width: "100%",
+    maxWidth: "100%",
+  },
+  searchButtonWrapper: {
+    borderLeftWidth: 2,
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    paddingLeft: 13,
+    flexShrink: 0,
+    width: 60,
   },
 });
