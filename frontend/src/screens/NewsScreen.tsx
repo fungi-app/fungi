@@ -33,17 +33,17 @@ export const news: News[] = [
   },
   {
     name: "Новость",
-    id: 1,
+    id: 3,
     image: require("../../assets/lisichka.jpeg"),
   },
   {
     name: "Новость",
-    id: 1,
+    id: 4,
     image: require("../../assets/lisichka.jpeg"),
   },
   {
     name: "Новость",
-    id: 1,
+    id: 5,
     image: require("../../assets/lisichka.jpeg"),
   },
 ];

@@ -6,6 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/icons/ios-1024x.png",
     "userInterfaceStyle": "light",
+    "extra": {
+      "useTunnel": false
+    },
     "splash": {
       "image": "./assets/logo-splash.png",
       "resizeMode": "contain",

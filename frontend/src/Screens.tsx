@@ -7,8 +7,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { NewsScreen } from "./screens/NewsScreen";
 import { Encyclopedia } from "./screens/Encyclopedia";
-import { Maps } from "./screens/Maps";
-import { Search } from "./screens/Search";
 import { Settings } from "./screens/Settings";
 import { useStateStore } from "./lib/store";
 
