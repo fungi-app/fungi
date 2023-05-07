@@ -24,7 +24,7 @@ export const screens: {
   encyclopedia: {
     element: <Encyclopedia />,
     displayName: "Энциклопедия",
-    search: { onSearch: (q) => {} },
+    search: { onSearch: (q) => console.log(q) },
   },
   news: {
     element: <NewsScreen />,
