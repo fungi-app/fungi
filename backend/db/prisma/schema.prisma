@@ -84,6 +84,6 @@ model Publication {
   title   String
   author  User   @relation(fields: [authorCuid], references: [cuid])
   content String
-
+addedAt DateTime @default(now())
   authorCuid String
 }
