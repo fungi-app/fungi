@@ -21,13 +21,13 @@ export const mushroomsRouter = t.router({
   getById: publicProcedure
     .input(
       z.object({
-        id: z.string().cuid(),
+        id: z.number().min(0),
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.publication.findUnique({
+      return await ctx.db.mushroom.findUnique({
         where: { id: input.id },
-        include: { author: true },
+        include: { family: true },
       });
     }),
 });

@@ -1,22 +1,30 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { type News } from "../screens/NewsScreen";
 import { colors } from "../colors";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
+import { trpc } from "../lib/trpc";
+import { news } from "./NewsScreen";
 
 type Props = {
-  item: News;
+  storyId: string;
   onBack: () => void;
 };
 
-export const PublicationScreen: React.FC<Props> = ({ item, onBack }) => {
+export const PublicationScreen: React.FC<Props> = ({ storyId, onBack }) => {
+  // const story = trpc.publications.getById.useQuery({ id: storyId });
+  const story = { data: news[0] };
   return (
     <View>
       <TopBarPad />
-      <Text>Я публикация {item.id}</Text>
-      <TouchableOpacity onPress={onBack} style={styles.closeButton}>
-        <Text style={styles.closeText}>Назад</Text>
-      </TouchableOpacity>
+      {!story.data && <Text>Нет данных</Text>}
+      {!!story.data && (
+        <>
+          <Text>Я публикация {story.data.title}</Text>
+          <TouchableOpacity onPress={onBack} style={styles.closeButton}>
+            <Text style={styles.closeText}>Назад</Text>
+          </TouchableOpacity>
+        </>
+      )}
       <BottomMenuPad />
     </View>
   );
