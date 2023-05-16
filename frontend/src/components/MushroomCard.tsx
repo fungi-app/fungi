@@ -7,39 +7,40 @@ import { EatableGradeIcon } from "./icons/Eatable";
 import { IsRedBookedIcon } from "./icons/RedBooked";
 
 type Props = {
-  obj: Mushroom & { family: Family };
+  mushroom: Mushroom & { family: Family };
 };
 
-export const MushroomView: React.FC<Props> = (obj) => {
+export const MushroomCard: React.FC<Props> = (props) => {
   const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
   const theme = useTheme();
   return (
     <Card
-      id={obj.obj.name}
-      onChange={() => setSelectedMushroom(obj.obj.id)}
-      img={obj.obj.img}
+      onPress={() => setSelectedMushroom(props.mushroom.id)}
+      // img={props.obj.img}
     >
       <View>
         <Text style={[styles.family, { color: theme.secondary }]}>
-          {/* {obj.obj.family.name} */}
+          {/* {props.obj.family.name} */}
         </Text>
-        <Text style={[styles.name, { color: theme.text }]}>{obj.obj.name}</Text>
+        <Text style={[styles.name, { color: theme.text }]}>
+          {props.mushroom.name}
+        </Text>
         <Text style={[styles.latineName, { color: theme.secondaryText }]}>
-          {obj.obj.latinName}
+          {props.mushroom.latinName}
         </Text>
       </View>
       <View style={styles.iconsWrapper}>
         <EatableGradeIcon
-          grade={obj.obj.eatable}
-          width={36}
-          height={36}
+          grade={props.mushroom.eatable}
+          width={28}
+          height={28}
           style={{ marginRight: 5 }}
           fill={theme.text}
         />
         <IsRedBookedIcon
-          isRedBooked={obj.obj.redBooked}
-          width={36}
-          height={36}
+          isRedBooked={props.mushroom.redBooked}
+          width={28}
+          height={28}
           fill={theme.text}
         />
       </View>
@@ -68,5 +69,6 @@ const styles = StyleSheet.create({
   iconsWrapper: {
     display: "flex",
     flexDirection: "row",
+    paddingTop: 5,
   },
 });

@@ -16,4 +16,16 @@ export const publicationRouter = t.router({
         select: { content: false },
       });
     }),
+  getById: publicProcedure
+    .input(
+      z.object({
+        id: z.string().cuid(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      return await ctx.db.publication.findUnique({
+        where: { id: input.id },
+        include: { author: true },
+      });
+    }),
 });

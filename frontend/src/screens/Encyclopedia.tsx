@@ -4,7 +4,7 @@ import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
 import { useStateStore } from "../lib/store";
 import { trpc } from "../lib/trpc";
-import { MushroomView } from "../components/MushroomView";
+import { MushroomCard } from "../components/MushroomCard";
 
 //import { Mushrooms } from "../db/mushrooms"
 
@@ -29,7 +29,7 @@ export const Encyclopedia: React.FC = () => {
           )}
           {!!mushrooms.data &&
             mushrooms.data.map((obj) => (
-              <MushroomView key={obj.id} obj={obj} />
+              <MushroomCard key={obj.id} mushroom={obj} />
             ))}
         </View>
       )}

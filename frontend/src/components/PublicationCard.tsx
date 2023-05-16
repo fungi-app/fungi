@@ -1,21 +1,22 @@
 import { Text, StyleSheet } from "react-native";
-import { Mushroom } from "@fungi/db";
+import type { Publication } from "@fungi/db";
 import { Card } from "./Card";
 import { useStateStore } from "../lib/store";
 import { useTheme } from "../lib/theme";
 
-// type Props = { obj: Mushroom };
+type Props = { publication: Publication };
 
-export const PublicationCard: React.FC<Props> = (obj) => {
-  const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
+export const PublicationCard: React.FC<Props> = ({ publication }) => {
+  const setSelectedStory = useStateStore((s) => s.setSelectedNewsStory);
   const theme = useTheme();
   return (
     <Card
-      id={obj.obj.name}
-      onChange={() => setSelectedMushroom(obj.obj.id)}
-      img={obj.obj.img}
+      onPress={() => setSelectedStory(publication.id)}
+      // img={publication.img}
     >
-      <Text style={[styles.text, { color: theme.text }]}>{obj.obj.name}</Text>
+      <Text style={[styles.text, { color: theme.text }]}>
+        {publication.title}
+      </Text>
     </Card>
   );
 };
