@@ -13,19 +13,21 @@ export const mushroomsRouter = t.router({
       return await ctx.db.mushroom.findMany({
         skip: input.page * input.perPage,
         take: input.perPage,
+
+        include: { family: true },
       });
     }),
 
   getById: publicProcedure
     .input(
       z.object({
-        id: z.number().min(0),
+        id: z.string().cuid(),
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.mushroom.findUnique({
+      return await ctx.db.publication.findUnique({
         where: { id: input.id },
-        include: { family: true },
+        include: { author: true },
       });
     }),
 });
