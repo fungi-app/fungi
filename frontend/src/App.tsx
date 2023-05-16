@@ -28,9 +28,9 @@ export default function App() {
   const selectedScheme = useSelectedScheme();
   const theme = useTheme();
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   return (
     <SafeAreaProvider>
