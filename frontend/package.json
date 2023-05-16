@@ -28,7 +28,8 @@
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
     "superjson": "^1.12.2",
-    "zustand": "^4.3.6"
+    "zustand": "^4.3.6",
+    "expo-constants": "~14.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
