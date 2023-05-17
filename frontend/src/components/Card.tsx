@@ -38,7 +38,7 @@ export const Card: React.FC<React.PropsWithChildren<Props>> = ({
         </View>
         <Image
           style={styles.image}
-          source={img ?? require("../../assets/noimg.jpg")}
+          source={!!img ? img : require("../../assets/noimg.jpg")}
         />
       </View>
     </TouchableOpacity>
