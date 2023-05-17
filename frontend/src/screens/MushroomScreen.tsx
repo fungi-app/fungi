@@ -17,6 +17,7 @@ import { EatableGradeIcon } from "../components/icons/Eatable";
 import { IsRedBookedIcon } from "../components/icons/RedBooked";
 import { useTheme } from "../lib/theme";
 import HelpIcon from "./../components/icons/Help";
+import { loadImage } from "../lib/image";
 
 type Props = {
   id: number;
@@ -41,7 +42,11 @@ export const MushroomScreen: React.FC<Props> = ({ id, onClose }) => {
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../../assets/noimg.jpg")}
+              source={
+                mushroom.data.images[0]
+                  ? loadImage(mushroom.data.images[0])
+                  : require("../../assets/noimg.jpg")
+              }
             />
             <View
               style={[

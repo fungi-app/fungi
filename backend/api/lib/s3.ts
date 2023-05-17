@@ -1,8 +1,7 @@
 import { S3 } from "@aws-sdk/client-s3";
 import { prisma } from "@fungi/db";
 import mime from "mime-types";
-
-export const endpoint = "https://mio.fungi.clubhouse.mlntcandy.com/";
+import { endpoint } from "./s3cfg";
 
 function makeS3() {
   if (
