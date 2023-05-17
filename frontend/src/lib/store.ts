@@ -8,8 +8,11 @@ type StateStoreType = {
   selectedMushroom: number | null;
   setSelectedMushroom: (id: number | null) => void;
 
-  selectedNewsStory: number | null;
-  setSelectedNewsStory: (id: number | null) => void;
+  selectedNewsStory: string | null;
+  setSelectedNewsStory: (id: string | null) => void;
+
+  selectedTheme: "dark" | "light" | "system";
+  setSelectedTheme: (theme: "dark" | "light" | "system") => void;
 };
 
 export const useStateStore = create<StateStoreType>()((set) => ({
@@ -22,6 +25,10 @@ export const useStateStore = create<StateStoreType>()((set) => ({
     set((s) => ({ ...s, selectedMushroom: mushroomId })),
 
   selectedNewsStory: null,
-  setSelectedNewsStory: (newsStoryId: number | null) =>
+  setSelectedNewsStory: (newsStoryId: string | null) =>
     set((s) => ({ ...s, selectedNewsStory: newsStoryId })),
+
+  selectedTheme: "system",
+  setSelectedTheme: (theme: "dark" | "light" | "system") =>
+    set((s) => ({ ...s, selectedTheme: theme })),
 }));

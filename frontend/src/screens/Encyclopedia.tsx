@@ -1,10 +1,10 @@
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { MushroomScreen } from "./MushroomScreen";
-import { MushroomView } from "../components/MushroomView";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
 import { useStateStore } from "../lib/store";
 import { trpc } from "../lib/trpc";
+import { MushroomCard } from "../components/MushroomCard";
 
 //import { Mushrooms } from "../db/mushrooms"
 
@@ -22,14 +22,14 @@ export const Encyclopedia: React.FC = () => {
       <TopBarPad />
       {!selectedMushroom && (
         <View style={styles.screen}>
-          {!mushrooms.data && <Text>Нет подключения</Text>}
+          {!mushrooms.data && (
+            <Text style={{ fontFamily: "Raleway_500Medium" }}>
+              Нет подключения
+            </Text>
+          )}
           {!!mushrooms.data &&
             mushrooms.data.map((obj) => (
-              <MushroomView
-                key={obj.id}
-                obj={obj}
-                onChange={(id) => setSelectedMushroom(id)}
-              />
+              <MushroomCard key={obj.id} mushroom={obj} />
             ))}
         </View>
       )}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     height: "100%",
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap",
   },
 });

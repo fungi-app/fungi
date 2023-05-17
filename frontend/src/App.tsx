@@ -6,13 +6,37 @@ import { BottomMenu } from "./components/BottomMenu";
 import { Screens } from "./Screens";
 import { TopBar } from "./components/TopBar";
 import { TRPCProvider } from "./lib/trpc";
+import {
+  useFonts,
+  Raleway_400Regular,
+  Raleway_500Medium,
+  Raleway_600SemiBold,
+  Raleway_700Bold,
+  Raleway_800ExtraBold,
+} from "@expo-google-fonts/raleway";
+import { useSelectedScheme, useTheme } from "./lib/theme";
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Raleway_400Regular,
+    Raleway_500Medium,
+    Raleway_600SemiBold,
+    Raleway_700Bold,
+    Raleway_800ExtraBold,
+  });
+
+  const selectedScheme = useSelectedScheme();
+  const theme = useTheme();
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <SafeAreaProvider>
       <TRPCProvider>
-        <StatusBar style="dark" />
-        <View style={styles.container}>
+        <StatusBar style={selectedScheme === "dark" ? "light" : "dark"} />
+        <View style={[styles.container, { backgroundColor: theme.bg }]}>
           <TopBar />
           <Screens />
           <BottomMenu />
@@ -26,8 +50,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fff",
+    fontFamily: "Raleway_500Medium",
   },
 });
 
-export type ScreenType = "map" | "encyclopedia" | "search" | "news" | "profile";
+export type ScreenType = "encyclopedia" | "news" | "settings";

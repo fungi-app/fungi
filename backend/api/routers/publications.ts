@@ -1,7 +1,7 @@
-import { publicProcedure, t } from "../trpc/server";
 import { z } from "zod";
+import { publicProcedure, t } from "../trpc/server";
 
-export const mushroomsRouter = t.router({
+export const publicationRouter = t.router({
   getPaginated: publicProcedure
     .input(
       z.object({
@@ -10,24 +10,22 @@ export const mushroomsRouter = t.router({
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.mushroom.findMany({
+      return await ctx.db.publication.findMany({
         skip: input.page * input.perPage,
         take: input.perPage,
-
-        include: { family: true },
+        select: { content: false },
       });
     }),
-
   getById: publicProcedure
     .input(
       z.object({
-        id: z.number().min(0),
+        id: z.string().cuid(),
       })
     )
     .query(async ({ input, ctx }) => {
-      return await ctx.db.mushroom.findUnique({
+      return await ctx.db.publication.findUnique({
         where: { id: input.id },
-        include: { family: true },
+        include: { author: true },
       });
     }),
 });

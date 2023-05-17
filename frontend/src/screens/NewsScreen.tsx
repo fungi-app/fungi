@@ -13,38 +13,15 @@ import { PublicationScreen } from "./PublicationScreen";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
 import { useStateStore } from "../lib/store";
+import { Publication } from "@fungi/db";
 
-export type News = {
-  name: string;
-  id: number;
-  image: any;
-};
-
-export const news: News[] = [
+export const news: Publication[] = [
   {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 2,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
+    title: "Новость",
+    id: "ASddkjhsdfiuskhgfi",
+    // image: require("../../assets/lisichka.jpeg"),
+    content: "content",
+    authorCuid: "asdf",
   },
 ];
 
@@ -52,27 +29,6 @@ export const NewsScreen: React.FC = (props) => {
   const selectedNewsStory = useStateStore((s) => s.selectedNewsStory);
   const setSelectedNewsStory = useStateStore((s) => s.setSelectedNewsStory);
   return (
-    // <ScrollView>
-    //   <View style={styles.wrapper}>
-    //     {props.data.map((nw, i) => (
-    //       <ImageBackground key={i} style={styles.card} source={nw.image}>
-    //         <View>
-    //           <Text>{nw.name}</Text>
-    //         </View>
-    //       </ImageBackground>
-    //     ))}
-    //   </View>
-    // </ScrollView>
-
-    // <View style={styles.wrapper}>
-    //   <FlatList
-    //     data={props.data}
-    //     renderItem={({ item }) => (
-    //       <PublicationCard item={item}></PublicationCard>
-    //     )}
-    //   />
-    // </View>
-
     <View style={styles.wrapper}>
       {!selectedNewsStory ? (
         <FlatList
@@ -80,16 +36,12 @@ export const NewsScreen: React.FC = (props) => {
           ListHeaderComponent={TopBarPad}
           ListFooterComponent={BottomMenuPad}
           renderItem={({ item }) => (
-            <PublicationCard
-              key={item.id}
-              item={item}
-              onPress={() => setSelectedNewsStory(item.id)}
-            />
+            <PublicationCard key={item.id} publication={item} />
           )}
         />
       ) : (
         <PublicationScreen
-          item={news[selectedNewsStory]}
+          storyId={selectedNewsStory}
           onBack={() => setSelectedNewsStory(null)}
         />
       )}
@@ -98,5 +50,7 @@ export const NewsScreen: React.FC = (props) => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    padding: 15,
+  },
 });
