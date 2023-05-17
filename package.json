@@ -11,7 +11,7 @@
   "scripts": {
     "build:server": "npm run prisma generate && npm run -w ./backend/server build",
     "build:website": "npm run -w ./website build",
-    "prisma": "npm run -w ./backend/db prisma",
+    "prisma": "env-cmd npm run -w ./backend/db prisma",
     "init-db": "npm run prisma migrate dev",
     "dev:app": "npm run -w ./frontend start",
     "dev:server": "npm run -w ./backend/server dev",
@@ -19,6 +19,7 @@
     "dev": "concurrently 'npm:dev:*'"
   },
   "devDependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "env-cmd": "^10.1.0"
   }
 }

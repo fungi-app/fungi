@@ -26,6 +26,7 @@ model Mushroom {
   description String
 
   addedAt DateTime @default(now())
+  images  Image[]
 
   family   Family @relation(fields: [familyId], references: [id])
   familyId Int
@@ -80,10 +81,27 @@ model Session {
 }
 
 model Publication {
-  id      String @id @default(cuid())
-  title   String
-  author  User   @relation(fields: [authorCuid], references: [cuid])
-  content String
-addedAt DateTime @default(now())
+  id         String @id @default(cuid())
+  title      String
+  author     User   @relation(fields: [authorCuid], references: [cuid])
+  content    String
   authorCuid String
+
+  image   Image?  @relation(fields: [imageId], references: [id])
+  imageId String?
+
+  addedAt DateTime @default(now())
+}
+
+model Image {
+  id     String  @id @default(cuid())
+  ext    String
+  bucket String
+  name   String?
+  source String?
+
+  mushrooms    Mushroom[]
+  publications Publication[]
+
+  uploadedAt DateTime @default(now())
 }
