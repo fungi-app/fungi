@@ -31,21 +31,28 @@ function makeS3() {
 
 const s3 = makeS3();
 
-export async function s3upload(file: File, bucket: string, fileName?: string) {
+export async function s3upload(file: File, bucket?: string, fileName?: string) {
   const uploadedImage = await s3.putObject({
-    Bucket: "fungi-images",
+    Bucket: bucket ?? "fungi-images",
     Body: file,
     Key: fileName ?? file.name,
   });
   return uploadedImage;
 }
 
-export async function createImage(file: File, bucket: string) {
+export async function createImage(
+  file: File,
+  bucket: string,
+  name?: string,
+  source?: string
+) {
   const ext = mime.extension(file.type) || "";
   const image = await prisma.image.create({
     data: {
       ext,
       bucket,
+      name,
+      source,
     },
   });
 
