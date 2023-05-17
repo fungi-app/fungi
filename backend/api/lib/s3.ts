@@ -45,10 +45,10 @@ export async function createImage(
   name?: string,
   source?: string
 ) {
-  // const ext = mime.extension(file.type) || "";
+  const ext = mime.extension(file.type) || "";
   const image = await prisma.image.create({
     data: {
-      ext: "jpg",
+      ext,
       bucket,
       name,
       source,
