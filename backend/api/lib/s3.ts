@@ -1,8 +1,7 @@
 import { S3 } from "@aws-sdk/client-s3";
 import { prisma } from "@fungi/db";
 import mime from "mime-types";
-
-export const endpoint = "https://mio.fungi.clubhouse.mlntcandy.com/";
+import { endpoint } from "./s3cfg";
 
 function makeS3() {
   if (
@@ -46,10 +45,10 @@ export async function createImage(
   name?: string,
   source?: string
 ) {
-  const ext = mime.extension(file.type) || "";
+  // const ext = mime.extension(file.type) || "";
   const image = await prisma.image.create({
     data: {
-      ext,
+      ext: "jpg",
       bucket,
       name,
       source,

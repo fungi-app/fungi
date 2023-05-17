@@ -13,7 +13,7 @@ export const publicationRouter = t.router({
       return await ctx.db.publication.findMany({
         skip: input.page * input.perPage,
         take: input.perPage,
-        select: { content: false },
+        select: { content: false, image: true },
       });
     }),
   getById: publicProcedure
@@ -25,7 +25,7 @@ export const publicationRouter = t.router({
     .query(async ({ input, ctx }) => {
       return await ctx.db.publication.findUnique({
         where: { id: input.id },
-        include: { author: true },
+        include: { author: true, image: true },
       });
     }),
 });

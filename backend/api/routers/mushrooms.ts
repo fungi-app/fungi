@@ -14,7 +14,7 @@ export const mushroomsRouter = t.router({
         skip: input.page * input.perPage,
         take: input.perPage,
 
-        include: { family: true },
+        include: { family: true, images: true },
       });
     }),
 
@@ -27,7 +27,7 @@ export const mushroomsRouter = t.router({
     .query(async ({ input, ctx }) => {
       return await ctx.db.mushroom.findUnique({
         where: { id: input.id },
-        include: { family: true },
+        include: { family: true, images: true },
       });
     }),
 });

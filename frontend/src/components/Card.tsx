@@ -1,10 +1,17 @@
-import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  ImageSourcePropType,
+} from "react-native";
 import { colors } from "../colors";
 import MushList from "../db/mushrooms";
 import { Mushroom } from "@fungi/db";
 import { useTheme } from "../lib/theme";
 type Props = {
-  img?: string;
+  img?: ImageSourcePropType;
   onPress: () => unknown;
 };
 

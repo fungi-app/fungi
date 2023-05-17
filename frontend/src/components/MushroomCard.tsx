@@ -1,26 +1,28 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Mushroom, Family } from "@fungi/db";
+import { Mushroom, Family, Image } from "@fungi/db";
 import { Card } from "./Card";
 import { useStateStore } from "../lib/store";
 import { useTheme } from "../lib/theme";
 import { EatableGradeIcon } from "./icons/Eatable";
 import { IsRedBookedIcon } from "./icons/RedBooked";
+import { loadImage } from "../lib/image";
 
 type Props = {
-  mushroom: Mushroom & { family: Family };
+  mushroom: Mushroom & { family: Family; images: Image[] };
 };
 
 export const MushroomCard: React.FC<Props> = (props) => {
   const setSelectedMushroom = useStateStore((s) => s.setSelectedMushroom);
   const theme = useTheme();
+  // console.log(loadImage(props.mushroom.images[0]));
   return (
     <Card
       onPress={() => setSelectedMushroom(props.mushroom.id)}
-      // img={props.obj.img}
+      img={loadImage(props.mushroom.images[0])}
     >
       <View>
         <Text style={[styles.family, { color: theme.secondary }]}>
-          {/* {props.obj.family.name} */}
+          {props.mushroom.family.name} ({props.mushroom.family.latinName})
         </Text>
         <Text style={[styles.name, { color: theme.text }]}>
           {props.mushroom.name}
