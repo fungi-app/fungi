@@ -195,14 +195,15 @@ const mushroomScreenStyles = StyleSheet.create({
     width: 340,
     height: 90,
     borderRadius: 100,
+    marginTop: -63,
     marginBottom: 20,
     textAlign: "center",
   },
   title: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 5,
-    marginTop: 5,
+    marginBottom: 0,
+    marginTop: 0,
     textAlign: "center",
   },
   contentContainer: {
@@ -228,9 +229,11 @@ const mushroomScreenStyles = StyleSheet.create({
   familyLatinText: {
     fontSize: 15,
     marginLeft: 5,
+    marginBottom: 10,
   },
   familyTitleContainer: {
     display: "flex",
+    marginTop: 10,
     flexDirection: "row",
   },
   familyTitleText: {
