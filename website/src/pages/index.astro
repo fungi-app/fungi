@@ -4,22 +4,12 @@ import LeftMenu from "../components/LeftMenu.astro";
 import Layout from "../layouts/Layout.astro";
 import articles from "../articles.json";
 import ArticleCard from "../components/ArticleCard.astro";
-function arrayRandElement(massive: typeof articles) {
-  let rand = Math.floor(Math.random() * massive.length);
-  return massive[rand];
-}
-const rand = arrayRandElement(articles);
-
-function sortFunction(a, b) {
-  var dateA = new Date(a.date).getTime();
-  var dateB = new Date(b.date).getTime();
-  return dateA > dateB ? -1 : 1;
-}
-
-function lastArticles(massive: typeof articles) {
-  let sorted = massive.sort(sortFunction);
-  return sorted.slice(0, 5);
-}
+import { trpc } from "../lib/trpc";
+import { loadImage } from "../lib/image";
+const publications = await trpc.publications.getPaginated.query({
+  page: 0,
+  perPage: 5,
+});
 ---
 
 <Layout title="Главная">
@@ -28,17 +18,12 @@ function lastArticles(massive: typeof articles) {
     <section class="hero">
       <p class="hero__text">Грибник грибника видит на Fungi.ru</p>
     </section>
-    <section class="recomented">
+    <section class="recommended">
       <h2>Возможно, Вам будет интересно почитать!</h2>
       <div class="wrapper">
         {
-          lastArticles(articles).map((articlee) => (
-            <ArticleCard
-              id={articlee.id}
-              name={articlee.name}
-              date={new Date(articlee.date)}
-              author={articlee.author}
-            />
+          publications.map((a) => (
+            <ArticleCard id={a.id} name={a.title} image={loadImage(a.image)} />
           ))
         }
       </div>
@@ -64,9 +49,10 @@ function lastArticles(massive: typeof articles) {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-position: center;
   }
   .hero__text {
-    font-family: "Raleway Variable";
     font-style: normal;
     font-weight: 400;
     font-size: 55px;
@@ -80,7 +66,7 @@ function lastArticles(massive: typeof articles) {
     color: #ffffff;
   }
 
-  .recomented {
+  .recommended {
     padding: 30px 100px;
   }
 
@@ -91,7 +77,6 @@ function lastArticles(massive: typeof articles) {
   h2 {
     margin: 0 auto;
     max-width: fit-content;
-    font-family: "Raleway Variable";
     font-style: normal;
     font-weight: 400;
     font-size: 30px;

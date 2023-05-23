@@ -2,17 +2,16 @@
 export type Props = {
   id: string;
   name: string;
-  date: Date;
-  author: string;
+  image: string;
 };
 
-const { id, name, date, author } = Astro.props;
+const { id, name, image } = Astro.props;
 const addZero = (n) => (n < 10 ? `0${n}` : n);
 ---
 
-<a href={`/${id}`} class="Article">
+<a href={`/p/${id}`} class="Article">
   <p>{name}</p>
-  <img src="/" />
+  <img src={image} />
 </a>
 
 <style>
@@ -32,7 +31,6 @@ const addZero = (n) => (n < 10 ? `0${n}` : n);
 
   p {
     margin: 10px auto;
-    font-family: "Raleway Variable";
     font-style: normal;
     font-weight: 600;
     font-size: 24px;

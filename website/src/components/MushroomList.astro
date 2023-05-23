@@ -35,6 +35,7 @@ console.log(mushrooms);
           readbook={mushroom.redBooked}
           eatable={mushroom.eatable}
           description={mushroom.description}
+          family={mushroom.family}
         />
       ))
     )
@@ -43,9 +44,11 @@ console.log(mushrooms);
 
 <style>
   .wrapper {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 20px;
     width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* align-items: center; */
+    justify-items: center;
   }
 </style>
