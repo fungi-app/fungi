@@ -64,16 +64,7 @@ export const MushroomScreen: React.FC<Props> = ({ id, onClose }) => {
                     { color: theme.secondaryText },
                   ]}
                 >
-                  {mushroom.data.family.name}
-                </Text>
-
-                <Text
-                  style={[
-                    styles.familyTitleLatinText,
-                    { color: theme.secondaryText },
-                  ]}
-                >
-                  ({mushroom.data.family.latinName})
+                  {mushroom.data.family.name} ({mushroom.data.family.latinName})
                 </Text>
               </View>
 
@@ -172,6 +163,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     position: "absolute",
     bottom: -45,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
   },
   title: {
     fontWeight: "bold",
@@ -180,6 +173,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     textAlign: "center",
     fontFamily: "Raleway_700Bold",
+    paddingVertical: 3,
   },
   contentContainer: {
     display: "flex",
@@ -212,15 +206,18 @@ const styles = StyleSheet.create({
     display: "flex",
     marginTop: 10,
     flexDirection: "row",
+    textAlign: "center",
   },
   familyTitleText: {
     fontSize: 12,
     fontFamily: "Raleway_800ExtraBold",
+    textAlign: "center",
   },
   familyTitleLatinText: {
     fontSize: 12,
     marginLeft: 5,
     fontFamily: "Raleway_800ExtraBold",
+    textAlign: "center",
   },
   characteristicsName: {
     fontWeight: "bold",
