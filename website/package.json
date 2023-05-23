@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/raleway": "^5.0.2",
     "@trpc/client": "^10.25.0",
     "astro": "^2.1.9",
     "superjson": "^1.12.3"

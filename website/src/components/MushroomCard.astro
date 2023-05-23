@@ -11,67 +11,43 @@ export type Props = {
 ---
 
 <div class="MushroomCard">
-  <img alt="Фотография гриба" src={Astro.props.image} />
-  <div class="MushroomCards__headers">
-    <h2>{Astro.props.name}</h2>
-    <h3>{Astro.props.latinName}</h3>
-  </div>
-  <p class="MushroomCards__description">{Astro.props.description}</p>
-  <div class="MushroomCards__notes">
-    <div>{Astro.props.readbook ? "В красной книге" : ""}</div>
-    <div>
-      {
-        Astro.props.eatable == "EATABLE"
-          ? "Съедобные"
-          : Astro.props.eatable == "NOT_EATABLE"
-          ? "Несъедобные"
-          : Astro.props.eatable == "PARTIALLY_EATABLE"
-          ? "Условно-съедобные"
-          : ""
-      }
-    </div>
-  </div>
+  <p>{Astro.props.name}</p>
+  <img src={Astro.props.image} />
 </div>
+
 <style>
+  @import "@fontsource-variable/raleway";
+
   .MushroomCard {
     display: flex;
-    border-bottom: 1px solid #a2a9b1;
-    padding: 20px 0;
     gap: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 200px;
+    background: #ffe8c5;
+    border-radius: 22px;
+    overflow: hidden;
+    text-decoration: none;
   }
 
-  .MushroomCard:last-child {
-    border-bottom: none;
+  p {
+    margin: 10px auto;
+    font-family: "Raleway Variable";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
   }
 
   img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    background-color: #cfe0f1;
-  }
-
-  h2 {
-    margin: 0;
-  }
-  p {
-    margin: 0;
-  }
-
-  .MushroomCards__headers {
-    flex-shrink: 0;
+    object-fit: fill;
     width: 200px;
+    height: 150px;
   }
 
-  .MushroomCards__description {
-    flex-shrink: 1;
-    overflow-y: auto;
-    max-height: 150px;
-    width: 100%;
-  }
-
-  .MushroomCards__notes {
-    flex-shrink: 0;
-    width: 150px;
+  .Article_wrapper {
   }
 </style>

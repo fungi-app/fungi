@@ -3,7 +3,7 @@ import articles from "../articles.json";
 import ArticleCard from "./ArticleCard.astro";
 ---
 
-<div>
+<div class="wrapper">
   {
     articles.map((article) => (
       <ArticleCard
@@ -15,3 +15,12 @@ import ArticleCard from "./ArticleCard.astro";
     ))
   }
 </div>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
+</style>

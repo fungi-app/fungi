@@ -6,42 +6,42 @@ import Search from "./Search.astro";
 <header class="header">
   <div class="header__search-wrapper">
     <Logo />
-    <Search />
   </div>
   <div class="header__links-wrapper">
-    <a class="header__link" href="/">Создать аккаунт</a>
-    <a class="header__link" href="/login">Войти</a>
+    <a class="header__link" href="/">О нас</a>
+    <a class="header__link" href="/publications">Публикации</a>
+    <a class="header__link" href="/encyclopedia">Энциклопедия</a>
   </div>
 </header>
 
 <style>
+  @import "@fontsource-variable/raleway";
   .header {
+    background-color: #ffe8c5;
     display: flex;
     align-items: center;
     gap: 30px;
     justify-content: space-between;
+    padding: 0 20px;
   }
 
-  .header__search-wrapper {
-    display: flex;
-    max-width: 900px;
-    width: 100%;
-    gap: 105px;
-    align-items: center;
-    flex-shrink: 3;
-  }
   .header__links-wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
     align-items: center;
     flex-shrink: 0;
+    flex-grow: 1;
+    max-width: 500px;
   }
 
   .header__link {
     text-decoration: none;
-  }
-  .header__link:hover {
-    text-decoration: underline;
+    font-family: "Raleway Variable";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #000000;
   }
 </style>
