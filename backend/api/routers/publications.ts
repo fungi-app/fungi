@@ -13,7 +13,13 @@ export const publicationRouter = t.router({
       return await ctx.db.publication.findMany({
         skip: input.page * input.perPage,
         take: input.perPage,
-        select: { content: false, image: true },
+        select: {
+          content: false,
+          image: true,
+          title: true,
+          id: true,
+          author: true,
+        },
       });
     }),
   getById: publicProcedure
