@@ -8,6 +8,7 @@ import { TRPCProvider } from "./lib/trpc";
 import {
   Raleway_400Regular,
   Raleway_500Medium,
+  Raleway_500Medium_Italic,
   Raleway_600SemiBold,
   Raleway_700Bold,
   Raleway_800ExtraBold,
@@ -19,6 +20,7 @@ export default function App() {
   let [fontsLoaded, fontErr] = useFonts({
     Raleway_400Regular,
     Raleway_500Medium,
+    Raleway_500Medium_Italic,
     Raleway_600SemiBold,
     Raleway_700Bold,
     Raleway_800ExtraBold,
