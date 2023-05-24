@@ -1,0 +1,118 @@
+---
+import { Icon } from "astro-icon";
+import Page from "../../layouts/Page.astro";
+import { loadImage } from "../../lib/image";
+import { trpc } from "../../lib/trpc";
+const id = parseInt(Astro.params.mushroomid);
+
+const mushroom = await trpc.mushrooms.getById.query({ id });
+if (!mushroom) return new Response(404);
+---
+
+<Page title={mushroom.name}>
+  <div class="header">
+    <h1>{mushroom.name}</h1>
+    <p class="latin">{mushroom.latinName}</p>
+  </div>
+  <div class="secondary">
+    <img
+      class="image"
+      src={loadImage(mushroom.images[0])}
+      alt={mushroom.name}
+    />
+    <div class="specs">
+      <h2>Семейство</h2>
+      <p class="family">
+        <a href={`/f/${mushroom.family.id}`}>
+          {mushroom.family.name}
+          <span class="lat">({mushroom.family.latinName})</span>
+        </a>
+      </p>
+      <h2>Характеристики</h2>
+      <div class="spec">
+        <Icon size={36} name={mushroom.eatable.toLowerCase()} />
+        {
+          {
+            EATABLE: "Съедобен",
+            PARTIALLY_EATABLE: "Условно съедобен",
+            NOT_EATABLE: "Несъедобен",
+          }[mushroom.eatable]
+        }
+      </div>
+      <hr />
+      <div class="spec">
+        <Icon
+          size={36}
+          name={mushroom.redBooked ? "redbooked" : "not_redbooked"}
+        />
+        {mushroom.redBooked ? "В красной книге" : "Нет в красной книге"}
+      </div>
+    </div>
+  </div>
+  <div class="description">
+    <h2>Описание</h2>
+    <p>{mushroom.description}</p>
+  </div>
+</Page>
+<style>
+  .header {
+    text-align: center;
+    margin: 36px 0;
+  }
+  h1 {
+    margin: 0;
+  }
+  .latin {
+    font-size: 21px;
+    font-weight: 600;
+    color: #b38550;
+    /* color: rgba(0, 0, 0, 0.35); */
+  }
+  .secondary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-bottom: 20px;
+  }
+  .image {
+    max-width: 100%;
+    width: 625px;
+    flex-grow: 1;
+    border-radius: 20px;
+    object-fit: cover;
+    aspect-ratio: 5/4;
+  }
+  .specs {
+    flex-basis: 400px;
+    flex-grow: 1;
+  }
+  .family a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .family .lat {
+    color: rgba(0, 0, 0, 0.35);
+  }
+  .spec {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 600;
+  }
+  hr {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.35);
+    height: 1px;
+  }
+  h2 {
+    margin-top: 0;
+    font-size: 21px;
+  }
+  .description {
+    font-weight: 500;
+  }
+  .description h2 {
+    font-size: 24px;
+  }
+</style>

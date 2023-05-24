@@ -1,0 +1,49 @@
+---
+import Page from "../../layouts/Page.astro";
+import { loadImage } from "../../lib/image";
+import { trpc } from "../../lib/trpc";
+import markdownit from "markdown-it";
+import "./publication.css"
+
+const publication = await trpc.publications.getById.query({
+  id: Astro.params.publicationid,
+});
+if (!publication) return new Response(404);
+
+const content = markdownit().render(
+  publication.content.replaceAll("\\n", "\n")
+);
+---
+
+<Page title={publication.title}>
+  <h1 class="title">{publication.title}</h1>
+  <img
+    class="image"
+    src={loadImage(publication.image)}
+    alt={publication.title}
+  />
+  <div class="content" set:html={content} />
+</Page>
+
+<style>
+  .title {
+    text-align: center;
+    margin: 36px 0;
+  }
+  .image {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 20px;
+    object-fit: cover;
+    aspect-ratio: 5/3;
+  }
+  .content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 32px;
+    /* font-weight: 500; */
+  }
+</style>

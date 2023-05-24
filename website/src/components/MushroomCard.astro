@@ -1,4 +1,6 @@
 ---
+import { type Family } from "@fungi/db";
+
 export type Props = {
   id: number;
   name: string;
@@ -7,71 +9,76 @@ export type Props = {
   eatable: "NOT_EATABLE" | "PARTIALLY_EATABLE" | "EATABLE";
   readbook: boolean;
   description: string;
+  family: Family;
 };
 ---
 
-<div class="MushroomCard">
-  <img alt="Фотография гриба" src={Astro.props.image} />
-  <div class="MushroomCards__headers">
-    <h2>{Astro.props.name}</h2>
-    <h3>{Astro.props.latinName}</h3>
-  </div>
-  <p class="MushroomCards__description">{Astro.props.description}</p>
-  <div class="MushroomCards__notes">
-    <div>{Astro.props.readbook ? "В красной книге" : ""}</div>
-    <div>
-      {
-        Astro.props.eatable == "EATABLE"
-          ? "Съедобные"
-          : Astro.props.eatable == "NOT_EATABLE"
-          ? "Несъедобные"
-          : Astro.props.eatable == "PARTIALLY_EATABLE"
-          ? "Условно-съедобные"
-          : ""
-      }
+<a href={`/m/${Astro.props.id}`} class="MushroomCard">
+  <div class="header">
+    <div class="family">
+      {Astro.props.family.name} ({Astro.props.family.latinName})
     </div>
+    <div class="title">{Astro.props.name}</div>
+    <div class="latinName">{Astro.props.latinName}</div>
   </div>
-</div>
+  <img src={Astro.props.image} />
+</a>
+
 <style>
   .MushroomCard {
     display: flex;
-    border-bottom: 1px solid #a2a9b1;
-    padding: 20px 0;
     gap: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 200px;
+    background: #ffe8c5;
+    border-radius: 22px;
+    overflow: hidden;
+    text-decoration: none;
+    transform: scale(1);
+    transition: transform 150ms ease;
   }
 
-  .MushroomCard:last-child {
-    border-bottom: none;
+  .MushroomCard:hover {
+    transform: scale(0.97);
+  }
+
+  .header {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .family {
+    font-weight: 800;
+    font-size: 10px;
+    text-align: center;
+    color: #653d00;
+  }
+
+  .title {
+    margin: 8px 0;
+    font-weight: 700;
+    text-align: center;
+    color: #000000;
+  }
+
+  .latinName {
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: #b38550;
   }
 
   img {
-    width: 150px;
-    height: 150px;
     object-fit: cover;
-    background-color: #cfe0f1;
-  }
-
-  h2 {
-    margin: 0;
-  }
-  p {
-    margin: 0;
-  }
-
-  .MushroomCards__headers {
-    flex-shrink: 0;
     width: 200px;
+    height: 150px;
+    display: block;
   }
 
-  .MushroomCards__description {
-    flex-shrink: 1;
-    overflow-y: auto;
-    max-height: 150px;
-    width: 100%;
-  }
-
-  .MushroomCards__notes {
-    flex-shrink: 0;
-    width: 150px;
+  .Article_wrapper {
   }
 </style>

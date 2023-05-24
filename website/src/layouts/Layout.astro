@@ -8,7 +8,7 @@ const { title } = Astro.props;
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="./images/MicroFungiLogo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -18,20 +18,12 @@ const { title } = Astro.props;
       <slot />
     </div>
     <style>
+      @import "@fontsource-variable/raleway";
       body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, Roboto,
-          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      }
-      .app-container {
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-      }
-      a {
-        text-decoration: none;
-        color: #3366cc;
-      }
-      a:hover {
-        text-decoration: underline;
+        margin: 0;
+        font-family: "Raleway Variable", system-ui, -apple-system,
+          BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
       }
     </style>
   </body>

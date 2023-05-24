@@ -1,7 +1,11 @@
 ---
 import MushroomCard from "./MushroomCard.astro";
 import { trpc } from "../lib/trpc";
-const mushrooms = await trpc.mushrooms.getPaginated.query({page:0, perPage:1000});
+import { loadImage } from "../lib/image";
+const mushrooms = await trpc.mushrooms.getPaginated.query({
+  page: 0,
+  perPage: 1000,
+});
 console.log(mushrooms);
 ---
 
@@ -19,20 +23,32 @@ console.log(mushrooms);
     ))
   }
 </div> -->
-<div>
+<div class="wrapper">
   {
     await Promise.all(
       mushrooms.map(async (mushroom) => (
         <MushroomCard
-         id={mushroom.id}
-          image={""}
+          id={mushroom.id}
+          image={loadImage(mushroom.images[0])}
           name={mushroom.name}
           latinName={mushroom.latinName}
           readbook={mushroom.redBooked}
           eatable={mushroom.eatable}
           description={mushroom.description}
+          family={mushroom.family}
         />
       ))
     )
   }
 </div>
+
+<style>
+  .wrapper {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* align-items: center; */
+    justify-items: center;
+  }
+</style>

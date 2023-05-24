@@ -1,17 +1,31 @@
 ---
-import articles from "../articles.json";
+import { loadImage } from "../lib/image";
+import { trpc } from "../lib/trpc";
 import ArticleCard from "./ArticleCard.astro";
+
+const publications = await trpc.publications.getPaginated.query({
+  page: 0,
+  perPage: 1000,
+});
 ---
 
-<div>
+<div class="wrapper">
   {
-    articles.map((article) => (
+    publications.map((article) => (
       <ArticleCard
         id={article.id}
-        name={article.name}
-        date={new Date(article.date)}
-        author={article.author}
+        name={article.title}
+        image={loadImage(article.image)}
       />
     ))
   }
 </div>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
+</style>
