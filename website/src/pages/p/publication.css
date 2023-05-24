@@ -1,0 +1,8 @@
+.content p {
+  font-weight: 500;
+}
+hr {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.35);
+  height: 1px;
+}

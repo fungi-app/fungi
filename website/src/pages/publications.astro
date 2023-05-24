@@ -2,22 +2,10 @@
 import ArticleList from "../components/ArticleList.astro";
 import Header from "../components/Header.astro";
 import LeftMenu from "../components/LeftMenu.astro";
-import Layout from "../layouts/Layout.astro";
+import Page from "../layouts/Page.astro";
 ---
 
-<Layout title="Публикации">
-  <Header />
-  <main>
-    <div class="content">
-      <ArticleList />
-    </div>
-  </main>
-</Layout>
-<style>
-  main {
-  }
-  .content {
-    max-width: 1100px;
-    margin: 20px auto;
-  }
-</style>
+<Page title="Публикации">
+  <ArticleList />
+</Page>
+
