@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:bule$Dbno@localhost:5432/fungi"
 }
 
 enum EatableGrade {
@@ -16,14 +16,59 @@ enum EatableGrade {
   EATABLE
 }
 
+enum COLOR {
+  RED
+  GREY
+  WHITE
+  BLACK
+  BROWN
+}
+
+enum HYMENOPHORE {
+  SMOOTH // Гладкая
+  SPIKY // Шипастая
+  TUBULAR // Трубчатая
+  LABYRINTHINE // Лабиринтовидная
+  LAMELLAR // Пластинчатый
+}
+
+enum FOOT_TYPE {
+  THICK_AT_TOP // Утолщенная вверху
+  THICK_AT_BOTTOM
+  WITH_SKIRT // С юбкой
+  SMOOTH // Ровная
+  THICK_AT_MIDDLE
+}
+
+enum HEAD_TYPE {
+  CONVEX // Выпуклая 
+  CONCAVE // Вогнутая
+  SMOOTH // Ровная
+}
+
 model Mushroom {
   id Int @id @default(autoincrement())
 
-  name        String
+  name String
+
   latinName   String
   redBooked   Boolean
   eatable     EatableGrade
   description String
+
+  synonymousNames String[]
+  have_foot       Boolean
+  foot_color      COLOR[]
+  foot_size_from  Int
+  foot_size_to    Int
+  foot_type       FOOT_TYPE
+  head_type       HEAD_TYPE
+
+  head_color  COLOR[]
+  hymenophore HYMENOPHORE
+
+  childDoubles  Mushroom[] @relation("MushroomDoubles")
+  parentDoubles Mushroom[] @relation("MushroomDoubles")
 
   addedAt DateTime @default(now())
   images  Image[]
