@@ -3,7 +3,7 @@ import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
   import superjson from "superjson";
   
   
-  const productionServer = "https://api.fungi.clubhouse.mlntcandy.com";
+  const productionServer = "http://localhost:3000";
   
   const trpcOptions = {
     transformer: superjson,
