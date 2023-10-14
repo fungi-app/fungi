@@ -3,10 +3,12 @@ import { exampleRouter } from "./example";
 import { authRouter } from "./auth";
 import { mushroomsRouter } from "./mushrooms";
 import { publicationRouter } from "./publications";
+import { colorRouter } from "./colors"
 
 export const appRouter = t.router({
   example: exampleRouter,
   auth: authRouter,
   mushrooms: mushroomsRouter,
   publications: publicationRouter,
+  color: colorRouter,
 });

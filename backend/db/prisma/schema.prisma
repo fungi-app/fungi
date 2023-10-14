@@ -16,13 +16,6 @@ enum EatableGrade {
   EATABLE
 }
 
-enum COLOR {
-  RED
-  GREY
-  WHITE
-  BLACK
-  BROWN
-}
 
 enum HYMENOPHORE {
   SMOOTH // Гладкая
@@ -33,17 +26,25 @@ enum HYMENOPHORE {
 }
 
 enum FOOT_TYPE {
-  THICK_AT_TOP // Утолщенная вверху
-  THICK_AT_BOTTOM
-  WITH_SKIRT // С юбкой
   SMOOTH // Ровная
+  WITH_SKIRT // С юбкой
+  THICK_AT_TOP // Утолщенная вверху
   THICK_AT_MIDDLE
+  THICK_AT_BOTTOM
 }
 
 enum HEAD_TYPE {
   CONVEX // Выпуклая 
   CONCAVE // Вогнутая
   SMOOTH // Ровная
+}
+
+model Color {
+  id Int @id @default(autoincrement())
+  name String @unique
+  hex String @unique
+  FootColor Mushroom[] @relation("FootColors")
+  HeadColor Mushroom[] @relation("HeadColors")
 }
 
 model Mushroom {
@@ -57,15 +58,18 @@ model Mushroom {
   description String
 
   synonymousNames String[]
-  have_foot       Boolean
-  foot_color      COLOR[]
-  foot_size_from  Int
-  foot_size_to    Int
-  foot_type       FOOT_TYPE
-  head_type       HEAD_TYPE
 
-  head_color  COLOR[]
-  hymenophore HYMENOPHORE
+  have_foot       Boolean
+  foot_size_from  Int?
+  foot_size_to    Int?
+  foot_type       FOOT_TYPE?
+
+  head_type       HEAD_TYPE
+  hymenophore     HYMENOPHORE
+
+  
+  head_color      Color[] @relation(name: "HeadColors")
+  foot_color      Color[] @relation(name: "FootColors")
 
   childDoubles  Mushroom[] @relation("MushroomDoubles")
   parentDoubles Mushroom[] @relation("MushroomDoubles")
