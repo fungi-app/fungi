@@ -8,7 +8,7 @@ import { Header } from "../components/Header";
 import { trpc } from "../lib/trpc";
 import { loadImage } from "../lib/image";
 import { useEffect, useState } from "react";
-import { Mushroom } from "@prisma/client";
+
 
 export function Index () {
 
@@ -22,23 +22,33 @@ export function Index () {
     // }
 
     // useEffect (fetchArticles ())
+
+    const publications = trpc.publications.getPaginated.useQuery({
+      perPage: 1000,
+      page: 0,
+    });
           
     return (
-        <main>
-        <section className="hero">s
-          <p className="hero__text">Грибник грибника видит на Fungi.ru</p>
-        </section>
-        <section className="recommended">
-          <h2>Возможно, Вам будет интересно почитать!</h2>
-          <div className="wrapper">
-            {/* {
-              publications.map((a) => (
-                <ArticleCard id={a.id} name={a.title} image={loadImage(a.image)} />
-              ))
-            } */}
-          </div>
-        </section>
-      </main>
+      
+        <>
+          <Header />
+          <main>
+          <section className="hero">s
+            <p className="hero__text">Грибник грибника видит на Fungi.ru</p>
+          </section>
+          <section className="recommended">
+            <h2>Возможно, Вам будет интересно почитать!</h2>
+            <div className="wrapper">
+              {
+                publications.data.map((obj) => (
+                  console.log(obj)
+                  // <ArticleCard id={a.id} name={a.title} image={loadImage(a.image)} />
+                ))
+              }
+            </div>
+          </section>
+        </main>
+      </>
     )
 }
 
