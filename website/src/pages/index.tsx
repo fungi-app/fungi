@@ -6,9 +6,9 @@
 import { ArticleCard } from "../components/ArticleCard";
 import { Header } from "../components/Header";
 import { trpc } from "../lib/trpc";
-import { loadImage } from "../lib/image";
+/* import { loadImage } from "../lib/image"; */
 import { useEffect, useState } from "react";
-import { Mushroom } from "@prisma/client";
+
 
 export function Index () {
 
