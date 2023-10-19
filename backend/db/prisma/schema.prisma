@@ -10,7 +10,7 @@ datasource db {
   url      = "postgresql://postgres:bule$Dbno@localhost:5432/fungi"
 }
 
-enum EatableGrade {
+enum EATABLE_GRADE {
   NOT_EATABLE
   PARTIALLY_EATABLE
   EATABLE
@@ -54,7 +54,7 @@ model Mushroom {
 
   latinName   String
   redBooked   Boolean
-  eatable     EatableGrade
+  eatable     EATABLE_GRADE
   description String
 
   synonymousNames String[]
@@ -68,8 +68,8 @@ model Mushroom {
   hymenophore     HYMENOPHORE
 
   
-  head_color      Color[] @relation(name: "HeadColors")
-  foot_color      Color[] @relation(name: "FootColors")
+  head_color       Color[] @relation("HeadColors")
+  foot_color       Color[] @relation("FootColors")
 
   childDoubles  Mushroom[] @relation("MushroomDoubles")
   parentDoubles Mushroom[] @relation("MushroomDoubles")
