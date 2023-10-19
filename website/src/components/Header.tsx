@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { Search } from "./Search";
+//import { Search } from "./Search";
 
 export function Header () {
     const menu = [

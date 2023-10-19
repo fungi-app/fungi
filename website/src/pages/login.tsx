@@ -6,7 +6,7 @@ export function Login () {
     <>
         <Header />
         <main>
-            <LeftMenu />
+            {/* <LeftMenu /> */}
             <div className="content">
             <h1>Вход</h1>
             <form>

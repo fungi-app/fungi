@@ -39,12 +39,12 @@ export function Index () {
           <section className="recommended">
             <h2>Возможно, Вам будет интересно почитать!</h2>
             <div className="wrapper">
-              {
+              {/* {
                 publications.data.map((obj) => (
                   console.log(obj)
                   // <ArticleCard id={a.id} name={a.title} image={loadImage(a.image)} />
                 ))
-              }
+              } */}
             </div>
           </section>
         </main>

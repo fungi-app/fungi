@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { trpc } from "../lib/trpc";
+import { trpc } from "../../lib/trpc";
 import { ColorItem } from "./Color"
 import { Color } from "@fungi/db"
 

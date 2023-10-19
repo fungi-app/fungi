@@ -4,6 +4,7 @@ import { authRouter } from "./auth";
 import { mushroomsRouter } from "./mushrooms";
 import { publicationRouter } from "./publications";
 import { colorRouter } from "./colors"
+import { familyRouter } from "./family"
 
 export const appRouter = t.router({
   example: exampleRouter,
@@ -11,4 +12,5 @@ export const appRouter = t.router({
   mushrooms: mushroomsRouter,
   publications: publicationRouter,
   color: colorRouter,
+  family: familyRouter,
 });

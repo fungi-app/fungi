@@ -2,10 +2,14 @@ import {PageNotFound} from "./pages/PageNotFound"
 import {Index} from "./pages/index"
 import {Login} from "./pages/login"
 import {AddMushroom} from "./pages/addMushroom"
+import {AddCategory} from "./pages/addCategory"
+import {Register} from "./pages/register"
+import {Logout} from "./pages/logout"
+import {About} from "./pages/about"
 
 import {Route, Routes} from 'react-router-dom'
 
-import { About } from "./pages/about"
+
 
 
 import React, { useState } from 'react';
@@ -18,9 +22,14 @@ function App() {
       <TRPCProvider>
           <Routes>
             <Route path="/" element={ <Index /> } />
-            <Route path="/login" element={ <Login /> } />
             <Route path="/about" element={ <About /> } />
-            <Route path="/add" element={ <AddMushroom /> } />
+
+            <Route path="/m/add" element={ <AddMushroom /> } />
+            <Route path="/c/add" element={ <AddCategory /> } />
+
+            <Route path="/login" element={ <Login /> } />
+            <Route path="/register" element={ <Register /> } />
+            <Route path="/logout" element={ <Logout /> } />
           </Routes>
       </TRPCProvider>
       {/* <Navigation /> */}
