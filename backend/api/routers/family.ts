@@ -36,10 +36,10 @@ export const familyRouter = t.router({
       .input(
         z.object({
             name: z.string(),
-            latinName: z.string().regex(/\p{Latin}/),
+            latinName: z.string(),
         })
       )
-      .mutation(async ({ input, ctx }) => {
+      .query(async ({ input, ctx }) => {
         const data = {
           data: input
         }
