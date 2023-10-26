@@ -93,6 +93,8 @@ span {
   flex-direction: row;
 }
 
+/* Старый гриб*/
+
 .MushroomCardOld {
   display: flex;
   gap: 10px;
@@ -138,6 +140,8 @@ span {
   height: 150px;
   display: block;
 }
+
+/* Новый гриб*/
 
 .MushroomCard {
   display: flex;
