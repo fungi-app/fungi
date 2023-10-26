@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@fungi/api": "file:../api",
+    "cors": "^2.8.5",
     "eas-cli": "5.4.0",
     "expo": "49.0.13",
     "express": "^4.18.2"

@@ -32,7 +32,7 @@ export function AddCategory () {
     const name = "Тест"
     const latinName = "Test"
 
-    const family = trpc.family.create.useMutation({
+    const family = trpc.family.create.useQuery({
       name: name,
       latinName: latinName,
     })
