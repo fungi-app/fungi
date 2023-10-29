@@ -1,14 +1,14 @@
 import { type Family } from "@fungi/db"
 import { EATABLE_GRADE } from "@fungi/db"
-import { EatableGradeIcon } from "D:/Education/2 семестр/PD/rep/fungi/frontend/src/components/icons/Eatable"
-import { IsRedBookedIcon } from "D:/Education/2 семестр/PD/rep/fungi/frontend/src/components/icons/RedBooked"
+import { EatableGradeIcon } from "./icons/Eatable"
+import { IsRedBookedIcon } from "./icons/RedBooked"
 
 interface MushroomCardProps {
     id: number
     name: String;
     latinName: String;
-    redBooked: { isRedBooked: boolean;};
-    eatable: { grade: EATABLE_GRADE; };
+    redBooked:  boolean;
+    eatable: EATABLE_GRADE;
     family: Family;
 }
 
@@ -26,7 +26,7 @@ export function MushroomCard(props: MushroomCardProps) {
                     {props.latinName}
                 </div>
                 <div className="eatableRedBooked">
-                    <i>{EatableGradeIcon(props.eatable)}</i>
+                    <i>{EatableGradeIcon(props.eatable)}</i> 
                     <i>{IsRedBookedIcon(props.redBooked)}</i>
                 </div>
             </div>
