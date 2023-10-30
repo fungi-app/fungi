@@ -2,6 +2,7 @@ import { Auth } from "../lib/auth";
 import { protectedProcedure, publicProcedure, t } from "../trpc/server";
 import { z } from "zod";
 
+
 export const authRouter = t.router({
   register: publicProcedure
     .input(

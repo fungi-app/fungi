@@ -8,18 +8,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import superjson from "superjson";
 
-// const productionServer = "http://localhost:4000";
-
-// const server = productionServer;
-// const trpcOptions = {
-//   transformer: superjson,
-//   links: [
-//     httpBatchLink({
-//       url: 'http://localhost:4000',
-//     }),
-//   ],
-// }
-
 export const trpc = createTRPCReact<AppRouter>();
 
 export const TRPCProvider: React.FC<React.PropsWithChildren<{}>> = ({
@@ -32,12 +20,6 @@ export const TRPCProvider: React.FC<React.PropsWithChildren<{}>> = ({
       links: [
         httpBatchLink({
           url: 'http://localhost:4000/trpc',
-          // You can pass any HTTP headers you wish here
-          // async headers() {
-          //   return {
-          //     authorization: getAuthCookie(),
-          //   };
-          // },
         }),
       ],
     }),
@@ -51,7 +33,3 @@ export const TRPCProvider: React.FC<React.PropsWithChildren<{}>> = ({
     </trpc.Provider>
   );
 };
-
-
-// Я переделываю website на react
-// Я поменял версию trpc на 40-ую

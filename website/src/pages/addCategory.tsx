@@ -2,42 +2,42 @@ import { useState } from "react";
 import { Header } from "../components/Header";
 import {TextInput} from "../components/inputs/TextInput";
 import { trpc } from "../lib/trpc";
+import { Family } from "@fungi/db";
+
+interface IFamily {
+    name: string,
+    latinName: string,
+}
+
+const familyData: IFamily = {
+    name: '',
+    latinName: '',
+}
 
 export function AddCategory () {
-    // const [family, postFamily] = useState ()
+    const familyMutation = trpc.family.create.useMutation();
+    const [error, setError] = useState('')
 
-    // const submitHandler = async (event: React.FormEvent) => {
-    //   event.preventDefault();
-    //   const target = event.target as typeof event.target & {
-    //     name: { value: string };
-    //     latinName: { value: string };
-    //   };
+    const [name, setFirstName] = useState('');
+    const [latinName, setLastName] = useState('');
 
-    //   const name = target.name.value; // typechecks!
-    //   const latinName = target.latinName.value; // typechecks!
+    const submitHandler = async (event: React.FormEvent) => {
+        event.preventDefault();
 
-    //   console.log (
-    //     {
-    //       name: name,
-    //       latinName: latinName,
-    //     }
-    //   )
+        if (name.trim() === ''){
+            setError('Пожалуйста введите наименование.')
+            return
+        }
+        if (latinName.trim() === ''){
+            setError('Пожалуйста введите наименование на латыни.')
+            return
+        }
 
-    //   const family = trpc.family.create.useQuery({
-    //     name: name,
-    //     latinName: latinName,
-    //   })
-    // }
+        familyData.name = name;
+        familyData.latinName = latinName;
 
-    const name = "Тест"
-    const latinName = "Test"
-
-    const family = trpc.family.create.useQuery({
-      name: name,
-      latinName: latinName,
-    })
-
-    console.log(family)
+        const responce = familyMutation.mutate(familyData)
+    }
 
     return (
         <>
@@ -45,10 +45,9 @@ export function AddCategory () {
         <main className="form__page">
             <h2>Добавить семейство</h2>
             <div>
-            {/* <form onSubmit={submitHandler}> */}
-            <form>
-                <TextInput formName={"name"} title={"Наименование семейства"} required={true}/>
-                <TextInput formName={"latinName"} title={"Наименование на латыне"} required={true}/>
+            <form onSubmit={submitHandler}>
+                <TextInput formName={"name"} title={"Наименование семейства"} value = {setFirstName} required={true}/>
+                <TextInput formName={"latinName"} title={"Наименование на латыни"} value={setLastName} required={true}/>
                 <input className="submit" type="submit" value="Отправить" />
             </form>
             </div>
@@ -56,4 +55,3 @@ export function AddCategory () {
         </>
     )
 }
-

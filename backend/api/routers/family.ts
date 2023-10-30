@@ -1,6 +1,7 @@
 import { publicProcedure, editorProcedure, t } from "../trpc/server";
 import { z } from "zod";
 
+
 export const familyRouter = t.router({
     getById: publicProcedure
         .input(
@@ -39,7 +40,7 @@ export const familyRouter = t.router({
             latinName: z.string(),
         })
       )
-      .query(async ({ input, ctx }) => {
+      .mutation(async ({ input, ctx }) => {
         const data = {
           data: input
         }
