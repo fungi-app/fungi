@@ -4,7 +4,6 @@ import { EatableGradeIcon } from "./icons/Eatable"
 import { IsRedBookedIcon } from "./icons/RedBooked"
 
 interface MushroomCardProps {
-    id: number
     name: String;
     latinName: String;
     redBooked:  boolean;
