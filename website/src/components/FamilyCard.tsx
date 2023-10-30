@@ -4,10 +4,12 @@ interface FamilyProps {
 }
 
 export function FamilyCard(props: FamilyProps) {
+    // Карточка семейства
+    
     return (
-        <div className="MushroomCard">
-            <div className="family"> {props.latinName} </div>
-            <div className="title"> {props.name} </div>
+        <div className="mushroomCard">
+            <div className="family">({props.latinName})</div>
+            <div className="title">{props.name}</div>
         </div>
     )
 }

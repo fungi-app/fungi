@@ -6,15 +6,17 @@ import { IsRedBookedIcon } from "./icons/RedBooked"
 interface MushroomCardProps {
     name: String;
     latinName: String;
-    redBooked:  boolean;
+    redBooked: boolean;
     eatable: EATABLE_GRADE;
     family: Family;
 }
 
 export function MushroomCard(props: MushroomCardProps) {
+    // Карточка гриба
     return (
-        <div className="MushroomCard"> {/* Карточка с Figma -> Приложение */}
-            <div className="MushroomCardText">
+        <div className="mushroomCard"> {/* Карточка с Figma -> Приложение */}
+            <img className="mushroomImage" src={"https://upload.wikimedia.org/wikipedia/commons/b/b0/Boletus_edulis_EtgHollande_041031_091.jpg"} alt="Mushroom!" />
+            <div className="mushroomCardText">
                 <div className="family">
                     {props.family.name} ({props.family.latinName})
                 </div>
@@ -25,11 +27,10 @@ export function MushroomCard(props: MushroomCardProps) {
                     {props.latinName}
                 </div>
                 <div className="eatableRedBooked">
-                    <i>{EatableGradeIcon(props.eatable)}</i> 
-                    <i>{IsRedBookedIcon(props.redBooked)}</i>
+                    <i className="mushroomIcons">{EatableGradeIcon(props.eatable)}</i>
+                    <i className="mushroomIcons">{IsRedBookedIcon(props.redBooked)}</i>
                 </div>
             </div>
-            <img className="mushroomImage" src={"https://upload.wikimedia.org/wikipedia/commons/b/b0/Boletus_edulis_EtgHollande_041031_091.jpg"} alt="Mushroom!" />
         </div>
     )
 }

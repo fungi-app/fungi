@@ -8,7 +8,7 @@ export function FamilyEncyclopedia() {
             <Header />
             <main>
                 <Search />
-                 {/* <FamilyList /> TypeError: Cannot read properties of null (reading 'useContext') */}
+                 <FamilyList />
             </main>
         </>
         )

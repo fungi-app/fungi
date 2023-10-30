@@ -8,7 +8,7 @@ export function MushroomEncyclopedia() {
         <Header />
          <main>
             <Search />
-            {/* <MushroomList /> TypeError: Cannot read properties of null (reading 'useContext') */}
+            <MushroomList />
         </main> 
     </>
     )

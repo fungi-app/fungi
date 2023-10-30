@@ -1,19 +1,23 @@
 import { FamilyCard } from "./FamilyCard";
 import { trpc } from "../lib/trpc";
 
-const families = trpc.family.getPaginated.useQuery ({
-    page: 0,
-    perPage: 1000,
-});
-
 export function FamilyList() {
+    // Вывод всех карточки сейместв из бд
+    const families = trpc.family.getPaginated.useQuery({
+        page: 0,
+        perPage: 1000
+    });
+
+    console.log(families.data)
+
     return (
-        <div>
+
+        <div className="cardList">
             {
-                families.data!.map( (family) => (
-                    <FamilyCard 
-                    name={family.name}
-                    latinName={family.latinName}
+                families.data?.map((family) => (
+                    <FamilyCard
+                        name={family.name}
+                        latinName={family.latinName}
                     />
                 ))
             }
