@@ -18,8 +18,8 @@ export function AddCategory () {
     const familyMutation = trpc.family.create.useMutation();
     const [error, setError] = useState('')
 
-    const [name, setFirstName] = useState('');
-    const [latinName, setLastName] = useState('');
+    const [name, setName] = useState('');
+    const [latinName, setLatinName] = useState('');
 
     const submitHandler = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -36,7 +36,7 @@ export function AddCategory () {
         familyData.name = name;
         familyData.latinName = latinName;
 
-        const responce = familyMutation.mutate(familyData)
+        const responce = familyMutation.mutate(familyData);
     }
 
     return (
@@ -46,8 +46,8 @@ export function AddCategory () {
             <h2>Добавить семейство</h2>
             <div>
             <form onSubmit={submitHandler}>
-                <TextInput formName={"name"} title={"Наименование семейства"} value = {setFirstName} required={true}/>
-                <TextInput formName={"latinName"} title={"Наименование на латыни"} value={setLastName} required={true}/>
+                <TextInput inputName={"name"} title={"Наименование семейства"} value = {setName} required={true}/>
+                <TextInput inputName={"latinName"} title={"Наименование на латыни"} value={setLatinName} required={true}/>
                 <input className="submit" type="submit" value="Отправить" />
             </form>
             </div>

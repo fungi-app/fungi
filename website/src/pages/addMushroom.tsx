@@ -1,10 +1,19 @@
 import { Header } from "../components/Header";
 import ColorPicker from "../components/inputs/ColorPicker";
-import {TextInput} from "../components/inputs/TextInput";
+import {TextInput, ArrayTextInput, BigTextInput} from "../components/inputs/TextInput";
+import {useState} from "react"
 
 
 
 export function AddMushroom () {
+    const [name, setName] = useState('');
+    const [synonymousNames, setsynonymousNames] = useState([""]);
+    const [latinName, setLatinName] = useState('');
+
+
+    const [description, setDescription] = useState('');
+
+
     return (
         <>
         <Header />
@@ -12,17 +21,9 @@ export function AddMushroom () {
             <h2>Добавить гриб</h2>
             <div>
             <form>
-                <TextInput formName={"name"} title={"Наименование гриба"} required={true}/>
-                <label
-                >Синонимичные имена:<input
-                    required
-                    placeholder="Наименование гриба"
-                /></label>
-                <label
-                >Латинское наименование:<input
-                    required
-                    placeholder="Латинское наименование гриба"
-                /></label>
+                <TextInput inputName={"name"} title={"Наименование гриба"} value={setName} required={true}/>
+                <ArrayTextInput inputName={"synonymicName"} title={"Синонимичные имена:"} value={setsynonymousNames} required={false}/>
+                <TextInput inputName={"latinName"} title={"Латинское наименование гриба"} value={setLatinName} required={true}/>
                 <label>
                 Семейство:<input required placeholder="Семейство гриба" /></label>
                 <label
@@ -90,10 +91,7 @@ export function AddMushroom () {
                     accept=".jpg, .jpeg, .png"
                     placeholder="Выбрать" />
                 </label>
-                <label
-                >Описание:
-                <textarea placeholder="Описание"></textarea>
-                </label>
+                <BigTextInput inputName="description" title="Описание" value={setDescription} required={true}/>
                 <label
                 >Двойники:
                 <select required>
