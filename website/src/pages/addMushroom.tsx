@@ -1,6 +1,6 @@
 import { Header } from "../components/Header";
 import ColorPicker from "../components/inputs/ColorPicker";
-import {TextInput, ArrayTextInput, BigTextInput} from "../components/inputs/TextInput";
+import {TextInput, ArrayTextInput, BigTextInput} from "../components/inputs/TextInputs";
 import {useState} from "react"
 
 

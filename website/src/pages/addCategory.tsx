@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Header } from "../components/Header";
-import {TextInput} from "../components/inputs/TextInput";
+import {TextInput} from "../components/inputs/TextInputs";
 import { trpc } from "../lib/trpc";
 import { Family } from "@fungi/db";
 
