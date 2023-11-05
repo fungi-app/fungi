@@ -1,14 +1,16 @@
-import { Header } from "../components/Header";
-import ColorPicker from "../components/inputs/ColorPicker";
-import {TextInput, ArrayTextInput, BigTextInput} from "../components/inputs/TextInputs";
 import {useState} from "react"
 
+import {Header} from "../components/Header";
+import ColorPicker from "../components/inputs/ColorPicker";
+import {TextInput, ArrayTextInput, BigTextInput} from "../components/inputs/TextInputs";
+import {BooleanChoiseInput} from "../components/inputs/ChoiseInputs";
 
 
 export function AddMushroom () {
     const [name, setName] = useState('');
     const [synonymousNames, setsynonymousNames] = useState([""]);
     const [latinName, setLatinName] = useState('');
+    const [redBook, setRedBook] = useState(0);
 
 
     const [description, setDescription] = useState('');
@@ -26,13 +28,7 @@ export function AddMushroom () {
                 <TextInput inputName={"latinName"} title={"Латинское наименование гриба"} value={setLatinName} required={true}/>
                 <label>
                 Семейство:<input required placeholder="Семейство гриба" /></label>
-                <label
-                >Наличие в красной книге
-                <select required>
-                    <option value="1">Да</option>
-                    <option value="2" selected>Нет</option>
-                </select>
-                </label>
+                <BooleanChoiseInput title={"Наличие в красной книге"} inputName={"redBook"} value={setRedBook} />
                 <label>
                 Категория съедобности:
                 <select required>

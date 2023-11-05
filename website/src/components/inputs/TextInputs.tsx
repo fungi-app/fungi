@@ -70,8 +70,6 @@ function ArrayTextInput (props: IInputForm){
 
   if (props.value) props.value(values);
 
-
-
   return (
     <label
       >{props.title}
