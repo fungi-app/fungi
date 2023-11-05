@@ -34,34 +34,37 @@ export const mushroomsRouter = t.router({
       });
     }),
 
-    // create: editorProcedure  
-    // .input(
-    //   z.object({
-    //     name: z.string().min(1).max(255),
-    //     latinName: z.string().regex(/\p{Latin}/),
-    //     redBooked: z.boolean(),
-    //     description: z.string().min(1),
-    //     synonymousNames: z.array(z.string().min(1).max(255)),
-    //     eatable: z.enum(EATABLE_GRADE),
+    create: editorProcedure  
+    .input(
+      z.object({
+        name: z.string().min(1).max(255),
+        latinName: z.string().regex(/\p{Latin}/),
+        redBooked: z.boolean(),
+        description: z.string().min(1),
+        synonymousNames: z.array(z.string().min(1).max(255)),
+        eatable: z.nativeEnum(EATABLE_GRADE),
 
-    //     have_foot: z.boolean(),
-    //     foot_size_from: z.number().min(0),
-    //     foot_size_to: z.number().min(0),
-    //     foot_type: z.enum(FOOT_TYPE),
+        have_foot: z.boolean(),
+        foot_size_from: z.number().min(0),
+        foot_size_to: z.number().min(0),
+        foot_type: z.nativeEnum(FOOT_TYPE),
 
-    //     head_type: z.enum(HEAD_TYPE),
-    //     hymenophore: z.enum(HYMENOPHORE),
+        head_type: z.nativeEnum(HEAD_TYPE),
+        hymenophore: z.nativeEnum(HYMENOPHORE),
 
-    //     head_color: z.array(z.number().min(0)),
-    //     foot_color:z.array(z.number().min(0)),
-    //     doubles: z.number(),
+        head_color: z.array(z.number().min(0)),
+        foot_color: z.array(z.number().min(0)),
+        doubles: z.number(),
 
-    //     family: z.number()
-    //   })
-    // )
-    // .mutation(async ({ input, ctx }) => {
-    //   const mushroom = await ctx.db.mushroom.create(input);
+        family: z.number()
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const data = {
+        data: input
+      }
+      const mushroom = await ctx.db.mushroom.create(data);
 
-    //   return mushroom;
-    // }),
+      return mushroom;
+    }),
 });

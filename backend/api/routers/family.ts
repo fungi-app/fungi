@@ -44,9 +44,9 @@ export const familyRouter = t.router({
         const data = {
           data: input
         }
-        const mushroom = await ctx.db.family.create(data);
+        const family = await ctx.db.family.create(data);
   
-        return mushroom;
+        return family;
       }),
     
 });
