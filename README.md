@@ -12,6 +12,10 @@
 - `./website` (`@fungi/website`) - Сайт на Astro (SSR)
 
 ## Начало работы
+Для работы с базой данных
+```env
+DATABASE_URL="postgresql://<user>:<password>@localhost:5432/fungi"
+```
 
 1. Склонируйте репозиторий и зайдите в папку с ним
 2. Установите зависимости - `npm i`

@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url      = "postgresql://postgres:bule$Dbno@localhost:5432/fungi"
+  url      = env("DATABASE_URL")
 }
 
 enum EATABLE_GRADE {
