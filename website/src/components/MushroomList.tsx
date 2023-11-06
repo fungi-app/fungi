@@ -12,6 +12,8 @@ export function MushroomList(props: mushroomListProps) {
     // insert into "Mushroom" (name, "latinName", "redBooked", eatable, description, "synonymousNames", have_foot, head_type, hymenophore, "familyId")
     // values ('Гриб', 'Mushroom', true, 'PARTIALLY_EATABLE', 'Он большой, он крутой, он грибной!', '{"Гриб обыкновенный"}', false, 'CONCAVE', 'LAMELLAR', 2);
 
+    console.log("From MushroomListProps: " + props.search_text)
+
     const mushrooms = trpc.mushrooms.getPaginated.useQuery({
         page: 0,
         perPage: 1000,
