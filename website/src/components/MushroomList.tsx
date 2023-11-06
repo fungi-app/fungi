@@ -1,7 +1,11 @@
 import { MushroomCard } from "./MushroomCard";
 import { trpc } from "../lib/trpc";
 
-export function MushroomList() {
+interface mushroomListProps {
+    search_text: string,
+}
+
+export function MushroomList(props: mushroomListProps) {
     // Вывод всех карточек грибов из бд
     // Вот команда для добавления тестового гриба
     // Изображение выбрано в css
@@ -12,11 +16,22 @@ export function MushroomList() {
         page: 0,
         perPage: 1000,
     });
+    
+    if (!mushrooms.data) {
+        return (<span>Грибов нет</span>)
+    }
+
+    const mushrooms_data = mushrooms.data.map(mushroom => {
+        if (props.search_text == mushroom.name) return mushroom
+    })
 
     return (
         <div className="cardList">
+            {!mushrooms_data && <span>Нет грибов</span>}
             {
-                mushrooms.data?.map((mushroom) => (
+                !!mushrooms_data.map((mushroom) => {
+                    if (!mushroom) return (<span>Гриб сломан</span>)
+                    return (
                     <MushroomCard
                         name={mushroom.name}
                         latinName={mushroom.latinName}
@@ -24,7 +39,8 @@ export function MushroomList() {
                         eatable={mushroom.eatable}
                         family={mushroom.family}
                     />
-                ))
+                    )}
+                )
             }
         </div>
     )
