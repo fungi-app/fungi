@@ -47,8 +47,8 @@ export function AddCategory () {
             <div>
             {/* <form onSubmit={submitHandler}> */}
             <form>
-                <TextInput formName={"name"} title={"Наименование семейства"} required={true}/>
-                <TextInput formName={"latinName"} title={"Наименование на латыне"} required={true}/>
+                <TextInput inputName={"name"} title={"Наименование семейства"} required={true}/>
+                <TextInput inputName={"latinName"} title={"Наименование на латыне"} required={true}/>
                 <input className="submit" type="submit" value="Отправить" />
             </form>
             </div>

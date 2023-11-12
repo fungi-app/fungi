@@ -12,7 +12,7 @@ export function AddMushroom () {
             <h2>Добавить гриб</h2>
             <div>
             <form>
-                <TextInput formName={"name"} title={"Наименование гриба"} required={true}/>
+                <TextInput inputName={"name"} title={"Наименование гриба"} required={true}/>
                 <label
                 >Синонимичные имена:<input
                     required

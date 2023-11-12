@@ -265,8 +265,12 @@ input:hover {
   border-radius: 30px;
   margin: 0;
   margin-left: 15px;
-  width: 972px;
+  width: 215px;
   height: 30px;
+}
+
+.search-form input {
+  border: none;
 }
 
 .search-input {

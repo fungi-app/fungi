@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import { SearchInput } from "./inputs/TextInput";
 import {SearchElement} from "./icons/Search";
+import { useState } from "react";
 
-export function Search() {
+interface searchProps {
+    title: string,
+    value: Function | undefined,
+    inputName: string,
+    required: boolean,
+}
+
+export function Search(props:searchProps) {
     // Поле и кнопка поиска
 
-    const [searchData, setSearchData] = useState('')
-
-    const submitHandler = (event: React.FormEvent) => {
-        event.preventDefault();
-
-        console.log(searchData);
-    }
-
     return (
-        <form className="search-form" onSubmit={submitHandler}>
-            <button type="submit" className="search-button"> <svg className="search-svg">{SearchElement()}</svg> </button>
-            <input
-                className="search-input"
-                id="search"
-                type="search"
-                placeholder="Поиск"
-                value={searchData}
-                onChange={(event) => setSearchData(event.target.value)}
-            />
-        </form >
+        <div className="search-form">
+            <button className="search-button"> <svg className="search-svg">{SearchElement()}</svg> </button>
+            <SearchInput title={props.title} value={props.value} inputName="inputName" required={props.required}/>
+        </div >
     )
 }
