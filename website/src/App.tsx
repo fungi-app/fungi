@@ -6,6 +6,8 @@ import {AddCategory} from "./pages/addCategory"
 import {Register} from "./pages/register"
 import {Logout} from "./pages/logout"
 import {About} from "./pages/about"
+import { MushroomEncyclopedia } from "./pages/mushrooms"
+import { FamilyEncyclopedia } from "./pages/families"
 
 import {Route, Routes} from 'react-router-dom'
 
@@ -30,6 +32,8 @@ function App() {
             <Route path="/login" element={ <Login /> } />
             <Route path="/register" element={ <Register /> } />
             <Route path="/logout" element={ <Logout /> } />
+            <Route path="/m/enc" element={ <MushroomEncyclopedia /> } />
+            <Route path="/c/enc" element={ <FamilyEncyclopedia /> } />
           </Routes>
       </TRPCProvider>
       {/* <Navigation /> */}

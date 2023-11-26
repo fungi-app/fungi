@@ -1,48 +1,35 @@
 import { type Family } from "@fungi/db"
-import { EatableGrade } from "@fungi/db"
+import { EATABLE_GRADE } from "@fungi/db"
+import { EatableGradeIcon } from "./icons/Eatable"
+import { IsRedBookedIcon } from "./icons/RedBooked"
 
 interface MushroomCardProps {
-    id: number
     name: String;
     latinName: String;
-    redBooked: Boolean;
-    eatable: EatableGrade;
+    redBooked: boolean;
+    eatable: EATABLE_GRADE;
     family: Family;
 }
 
 export function MushroomCard(props: MushroomCardProps) {
+    // Карточка гриба
     return (
-        <div className="comparer">
-            <div className="MushroomCardOld"> {/* Карточка с прошлого семестра */}
-                <div className="familyOld">
+        <div className="mushroomCard"> {/* Карточка с Figma -> Приложение */}
+            <img className="mushroomImage" src={"https://upload.wikimedia.org/wikipedia/commons/b/b0/Boletus_edulis_EtgHollande_041031_091.jpg"} alt="Mushroom!" />
+            <div className="mushroomCardText">
+                <div className="family">
                     {props.family.name} ({props.family.latinName})
                 </div>
-                <div className="titleOld">
+                <div className="title">
                     {props.name}
                 </div>
-                <div className="latinNameOld">
+                <div className="latinName">
                     {props.latinName}
                 </div>
-                <img className="mushroomImageOld" src={"https://upload.wikimedia.org/wikipedia/commons/b/b0/Boletus_edulis_EtgHollande_041031_091.jpg"} alt="Mushroom!" />
-            </div>
-
-            <div className="MushroomCard"> {/* Карточка с Figma -> Приложение */}
-                <div className="MushroomCardText">
-                    <div className="family">
-                        {props.family.name} ({props.family.latinName})
-                    </div>
-                    <div className="title">
-                        {props.name}
-                    </div>
-                    <div className="latinName">
-                        {props.latinName}
-                    </div>
-                    <div className="eatableRedBooked">
-                        <img className="mushroomIcons" src={props.eatable ? "https://i.imgur.com/3s672el.png" : "https://i.imgur.com/3s672el.png"} alt="Съедобность" /> 
-                        <img className="mushroomIcons" src={props.redBooked ? "https://i.imgur.com/JWFxT5W.png" : "https://i.imgur.com/JWFxT5W.png"} alt="Красно-книжность" />
-                    </div>
+                <div className="eatableRedBooked">
+                    <i className="mushroomIcons">{EatableGradeIcon(props.eatable)}</i>
+                    <i className="mushroomIcons">{IsRedBookedIcon(props.redBooked)}</i>
                 </div>
-                <img className="mushroomImage" src={"https://upload.wikimedia.org/wikipedia/commons/b/b0/Boletus_edulis_EtgHollande_041031_091.jpg"} alt="Mushroom!" />
             </div>
         </div>
     )
