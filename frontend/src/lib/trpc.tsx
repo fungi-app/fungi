@@ -9,7 +9,7 @@ import { useState } from "react";
 import { tunnel } from "./tunnel";
 import superjson from "superjson";
 
-const productionServer = "https://api.fungi.clubhouse.mlntcandy.com";
+const productionServer = "http://localhost:4000";
 
 const server = tunnel ?? productionServer;
 const trpcOptions = {

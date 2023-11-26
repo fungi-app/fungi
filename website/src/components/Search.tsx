@@ -1,24 +1,21 @@
-export function Search () {
+import { SearchInput } from "./inputs/TextInput";
+import {SearchElement} from "./icons/Search";
+import { useState } from "react";
+
+interface searchProps {
+    title: string,
+    value: Function | undefined,
+    inputName: string,
+    required: boolean,
+}
+
+export function Search(props:searchProps) {
+    // Поле и кнопка поиска
+
     return (
-        <form className="search">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            className="feather feather-search"
-            ><circle cx="11" cy="11" r="8"></circle><line
-            x1="21"
-            y1="21"
-            x2="16.65"
-            y2="16.65"></line></svg>
-        <input type="search" placeholder="Найти Fungi" className="search__input" />
-        <button className="search__button">Найти</button>
-        </form>
-        )
+        <div className="search-form">
+            <button className="search-button"> <svg className="search-svg">{SearchElement()}</svg> </button>
+            <SearchInput title={props.title} value={props.value} inputName="inputName" required={props.required}/>
+        </div >
+    )
 }
