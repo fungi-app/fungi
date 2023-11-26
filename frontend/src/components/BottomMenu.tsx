@@ -42,7 +42,10 @@ export const BottomMenu: React.FC = () => {
   return (
     <View style={[styles.menu, { backgroundColor: theme.secondaryBg }]}>
       {buttons.map((Item) => (
-        <TouchableOpacity onPress={() => setCurrentScreen(Item.screen)}>
+        <TouchableOpacity
+          onPress={() => setCurrentScreen(Item.screen)}
+          key={Item.screen}
+        >
           <Item.icon
             color={
               Item.screen === currentScreen ? theme.primary : theme.secondary

@@ -1,36 +1,39 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { BottomMenu } from "./components/BottomMenu";
 import { Screens } from "./Screens";
 import { TopBar } from "./components/TopBar";
 import { TRPCProvider } from "./lib/trpc";
 import {
-  useFonts,
   Raleway_400Regular,
   Raleway_500Medium,
+  Raleway_500Medium_Italic,
   Raleway_600SemiBold,
   Raleway_700Bold,
   Raleway_800ExtraBold,
-} from "@expo-google-fonts/raleway";
+} from "../assets/fonts/raleway";
 import { useSelectedScheme, useTheme } from "./lib/theme";
+import { useFonts } from "expo-font";
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
+  let [fontsLoaded, fontErr] = useFonts({
     Raleway_400Regular,
     Raleway_500Medium,
+    Raleway_500Medium_Italic,
     Raleway_600SemiBold,
     Raleway_700Bold,
     Raleway_800ExtraBold,
   });
 
+  if (fontErr) console.error("FONT LOADING ERROR: ", fontErr);
+
   const selectedScheme = useSelectedScheme();
   const theme = useTheme();
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   return (
     <SafeAreaProvider>

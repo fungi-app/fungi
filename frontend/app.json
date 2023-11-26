@@ -6,6 +6,13 @@
     "orientation": "portrait",
     "icon": "./assets/icons/ios-1024x.png",
     "userInterfaceStyle": "light",
+    "entryPoint": "./entry.js",
+    "extra": {
+      "useTunnel": false,
+      "eas": {
+        "projectId": "6f80efa3-2075-400f-8733-836343f77075"
+      }
+    },
     "splash": {
       "image": "./assets/logo-splash.png",
       "resizeMode": "contain",
@@ -14,7 +21,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "icon": "./assets/icons/ios-1024x.png"
@@ -24,7 +33,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/android-fg-1024x.png",
         "backgroundImage": "./assets/icons/android-bg-1024x.png"
-      }
+      },
+      "package": "io.github.fungi_app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

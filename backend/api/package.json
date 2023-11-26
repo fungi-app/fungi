@@ -8,13 +8,17 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "typescript": "^4.9.5"
+    "@types/mime-types": "^2.1.1",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.326.0",
     "@fungi/db": "file:../db",
-    "@trpc/client": "^10.14.1",
-    "@trpc/server": "^10.14.1",
-    "superjson": "^1.12.2",
+    "@trpc/client": "^10.40.0",
+    "@trpc/server": "^10.40.0",
+    "cors": "^2.8.5",
+    "mime-types": "^2.1.35",
+    "superjson": "^2.0.0",
     "zod": "^3.21.4"
   }
 }

@@ -1,17 +1,54 @@
 {
-  "name": "@fungi/website",
-  "private": "true",
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@trpc/client": "^10.25.0",
-    "astro": "^2.1.9",
-    "superjson": "^1.12.3"
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@trpc/react-query": "^10.40.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.54",
+    "@types/react-router-dom": "^5.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "5.0.1",
+    "superjson": "^2.0.0",
+    "typescript": "^5.2.2",
+    "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "typescript": "^5.2.2",
+    "@types/react": "^18.2.24"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.24",
+    "@types/react-dom": "^18.2.8"
   }
 }

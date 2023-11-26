@@ -7,25 +7,75 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url      = "postgres://postgres:510073@localhost:5432/fungi"
 }
 
-enum EatableGrade {
+enum EATABLE_GRADE {
   NOT_EATABLE
   PARTIALLY_EATABLE
   EATABLE
 }
 
+
+enum HYMENOPHORE {
+  SMOOTH // Гладкая
+  SPIKY // Шипастая
+  TUBULAR // Трубчатая
+  LABYRINTHINE // Лабиринтовидная
+  LAMELLAR // Пластинчатый
+}
+
+enum FOOT_TYPE {
+  SMOOTH // Ровная
+  WITH_SKIRT // С юбкой
+  THICK_AT_TOP // Утолщенная вверху
+  THICK_AT_MIDDLE
+  THICK_AT_BOTTOM
+}
+
+enum HEAD_TYPE {
+  CONVEX // Выпуклая 
+  CONCAVE // Вогнутая
+  SMOOTH // Ровная
+}
+
+model Color {
+  id Int @id @default(autoincrement())
+  name String @unique
+  hex String @unique
+  FootColor Mushroom[] @relation("FootColors")
+  HeadColor Mushroom[] @relation("HeadColors")
+}
+
 model Mushroom {
   id Int @id @default(autoincrement())
 
-  name        String
+  name String
+
   latinName   String
   redBooked   Boolean
-  eatable     EatableGrade
+  eatable     EATABLE_GRADE
   description String
 
+  synonymousNames String[]
+
+  have_foot       Boolean
+  foot_size_from  Int?
+  foot_size_to    Int?
+  foot_type       FOOT_TYPE?
+
+  head_type       HEAD_TYPE
+  hymenophore     HYMENOPHORE
+
+  
+  head_color       Color[] @relation("HeadColors")
+  foot_color       Color[] @relation("FootColors")
+
+  childDoubles  Mushroom[] @relation("MushroomDoubles")
+  parentDoubles Mushroom[] @relation("MushroomDoubles")
+
   addedAt DateTime @default(now())
+  images  Image[]
 
   family   Family @relation(fields: [familyId], references: [id])
   familyId Int
@@ -58,7 +108,9 @@ model User {
 
   passwordHash String
   passwordSalt String
+
   sessions     Session[]
+  publications Publication[]
 }
 
 enum SessionType {
@@ -75,4 +127,30 @@ model Session {
 
   user     User   @relation(fields: [userCuid], references: [cuid])
   userCuid String
+}
+
+model Publication {
+  id         String @id @default(cuid())
+  title      String
+  author     User   @relation(fields: [authorCuid], references: [cuid])
+  content    String
+  authorCuid String
+
+  image   Image?  @relation(fields: [imageId], references: [id])
+  imageId String?
+
+  addedAt DateTime @default(now())
+}
+
+model Image {
+  id     String  @id @default(cuid())
+  ext    String
+  bucket String
+  name   String?
+  source String?
+
+  mushrooms    Mushroom[]
+  publications Publication[]
+
+  uploadedAt DateTime @default(now())
 }

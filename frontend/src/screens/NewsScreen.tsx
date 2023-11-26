@@ -13,90 +13,39 @@ import { PublicationScreen } from "./PublicationScreen";
 import { TopBarPad } from "../components/TopBar";
 import { BottomMenuPad } from "../components/BottomMenu";
 import { useStateStore } from "../lib/store";
-
-export type News = {
-  name: string;
-  id: number;
-  image: any;
-};
-
-export const news: News[] = [
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 2,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-  {
-    name: "Новость",
-    id: 1,
-    image: require("../../assets/lisichka.jpeg"),
-  },
-];
+import { Publication } from "@fungi/db";
+import { trpc } from "../lib/trpc";
 
 export const NewsScreen: React.FC = (props) => {
   const selectedNewsStory = useStateStore((s) => s.selectedNewsStory);
   const setSelectedNewsStory = useStateStore((s) => s.setSelectedNewsStory);
-  return (
-    // <ScrollView>
-    //   <View style={styles.wrapper}>
-    //     {props.data.map((nw, i) => (
-    //       <ImageBackground key={i} style={styles.card} source={nw.image}>
-    //         <View>
-    //           <Text>{nw.name}</Text>
-    //         </View>
-    //       </ImageBackground>
-    //     ))}
-    //   </View>
-    // </ScrollView>
-
-    // <View style={styles.wrapper}>
-    //   <FlatList
-    //     data={props.data}
-    //     renderItem={({ item }) => (
-    //       <PublicationCard item={item}></PublicationCard>
-    //     )}
-    //   />
-    // </View>
-
+  const publications = trpc.publications.getPaginated.useQuery({
+    perPage: 1000,
+    page: 0,
+  });
+  return !selectedNewsStory ? (
     <View style={styles.wrapper}>
-      {!selectedNewsStory ? (
+      {!!publications.data && (
         <FlatList
-          data={news}
+          data={publications.data}
           ListHeaderComponent={TopBarPad}
           ListFooterComponent={BottomMenuPad}
           renderItem={({ item }) => (
-            <PublicationCard
-              key={item.id}
-              item={item}
-              onPress={() => setSelectedNewsStory(item.id)}
-            />
+            <PublicationCard key={item.id} publication={item} />
           )}
-        />
-      ) : (
-        <PublicationScreen
-          item={news[selectedNewsStory]}
-          onBack={() => setSelectedNewsStory(null)}
         />
       )}
     </View>
+  ) : (
+    <PublicationScreen
+      storyId={selectedNewsStory}
+      onBack={() => setSelectedNewsStory(null)}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    padding: 15,
+  },
 });
