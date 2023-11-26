@@ -3,8 +3,10 @@ import {useState} from "react"
 import {Header} from "../components/Header";
 import ColorPicker from "../components/inputs/ColorPicker";
 import {TextInput, ArrayTextInput, BigTextInput} from "../components/inputs/TextInputs";
+import {NumberInput} from "../components/inputs/NumberInputs";
 import {BooleanChoiseInput} from "../components/inputs/ChoiseInputs";
 
+import { Color } from "@fungi/db"
 
 export function AddMushroom () {
     const [name, setName] = useState('');
@@ -14,7 +16,10 @@ export function AddMushroom () {
 
 
     const [description, setDescription] = useState('');
-
+    const [headColor, setHeadColor] = useState(0);
+    const [footColor, setFootColor] = useState(0);
+    const [footSizeFrom, setFootSizeFrom] = useState(0);
+    const [footSizeTo, setFootSizeTo] = useState(0);
 
     return (
         <>
@@ -45,21 +50,13 @@ export function AddMushroom () {
                     <option value="3">Ровная</option>
                 </select>
                 </label>
-                <ColorPicker />
+                <ColorPicker title={"Цвет шляпки"} value={setHeadColor} />
                 <label>
                 Ножка:
                 <input type="checkbox" id="have_foot" name="have_foot" checked/>
                 </label>
-                <label>
-                Размер от:
-                <input type="number" id="foot_size_from" name="foot_size_from" min="1" max="1000" />
-                мм
-                </label>
-                <label>
-                Размер до:
-                <input type="number" id="foot_size_to" name="foot_size_to" min="1" max="1000" />
-                мм
-                </label>
+                <NumberInput title="Размер от" unit="мм" inputName="foot_size_from" value={setFootSizeFrom} required={false}/>
+                <NumberInput title="Размер до" unit="мм" inputName="foot_size_to" value={setFootSizeTo} required={false}/>
                 <label>
                 Тип ножки:
                 <select required>
@@ -71,12 +68,7 @@ export function AddMushroom () {
                 </select>
                 </label>
                 <label>
-                Цвет ножки:
-                <select required>
-                    <option value="1">Коричневая</option>
-                    <option value="2">Красная</option>
-                    <option value="3">Белая</option>
-                </select>
+                <ColorPicker title={"Цвет ножки"} value={setFootColor} />
                 </label>
                 <label>
                 Фотографии:

@@ -1,37 +1,14 @@
 import { title } from "process";
 import { useState, ChangeEvent } from "react"
 
-interface choiseSearchProps {
-    placeholder?: string
-    value?: Function
-    onChange?: Function // Использовать только когда нужны допополнительные параметры
-}
 
-function ChoiseSearch (props: choiseSearchProps){
-  const [value, setValue] = useState('');
-
-  if (props.value) props.value(value)
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (props.onChange) props.onChange(event);
-    setValue(event.target.value);
-  }
-
-  return (
-    <input
-        placeholder={props.placeholder}
-        value={value}
-        onChange={onChange}
-      />
-  )
-}
-interface smallChoiseInputProps {
+interface choiseInputItemProps {
     name: string,
     value: number,
     title: string,
 }
 
-function ChoiseInlineElement (props: smallChoiseInputProps){
+function ChoiseInlineElement (props: choiseInputItemProps){
     return (
         <label>
         {props.title}
@@ -43,7 +20,7 @@ function ChoiseInlineElement (props: smallChoiseInputProps){
 interface choiseProps {
     title: string,
     name: string,
-    data?: smallChoiseInputProps[],
+    data?: choiseInputItemProps[],
     value: Function
 }
 
@@ -81,7 +58,7 @@ interface booleanChoiseInput {
 }
 
 export function BooleanChoiseInput (props: booleanChoiseInput){
-    const inputsData: smallChoiseInputProps[] = [
+    const inputsData: choiseInputItemProps[] = [
         {value: 0, title: "Нет", name: props.inputName},
         {value: 1, title: "Да", name: props.inputName},
     ]

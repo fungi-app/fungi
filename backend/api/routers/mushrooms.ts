@@ -34,7 +34,7 @@ export const mushroomsRouter = t.router({
       });
     }),
 
-    create: editorProcedure  
+    create: publicProcedure
     .input(
       z.object({
         name: z.string().min(1).max(255),

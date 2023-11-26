@@ -7,6 +7,7 @@ import { Color } from "@fungi/db"
 interface IColorPicker {
     title: string
     formName: string
+    value: Function
 }
 
 function  ColorPicker (props: IColorPicker){
