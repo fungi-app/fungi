@@ -31,6 +31,7 @@ export function AddMushroom () {
                 <TextInput inputName={"name"} title={"Наименование гриба"} value={setName} required={true}/>
                 <ArrayTextInput inputName={"synonymicName"} title={"Синонимичные имена:"} value={setsynonymousNames} required={false}/>
                 <TextInput inputName={"latinName"} title={"Латинское наименование гриба"} value={setLatinName} required={true}/>
+                <TextInput inputName={"name"} title={"Наименование гриба"} required={true}/>
                 <label>
                 Семейство:<input required placeholder="Семейство гриба" /></label>
                 <BooleanChoiseInput title={"Наличие в красной книге"} inputName={"redBook"} value={setRedBook} />

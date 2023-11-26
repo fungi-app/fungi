@@ -33,6 +33,29 @@ function TextInput (props: IInputForm){
   )
 }
 
+function SearchInput (props: IInputForm){
+  const [value, setValue] = useState('');
+
+  if (props.value) props.value(value)
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (props.onChange) props.onChange(event);
+    setValue(event.target.value);
+  }
+
+  return (
+      <><input
+        placeholder={props.placeholder || props.title}
+        name = {props.inputName}
+        required = {props.required}
+        value={value}
+        onChange={onChange}
+      />
+      </>
+      
+  )
+}
+
 TextInput.defaultProps = {
     title: "Введите текст",
     formName: "name",
@@ -109,4 +132,4 @@ TextInput.defaultProps = {
     formName: "name",
 }
 
-export {TextInput, BigTextInput, ArrayTextInput};
+export {TextInput, BigTextInput, ArrayTextInput, SearchInput};

@@ -16,6 +16,7 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 .content {
   width: 100%;
   flex-shrink: 1;
@@ -31,6 +32,7 @@ main {
   background-size: cover;
   background-position: center;
 }
+
 .hero__text {
   font-style: normal;
   font-weight: 400;
@@ -53,6 +55,7 @@ main {
   display: flex;
   gap: 40px;
 }
+
 h2 {
   margin: 0 auto;
   max-width: fit-content;
@@ -88,12 +91,18 @@ span {
   max-height: 2rem;
 }
 
-.MushroomCard {
+.comparer {
   display: flex;
-  gap: 10px;
+  flex-direction: row;
+}
+
+/* Старый гриб*/
+
+.mushroomCard {
+  display: flex;
   justify-content: space-between;
   flex-direction: column;
-  width: 200px;
+  width: 220px;
   background: #ffe8c5;
   border-radius: 22px;
   overflow: hidden;
@@ -102,8 +111,60 @@ span {
   transition: transform 150ms ease;
 }
 
-.MushroomCard:hover {
+.mushroomCardText {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  gap: 2px;
+}
+
+.mushroomCard:hover {
   transform: scale(0.97);
+}
+
+.family {
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+  color: var(--Light---Secondary,#653d00);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
+}
+
+.latinName {
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  color: var(--Light---Secondary-Text,#b28550);
+}
+
+.eatableRedBooked {
+  text-align: center;
+}
+
+.mushroomImage {
+  object-fit: cover;
+  width: 220px;
+  height: 150px;
+  display: block;
+}
+
+.mushroomIcons {
+  width: 32px;
+  height: 32px;
+}
+
+.cardList {
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .header {
@@ -114,36 +175,7 @@ span {
   flex-grow: 1;
 }
 
-.family {
-  font-weight: 800;
-  font-size: 10px;
-  text-align: center;
-  color: #653d00;
-}
-
-.title {
-  margin: 8px 0;
-  font-weight: 700;
-  text-align: center;
-  color: #000000;
-}
-
-.latinName {
-  font-weight: 700;
-  font-size: 12px;
-  text-align: center;
-  color: #b38550;
-}
-
-img {
-  object-fit: cover;
-  width: 200px;
-  height: 150px;
-  display: block;
-}
-
-.Article_wrapper {
-}
+.Article_wrapper {}
 
 .left-menu {
   width: 170px;
@@ -153,20 +185,24 @@ img {
   flex-shrink: 0;
   height: fit-content;
 }
+
 a {
   color: #3366cc;
   font-size: large;
 }
+
 a:visited {
   color: #3366cc;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-li {
-}
+
+li {}
+
 .left-menu__name-category {
   border-bottom: 1px solid #eaecf0;
   color: #54598a;
@@ -177,20 +213,24 @@ main {
   display: flex;
   gap: 50px;
 }
+
 .content {
   width: 100%;
   flex-shrink: 1;
 }
+
 form,
 label {
   display: flex;
   flex-direction: column;
   max-width: 250px;
 }
+
 form {
   gap: 10px;
   margin-top: 10px;
 }
+
 .submit {
   width: 100%;
   padding: 8px;
@@ -209,9 +249,55 @@ form {
 input {
   padding: 5px 0 5px 5px;
 }
+
 input:focus {
   outline-color: rgb(64, 101, 197);
 }
+
 input:hover {
   border-color: black;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #000;
+  border-radius: 30px;
+  margin: 0;
+  margin-left: 15px;
+  width: 215px;
+  height: 30px;
+}
+
+.search-form input {
+  border: none;
+}
+
+.search-input {
+  margin: 2px;
+  padding: 0;
+  border: none;
+  color: #928F8F;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  width: 70%;
+}
+
+.search-button {
+  margin: 2px;
+  padding: 0;
+  margin-left: 10px;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-color: #fff;
+}
+
+.search-svg {
+  width: 24px;
+  height: 24px;
+  background-position: 50% 50%;
 }
