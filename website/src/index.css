@@ -258,6 +258,48 @@ input:hover {
   border-color: black;
 }
 
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.MushroomHeading {
+  text-align: center;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.SideInfo {
+  min-width: 40%;
+}
+
+.MushroomSmallInfo, .DescriptionHeading {
+  font-weight: 700;
+}
+
+.mushroomProperty {
+  justify-content: space-between;
+}
+.DescriptionHeading {
+  max-width: none;
+  font-size: 24px;
+}
+
+.AreaInfo {
+  color: #777777;
+  margin-top: 5px;
+}
+
+.MushroomName {
+  font-size: 32px;
+  margin: 0;
+}
+
+.MushroomMainInfo {
+  gap: 100px;
+
 .search-form {
   display: flex;
   flex-direction: row;
