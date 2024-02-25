@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    platform: linux/amd64
+    container_name: ${SERVICE}_dev_db
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
+      - fungi-database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=$DATABASE_USER
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+      - POSTGRES_DB=$DATABASE_DB
+    user: postgres
+
+  website:
+    container_name: ${SERVICE}_dev_website
+    env_file: .env
+    build:
+      context: ./website/
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./website:/app
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+
+  backend: &WEB
+    container_name: ${SERVICE}_dev_backend
+    env_file: .env
+    build:
+      context: ./backend/
+      dockerfile: dev.Dockerfile
+    environment:
+      - DJANGO_DEBUG=1
+      - BASE_URL
+    volumes:
+      - ./backend:/app
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+    depends_on:
+      - db
+
+volumes:
+  fungi-database:
+     external: true
