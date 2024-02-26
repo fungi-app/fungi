@@ -1,12 +1,12 @@
 {
   "name": "website",
   "version": "0.1.0",
+  "proxy": "http://localhost:8002",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@trpc/react-query": "^10.40.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.54",
     "@types/react-router-dom": "^5.3.3",
@@ -16,12 +16,11 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "superjson": "^2.0.0",
-    "typescript": "^5.2.2",
     "web-vitals": "^2.1.4"
-  },
+  },  
   "overrides": {
-    "typescript": "^5.2.2",
-    "@types/react": "^18.2.24"
+    "typescript": "^4.9.5",
+    "@types/react": "^18.2.33"
   },
   "scripts": {
     "start": "react-scripts start",
