@@ -125,7 +125,7 @@ class Media(models.Model):
 
 
 class MushroomImage(models.Model):
-    image = models.ForeignKey(
+    media = models.ForeignKey(
         Media,
         on_delete=models.PROTECT,
         null=False,
@@ -153,11 +153,16 @@ class Publication(models.Model):
 
     created_at = models.DateTimeField('Created at', auto_now_add=True)
 
+    @property
+    def preview(self):
+        return self.images.first()
+
 
 class PublicationImage(models.Model):
     media = models.ForeignKey(
         Media,
         on_delete=models.PROTECT,
+        related_name='images',
         null=False,
 
     )

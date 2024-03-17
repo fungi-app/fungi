@@ -36,9 +36,11 @@ class SynonymousNameSerializer(serializers.Serializer):
 class MushroomImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = MushroomImage
-        fields = ['media']
+        fields = ['name', 'image', 'image_url']
 
-    media = MediaSerializer()
+    name = serializers.CharField(source='media.name')
+    image = serializers.FileField(source='media.image')
+    image_url = serializers.CharField(source='media.image.url')
 
 
 class MushroomSerializer(serializers.ModelSerializer):
@@ -62,15 +64,27 @@ class MushroomSerializer(serializers.ModelSerializer):
 class PublicationImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicationImage
-        fields = ['media']
+        fields = ['name', 'image', 'image_url']
 
-    media = MediaSerializer()
+    name = serializers.CharField(source='media.name')
+    image = serializers.FileField(source='media.image')
+    image_url = serializers.CharField(source='media.image.url')
 
 
 class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ['slug', 'title', 'content', 'images', 'author', 'created_at']
+        fields = ['slug', 'title', 'content', 'preview', 'author', 'created_at']
 
     author = UserSerializer(read_only=True)
-    images = PublicationImageSerializer(many=True)
+    preview = PublicationImageSerializer()
+    content = serializers.SerializerMethodField()
+
+    def get_content(self, publication):
+        return publication.content.format(
+            *list(
+                (
+                    f'![]({image.media.image_url})' for image in publication.images.all()
+                )
+            )
+        )
