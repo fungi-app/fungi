@@ -1,15 +1,4 @@
-from decimal import Decimal as D
-
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.core.exceptions import ValidationError
-from django.core.mail import EmailMultiAlternatives
-from django.core.validators import MinValueValidator
-from django.template.loader import render_to_string
-from django.utils import timezone
-
-from main import settings
-
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
@@ -45,7 +34,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser): 
+class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name="Email adress",
         max_length=255,

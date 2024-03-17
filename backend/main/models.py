@@ -1,13 +1,6 @@
-from io import BytesIO
-
 from django.contrib.postgres.fields import ArrayField
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
-from django.contrib.contenttypes.models import ContentType
-from django.core.files.images import ImageFile
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db import models
-from django.db.models import CheckConstraint, Q
 from django.core.validators import MinValueValidator
+from django.db import models
 
 from main.helpers import get_random_slug
 from user.models import User
@@ -21,6 +14,7 @@ class Color(models.Model):
 class Family(models.Model):
     name = models.CharField('Name', max_length=255, unique=True, db_index=True)
     latin_name = models.CharField('Latin name', max_length=255)
+    slug = models.SlugField(max_length=32, db_index=True, unique=True, default=get_random_slug)
 
 
 class Mushroom(models.Model):
@@ -57,7 +51,6 @@ class Mushroom(models.Model):
 
     slug = models.SlugField(max_length=32, db_index=True, unique=True, default=get_random_slug)
 
-
     family = models.ForeignKey(Family, on_delete=models.CASCADE)
     red_booked = models.BooleanField('Red booked')
     description = models.TextField('Description')
@@ -67,7 +60,7 @@ class Mushroom(models.Model):
         default=Eatable.NOT_EATABLE,
     )
 
-    have_foot = models.BooleanField('Have foot') 
+    have_foot = models.BooleanField('Have foot')
     foot_size_from = models.IntegerField(
         'Foot size from',
         validators=[MinValueValidator(1)],
@@ -109,7 +102,7 @@ class Mushroom(models.Model):
     updated_at = models.DateTimeField('Updated at', auto_now=True, db_index=True)
 
     doubles = models.ManyToManyField('Mushroom', blank=True, null=True)
-  
+
     def __str__(self):
         return self.name
 
@@ -135,7 +128,7 @@ class MushroomImage(Image):
 
 
 class Publication(models.Model):
-    title = models.CharField('Title', max_length=255, db_index=True) 
+    title = models.CharField('Title', max_length=255, db_index=True)
     content = models.TextField('Content')
 
     image = models.ForeignKey(

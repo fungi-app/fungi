@@ -1,0 +1,26 @@
+[flake8]
+exclude =
+    migrations
+	media
+
+max-line-length = 120
+
+ignore =
+    #  Avoid using null=True on string-based fields such CharField.
+    DJ01
+    # prefer-logging-interpolation: Use lazy % formatting in logging functions.
+    PIE803
+    T101
+
+per-file-ignores =
+  common/num2t/__init__.py:S001
+  backend/common/num2t/__init__.py:S001
+  integration/models.py:E800
+  backend/integration/models.py:E800
+  business/tests/api/test_integration.py:Q001
+  backend/business/tests/api/test_integration.py:Q001
+
+[pep8]
+# https://pep8.readthedocs.io/en/latest/intro.html#error-codes
+# E501
+max-line-length = 120

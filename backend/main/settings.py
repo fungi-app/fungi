@@ -25,7 +25,7 @@ ALLOWED_HOSTS = [
 ]
 
 PRODUCT_NAME = 'Fungi'
-#PRODUCT_HOST = 'fokus.am'
+# PRODUCT_HOST = 'fokus.am'
 
 
 # Application definition

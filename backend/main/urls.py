@@ -4,11 +4,12 @@ from rest_framework import routers
 from django.contrib import admin
 from main import settings
 
-from main.views import MushroomViewSet, PublicationViewSet, IndexView
+from main.views import FamilyViewSet, MushroomViewSet, PublicationViewSet, IndexView
 from user.views import UserView, LogoutView
 
 
 router = routers.SimpleRouter()
+router.register(r'families', FamilyViewSet, basename='families')
 router.register(r'mushrooms', MushroomViewSet, basename='mushrooms')
 router.register(r'publications', PublicationViewSet, basename='publications')
 
