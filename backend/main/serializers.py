@@ -11,13 +11,13 @@ from user.serializers import UserSerializer
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Color
-        fields = ['id', 'name', 'hex_code']
+        fields = ['name', 'hex_code']
 
 
 class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = Family
-        fields = ['id', 'name', 'latin_name']
+        fields = ['name', 'latin_name', 'slug']
 
 
 class SynonymousNameSerializer(serializers.Serializer):
@@ -38,7 +38,7 @@ class MushroomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mushroom
         fields = [
-            'id', 'name', 'latin_name', 'synonymous_names', 'slug',
+            'name', 'latin_name', 'synonymous_names', 'slug',
             'family', 'red_booked', 'description', 'eatable', 'have_foot',
             'foot_size_from', 'foot_size_to', 'foot_type', 'foot_color',
             'head_type', 'hymenophore', 'head_color', 'created_at',
@@ -55,7 +55,7 @@ class MushroomSerializer(serializers.ModelSerializer):
 class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ['id', 'title', 'content', 'image', 'author', 'created_at']
+        fields = ['slug', 'title', 'content', 'image', 'author', 'created_at']
 
     author = UserSerializer(read_only=True)
     image = ImageSerializer(read_only=True)

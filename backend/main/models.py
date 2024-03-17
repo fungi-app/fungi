@@ -128,6 +128,8 @@ class MushroomImage(Image):
 
 
 class Publication(models.Model):
+    slug = models.SlugField(max_length=32, db_index=True, unique=True, default=get_random_slug)
+
     title = models.CharField('Title', max_length=255, db_index=True)
     content = models.TextField('Content')
 
@@ -143,4 +145,4 @@ class Publication(models.Model):
         null=False,
     )
 
-    created_at = models.DateTimeField('Created at', auto_now_add=True, db_index=True)
+    created_at = models.DateTimeField('Created at', auto_now_add=True)
