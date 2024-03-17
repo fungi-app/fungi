@@ -36,14 +36,10 @@ class Command(BaseCommand):
                 publicationText = file.read()
 
                 publication = Publication.objects.create(
-                    title=publicationPath[:3],
+                    title=publicationPath[:-3],
                     content=self._get_publication_text(publicationText),
                     author=self.admin,
                 )
-
-                # print('#' * 10 + "IMAGE TEXT" + '#' * 10)
-                # print(self._get_publication_text(publicationText))
-                # print('#' * 10 + "IMAGE LINKS" + '#' * 10)
 
                 self._generate_publication_images(publicationText, publication)
 
