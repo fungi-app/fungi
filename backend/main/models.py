@@ -114,15 +114,27 @@ class Mushroom(models.Model):
         super(Mushroom, self).save(*args, **kwargs)
 
 
-class Image(models.Model):
+class Media(models.Model):
     image = models.ImageField('Image', upload_to='uploads/images/', null=False)
+    name = models.CharField('Name', max_length=255, null=False, blank=True)
     created_at = models.DateTimeField('Created at', auto_now_add=True, db_index=True)
 
+    @property
+    def image_url(self):
+        return self.image.url
 
-class MushroomImage(Image):
+
+class MushroomImage(models.Model):
+    image = models.ForeignKey(
+        Media,
+        on_delete=models.PROTECT,
+        null=False,
+
+    )
     mushroom = models.ForeignKey(
         Mushroom,
         on_delete=models.CASCADE,
+        related_name='images',
         null=False,
     )
 
@@ -133,12 +145,6 @@ class Publication(models.Model):
     title = models.CharField('Title', max_length=255, db_index=True)
     content = models.TextField('Content')
 
-    image = models.ForeignKey(
-        Image,
-        on_delete=models.CASCADE,
-        null=False,
-    )
-
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -146,3 +152,18 @@ class Publication(models.Model):
     )
 
     created_at = models.DateTimeField('Created at', auto_now_add=True)
+
+
+class PublicationImage(models.Model):
+    media = models.ForeignKey(
+        Media,
+        on_delete=models.PROTECT,
+        null=False,
+
+    )
+    publication = models.ForeignKey(
+        Publication,
+        on_delete=models.CASCADE,
+        related_name='images',
+        null=False,
+    )

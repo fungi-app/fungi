@@ -1,11 +1,20 @@
 from rest_framework import serializers
 
 from main.models import (
-    Color, Image,
+    Color, PublicationImage,
     MushroomImage, Family,
     Mushroom, Publication,
+    Media
 )
 from user.serializers import UserSerializer
+
+
+class MediaSerializer(serializers.ModelSerializer):
+    image = serializers.FileField(write_only=True)
+
+    class Meta:
+        model = Media
+        fields = ('id', 'name', 'image', 'image_url')
 
 
 class ColorSerializer(serializers.ModelSerializer):
@@ -24,14 +33,12 @@ class SynonymousNameSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=255)
 
 
-class ImageSerializer(serializers.Serializer):
-    class Meta:
-        model = Image
-
-
-class MushroomImageSerializer(ImageSerializer):
+class MushroomImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = MushroomImage
+        fields = ['media']
+
+    media = MediaSerializer()
 
 
 class MushroomSerializer(serializers.ModelSerializer):
@@ -42,20 +49,28 @@ class MushroomSerializer(serializers.ModelSerializer):
             'family', 'red_booked', 'description', 'eatable', 'have_foot',
             'foot_size_from', 'foot_size_to', 'foot_type', 'foot_color',
             'head_type', 'hymenophore', 'head_color', 'created_at',
-            'updated_at', 'head_color', 'mushroom_images'
+            'updated_at', 'head_color', 'images'
         ]
 
     synonymous_names = SynonymousNameSerializer(many=True)
     family = FamilySerializer(many=True)
     head_color = ColorSerializer()
     foot_color = ColorSerializer()
-    mushroom_images = MushroomImageSerializer(many=True)
+    images = MushroomImageSerializer(many=True)
+
+
+class PublicationImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PublicationImage
+        fields = ['media']
+
+    media = MediaSerializer()
 
 
 class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ['slug', 'title', 'content', 'image', 'author', 'created_at']
+        fields = ['slug', 'title', 'content', 'images', 'author', 'created_at']
 
     author = UserSerializer(read_only=True)
-    image = ImageSerializer(read_only=True)
+    images = PublicationImageSerializer(many=True)
