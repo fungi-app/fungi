@@ -1,5 +1,5 @@
 interface ArticleCardProps {
-  id: string;
+  id: string | null;
   name: string;
   image: string;
 }
@@ -7,7 +7,6 @@ interface ArticleCardProps {
 
 export function ArticleCard (props: ArticleCardProps) {
   const { id, name, image } = props;
-  const addZero = (n: number) => (n < 10 ? `0${n}` : n);
 
   return (
         <a href={`/p/${id}`} className="Article">

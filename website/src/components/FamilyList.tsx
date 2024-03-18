@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
 import { FamilyCard } from "./FamilyCard";
+import IFamily from "../types/family"
+import FamilyDataService from "../services/family"
+
 //import { IFamily } from ".."
 
 
@@ -8,36 +12,36 @@ interface familyListProps {
 
 export function FamilyList(props: familyListProps) {
     // Вывод всех карточки семейств из бд
-    
-    const families = {data: false};
-    
-    //const families = trpc.family.getPaginated.useQuery({
-    //    page: 0,
-    //    perPage: 1000
-    //});
 
-    if (!families.data) {
-        return <span>Семейств нет</span>
+    const [families, setFamilies] = useState<IFamily[]>()
+    
+    
+    const fetchFamilies = async () => {
+       FamilyDataService.getAll()
+      .then((response: any) => {
+        setFamilies(response.data);
+        console.log(response.data);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+
     }
 
-    const families_data = families.data.map(family => {
-        if (props.search_text === family.name) return family
-    })
+    useEffect(() => {
+      fetchFamilies();
+    }, []);
+
 
     return (
 
         <div className="cardList">
-            {!families_data && <span>Нет грибов</span>}
-            {
-                families.data.filter(
-                    family => { 
-                        return (family.name.toLowerCase().includes(props.search_text.toLowerCase().trim()) ||
-                        family.latinName.toLowerCase().includes(props.search_text.toLowerCase().trim()))
-                    })
-                    .map((family) => (
+            {!families && <span>Семейств нет</span>}
+            {families &&
+                families.map((family) => (
                         <FamilyCard
                             name={family.name}
-                            latinName={family.latinName}
+                            latinName={family.latin_name}
                         />
                     ))
             }

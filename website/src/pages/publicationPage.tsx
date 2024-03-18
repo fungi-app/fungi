@@ -13,6 +13,7 @@ export function PublicationPage () {
     const [publication, setPublication] = useState<IPublication>()
 
     const fetchPublication = async () => {
+      if (!params.slug) return
       PublicationDataService.get(params.slug)
       .then((response: any) => {
         setPublication(response.data);

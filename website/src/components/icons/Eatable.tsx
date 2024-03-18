@@ -1,6 +1,4 @@
-import { EATABLE_GRADE } from "@fungi/db";
-
-export const EatableGradeIcon = (EatableState: EATABLE_GRADE) => {
+export const EatableGradeIcon = (EatableState: string) => {
     let Icon: () => JSX.Element;
     if (EatableState === "EATABLE") Icon = EatableIcon;
     else if (EatableState === "PARTIALLY_EATABLE") Icon = PartiallyEatableIcon;

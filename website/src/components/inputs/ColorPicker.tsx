@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { trpc } from "../../lib/trpc";
-import { Color } from "@fungi/db"
 
 // export const COLOR_HAME_DICT = {
 //     [COLOR.RED]: "Красный",

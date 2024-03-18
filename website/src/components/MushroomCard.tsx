@@ -1,34 +1,31 @@
-import { type Family } from "@fungi/db"
-import { EATABLE_GRADE } from "@fungi/db"
+import IMushroom from "../types/mushroom"
+
 import { EatableGradeIcon } from "./icons/Eatable"
 import { IsRedBookedIcon } from "./icons/RedBooked"
 
-interface MushroomCardProps {
-    name: String;
-    latinName: String;
-    redBooked: boolean;
-    eatable: EATABLE_GRADE;
-    family: Family;
+
+interface mushroomCardProps {
+    mushroom: IMushroom,
 }
 
-export function MushroomCard(props: MushroomCardProps) {
+export function MushroomCard(props: mushroomCardProps) {
     // Карточка гриба
     return (
         <div className="mushroomCard"> {/* Карточка с Figma -> Приложение */}
-            <img className="mushroomImage" src={"https://upload.wikimedia.org/wikipedia/commons/b/b0/Boletus_edulis_EtgHollande_041031_091.jpg"} alt="Mushroom!" />
+            <img className="mushroomImage" src={"mushroom.images[0].preview_url"} alt="Mushroom!" />
             <div className="mushroomCardText">
                 <div className="family">
-                    {props.family.name} ({props.family.latinName})
+                    {props.mushroom.family.name} ({props.mushroom.family.latin_name})
                 </div>
                 <div className="title">
-                    {props.name}
+                    {props.mushroom.name}
                 </div>
                 <div className="latinName">
-                    {props.latinName}
+                    {props.mushroom.name}
                 </div>
                 <div className="eatableRedBooked">
-                    <i className="mushroomIcons">{EatableGradeIcon(props.eatable)}</i>
-                    <i className="mushroomIcons">{IsRedBookedIcon(props.redBooked)}</i>
+                    <i className="mushroomIcons">{EatableGradeIcon(props.mushroom.eatable)}</i>
+                    <i className="mushroomIcons">{IsRedBookedIcon(props.mushroom.red_booked)}</i>
                 </div>
             </div>
         </div>

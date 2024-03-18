@@ -15,7 +15,7 @@ import axios from "../http-common"
 
 export function Index () {
 
-  const [publications, setPublications] = useState<IPublication>()
+  const [publications, setPublications] = useState<IPublication[]>()
 
   const fetchPublications = async () => {
     PublicationDataService.getAll()
