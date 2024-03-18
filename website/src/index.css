@@ -175,6 +175,33 @@ span {
   flex-grow: 1;
 }
 
+.Article {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 200px;
+  background: #ffe8c5;
+  border-radius: 22px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.Article p {
+  margin: 10px auto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+
+.Article_wrapper {
+}
+
 .Article_wrapper {}
 
 .left-menu {

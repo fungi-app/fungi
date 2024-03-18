@@ -1,6 +1,5 @@
-import { SearchInput } from "./inputs/TextInput";
+import { SearchInput } from "./inputs/TextInputs";
 import {SearchElement} from "./icons/Search";
-import { useState } from "react";
 
 interface searchProps {
     title: string,
@@ -10,12 +9,19 @@ interface searchProps {
 }
 
 export function Search(props:searchProps) {
-    // Поле и кнопка поиска
-
-    return (
-        <div className="search-form">
-            <button className="search-button"> <svg className="search-svg">{SearchElement()}</svg> </button>
-            <SearchInput title={props.title} value={props.value} inputName="inputName" required={props.required}/>
-        </div >
-    )
+  return (
+    <div className="search-form">
+      <button className="search-button">
+        <svg className="search-svg">
+          {SearchElement()}
+        </svg>
+      </button>
+      <SearchInput
+        title={props.title}
+        setValue={props.value}
+        inputName="inputName"
+        required={props.required}
+      />
+    </div>
+  )
 }

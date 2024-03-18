@@ -1,5 +1,5 @@
 import { MushroomCard } from "./MushroomCard";
-import { trpc } from "../lib/trpc";
+//import { trpc } from "../lib/trpc";
 
 interface mushroomListProps {
     search_text: string,
@@ -14,10 +14,12 @@ export function MushroomList(props: mushroomListProps) {
 
     console.log("From MushroomListProps: " + props.search_text.trim())
 
-    const mushrooms = trpc.mushrooms.getPaginated.useQuery({
-        page: 0,
-        perPage: 1000,
-    });
+    const mushrooms = {}
+
+    //const mushrooms = trpc.mushrooms.getPaginated.useQuery({
+    //    page: 0,
+    //    perPage: 1000,
+    //});
 
     if (!mushrooms.data) {
         return (<span>Грибов нет</span>)

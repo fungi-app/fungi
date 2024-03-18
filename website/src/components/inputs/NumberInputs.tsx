@@ -7,14 +7,14 @@ interface IInputForm {
     unit?: string
     placeholder?: string
     required: boolean
-    value?: Function
+    setValue?: Function
     onChange?: Function // Использовать только когда нужны допополнительные параметры
 }
 
 export function NumberInput (props: IInputForm){
   const [value, setValue] = useState(0);
 
-  if (props.value) props.value(value)
+  if (props.setValue) props.setValue(value)
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (props.onChange) props.onChange(event);

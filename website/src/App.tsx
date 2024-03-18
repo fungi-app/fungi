@@ -8,21 +8,16 @@ import {Logout} from "./pages/logout"
 import {About} from "./pages/about"
 import { MushroomEncyclopedia } from "./pages/mushrooms"
 import { FamilyEncyclopedia } from "./pages/families"
+import { PublicationPage } from "./pages/publicationPage"
 
 import {Route, Routes} from 'react-router-dom'
 
-
-
-
-import React, { useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { TRPCProvider } from './lib/trpc';
+// <Route path="/mushrooms" element={ <AddMushroom /> } />
 
 function App() {
   return (
     <>
-      <TRPCProvider>
-          <Routes>
+        <Routes>
             <Route path="/" element={ <Index /> } />
             <Route path="/about" element={ <About /> } />
 
@@ -34,8 +29,8 @@ function App() {
             <Route path="/logout" element={ <Logout /> } />
             <Route path="/m/enc" element={ <MushroomEncyclopedia /> } />
             <Route path="/c/enc" element={ <FamilyEncyclopedia /> } />
-          </Routes>
-      </TRPCProvider>
+            <Route path="/p/:slug" element={ <PublicationPage /> } />
+        </Routes>
       {/* <Navigation /> */}
     </>
   )

@@ -1,5 +1,6 @@
 import { FamilyCard } from "./FamilyCard";
-import { trpc } from "../lib/trpc";
+//import { IFamily } from ".."
+
 
 interface familyListProps {
     search_text: string,
@@ -7,10 +8,13 @@ interface familyListProps {
 
 export function FamilyList(props: familyListProps) {
     // Вывод всех карточки семейств из бд
-    const families = trpc.family.getPaginated.useQuery({
-        page: 0,
-        perPage: 1000
-    });
+    
+    const families = {data: false};
+    
+    //const families = trpc.family.getPaginated.useQuery({
+    //    page: 0,
+    //    perPage: 1000
+    //});
 
     if (!families.data) {
         return <span>Семейств нет</span>

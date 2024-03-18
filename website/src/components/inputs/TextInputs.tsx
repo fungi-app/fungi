@@ -3,17 +3,17 @@ import {ChangeEvent} from 'react';
 
 interface IInputForm {
     title?: string 
-    inputName: string
+    inputName?: string
     placeholder?: string
     required: boolean
-    value?: Function
+    setValue?: Function
     onChange?: Function // Использовать только когда нужны допополнительные параметры
 }
 
 function TextInput (props: IInputForm){
   const [value, setValue] = useState('');
 
-  if (props.value) props.value(value)
+  if (props.setValue) props.setValue(value)
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (props.onChange) props.onChange(event);
@@ -29,14 +29,19 @@ function TextInput (props: IInputForm){
         value={value}
         onChange={onChange}
       /></label>
-      
   )
+}
+
+TextInput.defaultProps = {
+    title: "Введите текст",
+    formName: "name",
+    required: false,
 }
 
 function SearchInput (props: IInputForm){
   const [value, setValue] = useState('');
 
-  if (props.value) props.value(value)
+  if (props.setValue) props.setValue(value)
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (props.onChange) props.onChange(event);
@@ -56,9 +61,10 @@ function SearchInput (props: IInputForm){
   )
 }
 
-TextInput.defaultProps = {
+SearchInput.defaultProps = {
     title: "Введите текст",
     formName: "name",
+    required: false,
 }
 
 function ArrayTextInput (props: IInputForm){
@@ -91,7 +97,7 @@ function ArrayTextInput (props: IInputForm){
   //   return out;
   // }
 
-  if (props.value) props.value(values);
+  if (props.setValue) props.setValue(values);
 
   return (
     <label
@@ -111,7 +117,7 @@ function ArrayTextInput (props: IInputForm){
 function  BigTextInput (props: IInputForm){
   const [value, setValue] = useState('');
 
-  if (props.value) props.value(value);
+  if (props.setValue) props.setValue(value);
 
 
   return (

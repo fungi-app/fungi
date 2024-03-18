@@ -6,23 +6,33 @@
 import { ArticleCard } from "../components/ArticleCard";
 import { MushroomCard } from "../components/MushroomCard";
 import { Header } from "../components/Header";
-import { trpc } from "../lib/trpc";
-import { loadImage } from "../lib/image";
 import { useEffect, useState } from "react";
+
+import IPublication from "../types/publication"
+import PublicationDataService from "../services/publication"
+import axios from "../http-common"
 
 
 export function Index () {
 
-  // const [publications, setPublications] = useState<Mushroom>()
+  const [publications, setPublications] = useState<IPublication>()
 
-  // async function fetchArticles() {
-  //     const publications = await trpc.publications.getPaginated.query({
-  //         page: 0,
-  //         perPage: 5,
-  //       });    
-  // }
+  const fetchPublications = async () => {
+    PublicationDataService.getAll()
+      .then((response: any) => {
+        setPublications(response.data);
+        console.log(response.data);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
 
-  // useEffect (fetchArticles ())
+  }
+
+  useEffect(() => {
+    fetchPublications();
+  }, []);
+
 
   return (
     <main>
@@ -31,25 +41,14 @@ export function Index () {
       </section>
       <section className="recommended">
         <h2>Возможно, Вам будет интересно почитать!</h2>
-        {/* Демонстрация гриба
-        <div>
-          <MushroomCard id={0} name={"Подосиновик жёлто-бурый"} latinName={"Boletus edulis"} redBooked={false} eatable={"EATABLE"} family={{
-            id: 0,
-            name: "Болетовые",
-            latinName: "Boletaceae"
-          }} />
-        </div>
-        */}
         <div className="wrapper">
-          {/* {
+          {publications &&
               publications.map((a) => (
-                <ArticleCard id={a.id} name={a.title} image={loadImage(a.image)} />
+                <ArticleCard id={a.slug} name={a.title} image={a.preview.image_url}/>
               ))
-            } */}
+          }
         </div>
       </section>
     </main>
   )
 }
-
-
