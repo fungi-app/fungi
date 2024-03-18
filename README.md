@@ -1,26 +1,26 @@
 # fungi
 
-Это монорепозиторий, содержащий весь код Fungi.
+В проекте есть:
+1. backend -- backend на djanog rest framework
+2. website -- фронтенд сайт
+3. frontend -- frontend мобильное приложение
 
-**Содержит в себе пакеты:**
+Для запуска проекта нужно иметь docker и docker-compose
 
-- `./backend/api` (`@fungi/api`) - tRPC процедуры
-- `./backend/db` (`@fungi/db`) - Инициализация БД
-- `./backend/server` (`@fungi/server`) - Бэкенд сервер
-- `./tooling/tunnel-dev` (`@fungi/tunnel-dev`) - Проброс бэкенд сервера для доступа из приложения
-- `./frontend` (`@fungi/app`) - RN + Expo приложение
-- `./website` (`@fungi/website`) - Сайт на Astro (SSR)
-
-## Начало работы
-Для работы с базой данных
-```env
-DATABASE_URL="postgresql://<user>:<password>@localhost:5432/fungi"
+Для работы website нужно установить все модули
+```
+cd website;
+npm install;
+cd ..;
 ```
 
-1. Склонируйте репозиторий и зайдите в папку с ним
-2. Установите зависимости - `npm i`
-3. (опционально) Если хотите запустить бэкенд, то обязательно нужно инициализировать БД: `npm run init-db`
+Запуск проекта:
+```
+docker volume create --name=fungi-database
+docker-compose -f docker-compose.dev.yml up
+```
 
-- Запустить только приложение: `npm run dev:app`
-- Запустить только сервер: `npm run dev:server`
-- Запустить приложение и сервер одновременно: `npm run dev`
+Заполнение бд тестовыми данными:
+```
+docker-compose -f docker-compose.dev.yml exec backend python manage.py first_start
+```
